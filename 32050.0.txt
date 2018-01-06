@@ -1,0 +1,52 @@
+@0
+
+
+@1
+S: MOV UP, ACC
+MOV ACC, RIGHT
+# This swaps the current input value to the last input value (or zero if at the start of the program).
+SWP
+# This gives you the difference between the two values.
+SUB RIGHT
+# This sets the difference to a positive if it is negative so that a calculation to determine the size difference can be done in node 5.
+JLZ L
+MOV ACC, DOWN
+JMP S
+L: NEG
+MOV ACC, DOWN
+
+@2
+# This is used to hold the next value to subtract to find the difference between this and the last input.
+MOV LEFT, LEFT
+
+@3
+
+
+@4
+
+
+@5
+S: MOV UP, ACC
+# This takes the value of the size difference and subtracts 10.
+SUB 10
+# If the result is still not a negative then we know that the size difference between the two is 10 or more.
+JLZ L
+# Move 1 to output if not negative (size difference of 10 or more) and jump back to start.
+MOV 1, RIGHT
+JMP S
+# If negative then move zero to the output as we know the size difference is smaller than 10. 
+L: MOV NIL, RIGHT
+
+@6
+MOV LEFT, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

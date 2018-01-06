@@ -1,0 +1,68 @@
+@0
+# Moves IN down.
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+# Moves IN down.
+MOV UP, DOWN
+
+@5
+# Moves IN right.
+MOV UP, RIGHT
+
+@6
+# Moves the input value from the left into the accumulator.
+START:
+MOV LEFT, ACC
+# Jumps to 'Bigger' if the value is greater than zero, if not then continues to the next step.
+JGZ BIGGER
+# Moves the value across so the next node can check the value against that nodes rules.
+MOV ACC, RIGHT
+# Moves a zero to the output if the value was not greater than zero.
+MOV NIL, DOWN
+# Resets back to the beginning to check the next input value.
+JMP START
+# Outputs a 1 into OUT.G and moves the input value accross to be checked by the next set of rules.
+BIGGER:
+MOV 1, DOWN
+MOV ACC, RIGHT
+
+@7
+# Moves the input value from the left into the accumulator.
+START:
+MOV LEFT, ACC
+# Jumps to 'Equal' if the value is zero, if not then continues to the next step.
+JEZ EQUAL
+# Moves the value across so next node can check the value against that nodes rules.
+MOV ACC, RIGHT
+# Moves a zero to the output if the value was not equal to zero.
+MOV NIL, DOWN
+# Resets back to the beginning to check the next input value.
+JMP START
+# Outputs a 1 into OUT.E and moves the input value accross to be checked by the next set of rules.
+EQUAL:
+MOV 1, DOWN
+MOV ACC, RIGHT
+
+@8
+# Moves the input value from the left into the accumulator.
+START:
+MOV LEFT, ACC
+# Jumps to 'Smaller' if the value is smaller than zero, if not then continues to the next step.
+JLZ SMALLER
+# Moves a zero to the output if the value was not smaller than zero.
+MOV NIL, DOWN
+# Resets back to the beginning to check the next input value.
+JMP START
+# Outputs a 1 into OUT.L.
+SMALLER:
+MOV 1, DOWN

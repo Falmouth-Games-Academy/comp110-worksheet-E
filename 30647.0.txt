@@ -1,0 +1,86 @@
+@0
+# Moves the IN.B value back so it can be called upon in the evaluation later on of determining which input is the larger of the two. 
+MOV RIGHT, RIGHT
+
+@1
+# This node will make an evaluation to determine whether or not IN.A is the largest input and then move it to output accordingly. 
+# Take the IN.A and add it to the accumulator.
+S:MOV UP, ACC
+# Save a backup to be output later while using the accumulator to do checks on.
+SAV
+# Moves IN.A to node 2 so it can be used to make the same evaluation in that node.
+MOV ACC, RIGHT
+# Takes IN.B from node 2 and moves it to node 0 so it can be used to do a check in this node later on.
+MOV RIGHT, LEFT
+# Subtracting IN.B from IN.A tells you which is the higher input, if the result is lower than zero then it means IN.A is the lower number and vice versa.
+SUB LEFT
+JGZ G
+JLZ L
+# If IN.A is the greater of the two inputs then this swaps the ACC and BAK so we can use the original IN.B value again.
+G:SWP
+# Use NOP to stall to give time for the IN.B in node 2 which would be the smaller input, to move to the output before we move the greater value IN.B.
+# This requires fewer NOP stalls because the node is further from the output location.
+NOP
+NOP
+# We can now move the input down and jump back to the start for the next input evaluation to begin again.
+MOV ACC, DOWN
+JMP S
+# If the result was less than zero then that means IN.A was the smaller of the two which just means swapping to get IN.B and moving it down immediately.
+L: SWP
+MOV ACC, DOWN
+
+@2
+# This node will make an evaluation to determine whether or not IN.B is the largest input and then move it to output accordingly. 
+# Take the IN.B and add it to the accumulator.
+S:MOV UP, ACC
+# Save a backup to be output later while using the accumulator to do checks on.
+SAV
+# Takes IN.A from node 1 and moves it to node 3 so it can be used to do a check in this node later in the code.
+MOV LEFT, RIGHT
+# Moves IN.B to node 1 so it can be used to make the same evaluation in that node.
+MOV ACC, LEFT
+# Subtracting IN.A from IN.B tells you which is the higher input, if the result is lower than zero then it means IN.B is the lower number and vice versa.
+SUB RIGHT
+JGZ G
+JLZ L
+# If IN.B is the greater of the two inputs then this swaps the ACC and BAK so we can use the original IN.B value again.
+G:SWP
+# Use NOP to stall to give time for the IN.A in node 1 which would be the smaller input, to move to the output before we move the greater value IN.B.
+NOP
+NOP
+NOP
+# We can now move the input down and jump back to the start for the next input evaluation to begin again.
+MOV ACC, DOWN
+JMP S
+# If the result was less than zero then that means IN.B was the smaller of the two which just means swapping to get IN.B and moving it down immediately.
+L: SWP
+MOV ACC, DOWN
+
+@3
+# Moves the IN.A value back so it can be called upon in the evaluation later on of determining which input is the larger of the two. 
+MOV LEFT, LEFT
+
+@4
+
+
+@5
+# Moves input towards output. 
+MOV UP, RIGHT
+
+@6
+# Moves the first value it read from either the UP or Left port, and moves it down.
+MOV ANY, DOWN
+
+@7
+
+
+@8
+
+
+@9
+# This ensures that a zero is output after every two inputs are output.
+MOV UP, DOWN
+MOV UP, DOWN
+MOV NIL, DOWN
+
+@10

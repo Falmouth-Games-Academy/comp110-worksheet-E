@@ -1,0 +1,36 @@
+@0
+
+
+@1
+MOV UP, RIGHT
+
+
+@2
+# Add the number to the accumulator.
+ADD LEFT
+# Adding the accumulator to itself doubles the value.
+ADD ACC
+# Continue to move the value towards the output location.
+MOV ACC, DOWN
+# This resets the accumulator to zero, ready for the next value.
+MOV NIL, ACC
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9

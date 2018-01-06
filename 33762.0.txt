@@ -1,0 +1,82 @@
+@0
+S:MOV UP, ACC
+# This checks if input is 1 and if not moves 0 down, if it is it jumps to ONE.
+ZERO: JGZ ONE
+MOV 0, DOWN
+JMP S
+# This moves 1 down if the input is 1 then checks the next input to see if it is 1 again.
+ONE: MOV 1, DOWN
+MOV UP, ACC
+# If the next input after 1 is 0 then it loops back to ZERO. If it is still 1 then there is no change so will send down 0 to the output.
+JEZ ZERO
+MOV 0, DOWN
+# This allows you to repeat the last 3 instructions until the input changes to 0 again. This ensures 1 is only moved down when a change from
+# 0 to 1 occurs.
+JRO -3
+
+@1
+S:MOV UP, ACC
+ZERO: JGZ ONE
+MOV 0, DOWN
+JMP S
+# This moves 2 down if the input is 1 intead of 1, the rest works the same as in node 0.
+ONE: MOV 2, DOWN
+MOV UP, ACC
+JEZ ZERO
+MOV 0, DOWN
+JRO -3
+
+@2
+S:MOV UP, ACC
+ZERO: JGZ ONE
+MOV 0, DOWN
+JMP S
+# This moves 3 down if the input is 1 intead of 1, the rest works the same as in node 0.
+ONE: MOV 3, DOWN
+MOV UP, ACC
+JEZ ZERO
+MOV 0, DOWN
+JRO -3
+
+@3
+S:MOV UP, ACC
+ZERO: JGZ ONE
+MOV 0, DOWN
+JMP S
+# This moves 4 down if the input is 1 intead of 1, the rest works the same as in node 0.
+ONE: MOV 4, DOWN
+MOV UP, ACC
+JEZ ZERO
+MOV 0, DOWN
+JRO -3
+
+@4
+# Moves the value right
+MOV UP, RIGHT
+
+@5
+# This takes the values from node 0 and node 1, adds them together and sends the value right.
+MOV UP, ACC
+ADD LEFT
+MOV ACC, RIGHT
+
+@6
+# This takes the sum of the values from node 0 and node 1, adds the value of node 3 and sends the value right.
+MOV UP, ACC
+ADD LEFT
+MOV ACC, RIGHT
+
+@7
+# This takes the sum of the values from nodes 0, 1 and 2 and adds the value of node 4 and sends the value down towards the output.
+MOV UP, ACC
+ADD LEFT
+MOV ACC, DOWN
+
+@8
+
+
+@9
+MOV RIGHT, DOWN
+
+@10
+MOV UP, LEFT

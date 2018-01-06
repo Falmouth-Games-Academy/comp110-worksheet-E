@@ -1,0 +1,41 @@
+@0
+
+
+@1
+MOV UP, DOWN
+
+@2
+
+
+@3
+
+
+@4
+# Start by moving zero into the stack memory node so that we have an end to the sequence that we will be stacking.
+MOV 0, DOWN
+# Place the first value into the accumulator.
+MOV UP, ACC
+# Check if the value is zero.
+JEZ E
+# If not zero then move it into the stack memory node and redo the last three steps to continue the sequencing until
+# you get a zero which ends the sequence.
+MOV ACC, DOWN
+JRO -3
+# Start pulling back the values from the stack and and move them towards the output until you get the last number, 
+# which is the zero we initially placed and then output that as well. Then reset to the beginning for the next sequence.
+E: MOV DOWN, ACC
+JEZ X
+MOV ACC, RIGHT
+JMP E
+X: MOV ACC, RIGHT
+
+@5
+MOV LEFT, DOWN
+
+@6
+
+
+@7
+MOV UP, DOWN
+
+@8
