@@ -2,21 +2,21 @@
 
 
 @1
-# This takes in.a and stores it in the accumulator.
+# This takes IN.A and stores it in the accumulator.
 MOV UP, ACC
 # This sends a copy to the right where it can be used again later.
 MOV ACC, RIGHT
 # Moves a copy down.
 MOV ACC DOWN
-# Resets accumulator to zero for the next in.a.
+# Resets accumulator to zero for the next IN.A.
 MOV ACC, NIL
 
 @2
-# This takes in.b, stores it in the accumulator.
+# This takes IN.B, stores it in the accumulator.
 MOV UP, ACC
 # This sends a copy to the right to be used later
 MOV ACC, RIGHT
-# This subtracts a copy of in.a from the in.b in the accumulator.
+# This subtracts a copy of IN.A from the IN.B in the accumulator.
 SUB LEFT
 # Moves the result down.
 MOV ACC, DOWN
@@ -24,11 +24,11 @@ MOV ACC, DOWN
 MOV NIL, ACC
 # This takes the original value of in.b we stored earlier and puts it back into the accumulator.
 ADD RIGHT
-# Moves in.b down to be used to calculate out.p
+# Moves IN.B down to be used to calculate OUT.P
 MOV ACC DOWN
 
 @3
-# Moves the original in.a back to be used later to calculate out.p in node 5.
+# Moves the original in.a back to be used later to calculate OUT.P in node 5.
 MOV LEFT, LEFT
 
 @4
@@ -40,20 +40,20 @@ SUB RIGHT
 MOV NIL, ACC
 
 @6
-# Takes the first value (which has already been changed) and moves it towards the out.n output.
+# Takes the first value (which has already been changed) and moves it towards the OUT.N output.
 MOV UP, DOWN
-# Takes the second value (which is the original value of in.b) and moves it left to be used in the calculation of out.p.
+# Takes the second value (which is the original value of IN.B) and moves it left to be used in the calculation of OUT.P.
 MOV UP, LEFT
 
 @7
 
 
 @8
-# Moves to output out.p.
+# Moves to output OUT.P.
 MOV UP, DOWN
 
 @9
-# Moves to output out.n.
+# Moves to output OUT.N.
 MOV UP, DOWN
 
 @10

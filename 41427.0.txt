@@ -53,8 +53,7 @@ MOV ACC, RIGHT
 @5
 # This node checks for the min value in the sequence.
 # Essentially the same code as in node 2 but with a check for greater than zero instead of less than because it is
-# trying to find the smallest number instead of the largest
-# (also directions are different because of the relative node positioning).
+# trying to find the smallest number instead of the largest (also directions are different because of the relative node positioning).
 S: MOV UP, ACC
 SAV
 X: MOV UP, ACC

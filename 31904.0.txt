@@ -25,7 +25,7 @@ S:MOV LEFT, ACC
 # If the input is zero then jump to E, if it's higher then jump to G.  
 JEZ E
 JGZ G
-# If the input is higher than 0 then it adds 1 to the BAK value thus increase the length by one.
+# If the input is higher than zero then it adds one to the BAK value thus increase the length by one.
 G:SWP
 ADD 1
 SWP

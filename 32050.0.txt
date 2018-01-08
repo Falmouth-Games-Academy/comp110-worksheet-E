@@ -27,14 +27,14 @@ MOV LEFT, LEFT
 
 @5
 S: MOV UP, ACC
-# This takes the value of the size difference and subtracts 10.
+# This takes the value of the size difference and subtracts ten.
 SUB 10
-# If the result is still not a negative then we know that the size difference between the two is 10 or more.
+# If the result is still not a negative then we know that the size difference between the two is ten or more.
 JLZ L
-# Move 1 to output if not negative (size difference of 10 or more) and jump back to start.
+# Move 1 to output if not negative (size difference of ten or more) and jump back to start.
 MOV 1, RIGHT
 JMP S
-# If negative then move zero to the output as we know the size difference is smaller than 10. 
+# If negative then move zero to the output as we know the size difference is smaller than ten. 
 L: MOV NIL, RIGHT
 
 @6
