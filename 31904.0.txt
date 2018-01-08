@@ -1,0 +1,88 @@
+@0
+LOOP:
+MOV RIGHT, ACC
+#check for end of sequence
+JEZ END
+
+#If not end of sequence
+MOV 1, DOWN
+MOV ACC, DOWN
+JMP LOOP
+
+#if end of sequence, pass num of lines to skip loop below.
+END:
+MOV 3, DOWN
+
+@1
+LOOP:
+MOV UP, ACC
+
+#Check end of sequence
+JEZ END
+
+#Pass value to left to be added
+#Pass 1 to right to begin counting sequence length
+MOV ACC, LEFT
+MOV 1, RIGHT
+JMP LOOP
+
+#If end of sequence
+END:
+#Move the 0 left and right to allow adjacent nodes to determine end of sequence
+MOV ACC, LEFT
+MOV 0, RIGHT
+JMP LOOP
+
+@2
+#Run at the start of a new sequence to begin counting
+NEWSEQ:
+MOV LEFT, ACC
+#Check if sequence is empty
+JEZ END
+LOOP:
+#Save length to avoid overwriting
+SAV
+MOV LEFT, ACC
+#Check for end of sequence
+JEZ END
+#Restore saved length and increment
+SWP
+ADD 1
+JMP LOOP
+#If end of sequence
+END:
+#Restore saved length and pass down
+SWP
+MOV ACC, DOWN
+MOV 0, ACC
+JMP NEWSEQ
+
+@3
+LOOP:
+JRO UP
+ADD UP
+JMP LOOP
+
+#END
+MOV ACC, DOWN
+MOV 0, ACC
+
+@4
+
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+MOV UP, RIGHT
+
+@8
+MOV LEFT, DOWN
+
+@9
+MOV UP, DOWN
+
+@10
