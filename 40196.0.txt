@@ -1,0 +1,68 @@
+@0
+
+
+
+
+
+#will count every zero it encounters and add 1 to it's ACC, if it doesn't encounter a zero it will reset to 0
+@1
+S:SWP
+MOV UP, ACC
+JNZ RESET
+SWP
+ADD 1
+MOV ACC, DOWN
+JMP S
+RESET:SWP
+MOV 0, ACC
+MOV ACC, DOWN
+
+
+
+@2
+
+
+
+
+@3
+
+
+
+#after recieving a count of 3 or more from @1 it will send a 1 to the output else it will send a 0
+
+@4
+S:MOV UP, ACC
+SUB 2
+JGZ YES
+NO:MOV 0, RIGHT
+JMP S
+YES:MOV 1, RIGHT
+
+
+
+@5
+MOV LEFT, DOWN
+
+
+
+@6
+
+
+
+
+@7
+
+
+
+
+@8
+
+
+
+
+@9
+MOV UP, DOWN
+
+
+
+@10

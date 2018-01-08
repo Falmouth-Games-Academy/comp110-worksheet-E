@@ -1,0 +1,76 @@
+@0
+
+
+
+
+@1
+MOV UP, DOWN
+
+
+
+@2
+
+
+
+
+@3
+MOV RIGHT, RIGHT
+
+
+
+#keeps adding the input till it reaches a ZERO-TERMINATOR then it will send the result down
+#every time it does't get a ZERO-TERMINATOR it will send 1 to the right @5
+@4
+S:SWP
+MOV UP, ACC
+JEZ ISO
+MOV 1, RIGHT
+MOV ACC, LEFT
+SWP
+ADD LEFT
+JMP S
+
+ISO: MOV 0, RIGHT
+SWP
+MOV ACC, DOWN
+MOV 0, ACC
+
+
+
+#this counts up the ones being sent from @4 and sends the count down to OUT.L
+@5
+S:SWP
+MOV LEFT, ACC
+JEZ ISO
+
+SWP
+ADD 1
+JMP S
+
+ISO: SWP
+MOV ACC, DOWN
+MOV 0, ACC
+
+
+
+@6
+
+
+
+
+@7
+
+
+
+
+@8
+MOV UP, DOWN
+
+
+
+@9
+MOV UP, DOWN
+
+
+
+@10

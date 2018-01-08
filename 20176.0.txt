@@ -1,0 +1,67 @@
+#subtracts input A by input B and moves it down
+@0
+ADD RIGHT
+NEG
+ADD RIGHT
+MOV ACC, DOWN
+SUB ACC
+
+
+#takes both input A and B and moves them to the left
+@1
+MOV UP, LEFT
+MOV RIGHT, LEFT
+
+
+
+@2
+MOV UP, LEFT
+
+
+
+@3
+
+
+
+
+@4
+MOV UP, RIGHT
+
+
+
+#move input left and down
+@5
+ADD LEFT
+MOV ACC, DOWN
+MOV ACC, RIGHT
+SUB ACC
+
+
+
+@6
+ADD LEFT
+MOV ACC, DOWN
+SUB ACC
+
+
+
+@7
+
+
+
+changes the input to a negative or positive with the NEG function
+
+@8
+ADD UP
+NEG
+MOV ACC, DOWN
+SUB ACC
+
+
+
+@9
+MOV UP DOWN
+
+
+
+@10

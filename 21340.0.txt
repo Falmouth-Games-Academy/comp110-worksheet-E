@@ -1,0 +1,64 @@
+
+@0
+MOV UP, DOWN
+
+
+@1
+
+
+
+@2
+
+
+
+@3
+
+
+
+@4
+MOV UP, DOWN
+
+
+@5
+MOV UP, RIGHT
+
+
+
+#checks if input is greater than 0 with JGZ, if not moves it to the right
+@6
+START:
+MOV LEFT, ACC
+MOV ACC, RIGHT
+JGZ OK
+MOV 0 DOWN
+JMP START
+
+OK:
+MOV 1 DOWN
+
+
+
+#checks if input is equal to 0 with JEZ, if not moves it to the right
+@7
+START:
+MOV LEFT, ACC
+MOV ACC, RIGHT
+JEZ OK
+MOV 0 DOWN
+JMP START
+
+OK:
+MOV 1 DOWN
+
+
+
+#checks if input is lesser than 0 JLZ, if not moves it to the right
+@8
+START:
+MOV LEFT, ACC
+JLZ OK
+MOV 0 DOWN
+JMP START
+
+OK:
+MOV 1 DOWN

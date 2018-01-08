@@ -1,0 +1,71 @@
+@0
+
+
+
+
+@1
+MOV UP, RIGHT
+
+
+
+@2
+MOV UP, DOWN
+MOV LEFT, DOWN
+
+
+
+@3
+
+
+
+
+@4
+
+
+#takes in both inputs and send IN.B down to be looped upon
+#uses IN.A to apply the multiplicaations down to IN.B in @7
+@5
+S:MOV UP ACC
+SWP
+MOV UP ACC
+
+LOOP:
+JGZ GO
+END:
+MOV -999, DOWN
+JMP S
+GO:
+SUB 1
+SWP
+MOV ACC, DOWN
+JMP LOOP
+
+
+
+@6
+MOV RIGHT, RIGHT
+
+
+
+#for every input sent from @5 it will add IN.B to itself
+#Once it recieves -999 from @5 it uses JLZ to send the final result down to the output
+@7
+S:MOV UP ACC
+JLZ SEND
+
+SUM:
+MOV ACC, LEFT
+SWP
+ADD LEFT
+SAV
+JMP S
+
+SEND:
+SWP
+MOV ACC, DOWN
+MOV 0, ACC
+SAV
+
+
+
+@8

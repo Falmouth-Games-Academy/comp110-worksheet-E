@@ -1,0 +1,69 @@
+@0
+
+
+
+
+@1
+LOOP:
+MOV UP, ACC
+MOV ACC, DOWN
+JGZ LOOP
+MOV RIGHT, NIL
+
+
+
+@2
+MOV DOWN, LEFT
+
+
+
+@3
+
+
+
+#moves all the inputs in a sequence to the stack memeory node 1 by 1
+
+#contantly checks if input is 0 to end the sequence
+@4
+S: MOV UP, ACC
+JEZ EOF
+MOV ACC, DOWN
+SWP
+ADD, 1
+SWP
+JMP S
+
+EOF: SWP
+MOV ACC, RIGHT
+MOV 0, ACC
+SWP
+
+
+
+@5
+MOV LEFT, DOWN
+
+
+
+@6
+MOV DOWN, UP
+
+
+
+
+#takes each input from the stack memory node 1 by 1 and send it to the output
+#the stack memory node is helpful because when taking from it you take from the last
+#input that was put onto the stack, so it means you are taking the sequence in reverse
+@7
+MOV UP, ACC
+LOOP: JEZ END
+MOV LEFT, DOWN
+SUB 1
+JGZ LOOP
+END: MOV 0, DOWN
+MOV 42, RIGHT
+
+
+
+@8
+MOV LEFT, UP
