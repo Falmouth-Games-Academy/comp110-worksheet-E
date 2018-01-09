@@ -1,0 +1,56 @@
+@0
+
+
+@1
+# Node 2 will add IN.A to its ACC based on the number of IN.B
+S: MOV UP, ACC
+SWP
+# Check if a one or a zero has been sent from node 2 (this indicates whether or not the multiplication procedure 
+# is complete or not).
+MOV RIGHT, ACC
+# If a zero is sent from node 2 then start again with a new set of inputs because the multiplication has been done
+JEZ S
+# If a one is sent then swap back to the IN.A and move it accross to node 2 to be added to it's accumulator.
+SWP
+MOV ACC, RIGHT
+# Continue the last 5 steps until a zero is obtained.
+JRO -5
+
+@2
+MOV UP, ACC
+# When the number reaches zero, the number of additions (IN.B) has been completed as one is subtracted from the 
+# initial IN.B each time IN.A is added
+JEZ E
+# Use the backup to store the product value. 
+SWP
+# Send the signal that IN.A needs to be added in this node.
+MOV 1, LEFT
+# Add IN.A to the backup and swap to the original ACC again that we are using to keep track of the number of IN.A 
+# additions to make the product.
+ADD LEFT
+SWP
+# Subtract one from the initial IN.B each loop until zero is reached. This indicates the end on the multiplication.
+SUB 1
+JRO -6
+# Send the signal that the multiplication is completed to node 1. 
+E: MOV 0, LEFT
+# Swap the backup and send the completed product to the output.
+SWP
+MOV ACC, DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+MOV UP, DOWN
+
+@8

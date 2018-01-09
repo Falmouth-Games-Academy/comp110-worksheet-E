@@ -1,0 +1,55 @@
+@0
+
+
+@1
+# Node 1 and 3 both send IN.A and IN.B respectively towards node 2 where checks on IN.S are made so they are available if needed. 
+MOV UP, RIGHT
+
+@2
+# This code checks if IN.S is greater than, less than or equal to zero, then does various different tasks based on the result.
+S:MOV UP, ACC
+JLZ L
+JGZ G
+JEZ E
+# If IN.S is less than zero then this moves IN.A down towards the OUT output.
+L:MOV LEFT, DOWN
+# This deletes the last IN.B because it was not used.
+MOV RIGHT, NIL
+# Jumps back to the start for a new IN.S check to begin.
+JMP S
+# If IN.S is greater than zero then this moves IN.B down towards the OUT output.
+G:MOV RIGHT, DOWN
+# This deletes the last IN.A because it was not used.
+MOV LEFT, NIL
+# Jumps back to the start for a new IN.S check to begin.
+JMP S
+# If IN.S is equal to zero then this adds IN.A and IN.B together and moves the accumulated value down towards the OUT output.
+E:ADD LEFT
+ADD RIGHT
+MOV ACC, DOWN
+
+@3
+# Sends IN.B towards node 2 so IN.B is available if needed.
+MOV UP, LEFT
+
+@4
+
+
+@5
+
+
+@6
+# Moves value towards output.
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+# Outputs value.
+MOV UP, DOWN
+
+@10

@@ -1,0 +1,85 @@
+@0
+
+
+@1
+# This gives the inputs in the sequence to nodes 2 and 5.
+MOV UP, ACC
+MOV ACC, RIGHT
+MOV ACC, DOWN
+
+@2
+# This node checks for the max value in the sequence.
+# This takes each input from node 1.
+S: MOV LEFT, ACC
+# Saves a backup of the first number.
+SAV
+# Takes the next number in the sequence.
+X: MOV LEFT, ACC
+# Checks if the number is zero.
+JEZ E
+# If not zero then we need to check which is a lower value so move that number to the right node, node 3
+# and then swap the acc with the backup so we can subtract the new number from the first one we stored in the 
+# backup.
+MOV ACC, RIGHT
+SWP
+SUB RIGHT
+# Check if it is lower than zero. 
+JLZ Y
+# If it is not lower than zero then it is a smaller number so we can add that back on and keep the larger number
+# and save it to the backup again to be used to check against the next input value.
+ADD RIGHT
+SAV
+JMP X
+# If the number resulting from the subtraction is less than zero then we know that the number we subtracted
+# was bigger than the number we previously had in our backup and so we can move that right to cancel out the 
+# instruction for if it was smaller.
+Y: MOV RIGHT, ACC
+JMP X
+# If the number is zero then swap to the backup (which should now be the smallest value of the inputs in that sequence)
+# and send that value to OUT.A.
+E: SWP
+MOV ACC, DOWN
+
+@3
+MOV LEFT, ACC
+MOV ACC, LEFT
+MOV ACC, LEFT
+
+@4
+MOV RIGHT, ACC
+MOV ACC, RIGHT
+MOV ACC, RIGHT
+
+@5
+# This node checks for the min value in the sequence.
+# Essentially the same code as in node 2 but with a check for greater than zero instead of less than because it is
+# trying to find the smallest number instead of the largest (also directions are different because of the relative node positioning).
+S: MOV UP, ACC
+SAV
+X: MOV UP, ACC
+JEZ E
+MOV ACC, LEFT
+SWP
+SUB LEFT
+JGZ Y
+ADD LEFT
+SAV
+JMP X
+Y: MOV LEFT, ACC
+JMP X
+E: SWP
+MOV ACC, DOWN
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+MOV, UP DOWN
+
+@9
+MOV UP, DOWN
+
+@10

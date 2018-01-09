@@ -1,0 +1,72 @@
+@0
+
+
+@1
+# Move an input down to the accumulators of each node 2, 6 and 8 to start, for a pattern to be detected
+# it needs to run like a conveyor belt, moving the input down each time for the next node to work on.
+MOV UP, DOWN
+MOV UP, DOWN
+# Checks if the input is 0, if it is then moves 1 to the right node, if not then move 0 to the right node.
+S: MOV UP, ACC
+JEZ E
+MOV NIL, RIGHT
+MOV ACC, DOWN
+JMP S
+E: MOV 1, RIGHT
+MOV ACC, DOWN
+JMP S
+
+@2
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+MOV UP, DOWN
+# Checks if the input is 0, if it is then moves 1 to the right node, if not then move 0 to the right node.
+S: MOV UP, ACC
+JEZ E
+MOV NIL, RIGHT
+MOV ACC, DOWN
+JMP S
+E: MOV 1, RIGHT
+MOV ACC, DOWN
+JMP S
+
+@5
+# Takes the values from the node above and to the left and adds them up and sends them down to node 9.
+MOV LEFT, ACC
+ADD UP
+MOV ACC, DOWN
+
+@6
+
+
+@7
+
+
+@8
+# Checks if the input is 0, if it is then moves 1 to the right node, if not then move 0 to the right node.
+S: MOV UP, ACC
+JEZ E
+MOV NIL, RIGHT
+JMP S
+E: MOV 1, RIGHT
+
+@9
+# The first 2 outputs will always be 0 because it can only be 1 for 3 inputs of zero in a row.
+MOV NIL, DOWN
+MOV NIL, DOWN
+# If when 3 is subtracted from the sum of the results from nodes 1, 4 and 8, the value is 0 then 1 can be output to 
+# signify a pattern of three 0's in a row. when this is not the case, move 0 down.
+S: MOV UP, ACC
+ADD LEFT
+SUB 3
+JEZ E
+MOV NIL, DOWN
+JMP S
+E: MOV 1, DOWN
+JMP S
+
+@10
