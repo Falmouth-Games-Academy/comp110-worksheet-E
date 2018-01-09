@@ -1,0 +1,68 @@
+@0
+MOV UP, DOWN
+
+
+@1
+
+
+
+@2
+
+
+
+@3
+
+
+
+@4
+MOV UP, DOWN
+
+
+@5
+MOV UP, RIGHT
+
+
+@6
+START:MOV LEFT,ACC
+
+MOV ACC, RIGHT
+
+#checks to see if the value is great than 0
+JGZ P
+
+MOV 0, DOWN
+
+JMP START
+
+#outputs the value of "1"
+P: MOV 1, DOWN
+
+
+@7
+START:MOV LEFT,ACC
+
+MOV ACC, RIGHT
+#checks to see if the value is great than 0
+
+JEZ P
+
+MOV 0, DOWN
+
+JMP START
+
+#outputs the value of "1"
+P: MOV 1, DOWN
+
+
+@8
+START:MOV LEFT,ACC
+
+#checks to see if the value is great than 0
+JLZ P
+
+MOV 0, DOWN
+
+JMP START
+
+#outputs the value of "1"
+P: MOV 1, DOWN

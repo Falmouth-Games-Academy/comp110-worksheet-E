@@ -1,0 +1,49 @@
+@0
+
+
+@1
+MOV UP, RIGHT
+
+#moving the value into the "acc" function
+@2
+START:MOV UP, ACC
+
+#checks to see if the value from the "acc" function is less than 0
+JLZ Q
+
+#cheks to see if the value is more than 0
+JGZ W
+
+MOV LEFT, ACC
+
+ADD RIGHT
+
+MOV ACC, DOWN
+
+#restarts the loop
+JMP START
+
+Q: MOV LEFT, DOWN
+
+@3
+MOV UP, LEFT
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10
