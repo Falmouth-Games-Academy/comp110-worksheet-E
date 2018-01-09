@@ -1,0 +1,71 @@
+@0
+MOV RIGHT, RIGHT
+
+
+
+#takes the input and will subtract it by the previous input and send it to @5
+@1
+MOV UP, ACC
+MOV ACC, RIGHT
+SWP
+MOV ACC, LEFT
+MOV RIGHT, ACC
+SWP
+SUB LEFT
+MOV ACC, DOWN
+
+
+
+@2
+MOV LEFT, LEFT
+
+ 
+
+@3
+
+
+
+
+@4
+
+
+
+
+#depending on what @1 gives it, it will check if it's less than zero using JLZ to add 9 if true
+#then check if it's less than zero using JLZ, if true it will move 1 to the right and output
+#if not it will send a 0
+@5
+S: MOV UP, ACC
+JLZ NEG
+SUB 9
+JGZ T
+JMP F
+NEG: ADD 9
+JLZ T
+F: MOV 0, RIGHT
+JMP S
+T: MOV 1,RIGHT
+
+
+
+@6
+MOV LEFT, DOWN
+
+
+
+@7
+
+
+
+
+@8
+
+
+
+
+@9
+MOV UP, DOWN
+
+
+
+@10

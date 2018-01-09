@@ -1,0 +1,30 @@
+@0
+MOV UP, DOWN		#take input from above and move it down
+
+
+@1
+MOV RIGHT, DOWN
+
+ 	#take input from the right and move it down
+@2
+MOV UP, LEFT
+
+ 		#take input from above and move it to the left
+@3
+MOV UP, DOWN 		#take input from above and move it down
+
+
+@4
+MOV UP, DOWN 		#take input from above and move it down
+
+
+@5
+MOV UP, DOWN
+
+ 		#take input from above and move it down
+@6
+MOV UP, RIGHT
+		#take input from above and move it to the right
+
+@7
+MOV LEFT, DOWN	#take input from the left and move it down

@@ -1,0 +1,95 @@
+#check if input is a 1 or a 0 if it's a 1 it will output that inputs number, if zero it will output zero, depending on what it has sent previoulsy
+@0
+S:MOV UP, ACC
+JGZ MAYBE
+SWP
+JMP NO
+MAYBE:SWP
+JEZ INT
+NO:MOV 0, DOWN
+JMP S
+INT:MOV 1, DOWN
+
+
+
+#check if input is a 1 or a 0 if it's a 1 it will output that inputs number, if zero it will output zero, depending on what it has sent previoulsy
+@1
+S:MOV UP, ACC
+JGZ MAYBE
+SWP
+JMP NO
+MAYBE:SWP
+JEZ INT
+NO:MOV 0, DOWN
+JMP S
+INT:MOV 2, DOWN
+
+
+
+#check if input is a 1 or a 0 if it's a 1 it will output that inputs number, if zero it will output zero, depending on what it has sent previoulsy
+@2
+S:MOV UP, ACC
+JGZ MAYBE
+SWP
+JMP NO
+MAYBE:SWP
+JEZ INT
+NO:MOV 0, DOWN
+JMP S
+INT:MOV 3, DOWN
+
+
+
+#check if input is a 1 or a 0 if it's a 1 it will output that inputs number, if zero it will output zero, depending on what it has sent previoulsy
+@3
+S:MOV UP, ACC
+JGZ MAYBE
+SWP
+JMP NO
+MAYBE:SWP
+JEZ INT
+NO:MOV 0, DOWN
+JMP S
+INT:MOV 4, DOWN
+
+
+
+@4
+MOV UP, RIGHT
+
+
+
+@5
+MOV UP, ACC
+ADD LEFT
+MOV ACC, RIGHT
+MOV 0, ACC
+
+
+
+#adds all the inputs together and send it down to output
+@6
+MOV UP, ACC
+ADD LEFT
+ADD RIGHT
+MOV ACC, DOWN
+MOV 0, ACC
+
+
+
+@7
+MOV UP, LEFT
+
+
+
+@8
+
+
+
+
+@9
+MOV UP, DOWN
+
+
+
+@10
