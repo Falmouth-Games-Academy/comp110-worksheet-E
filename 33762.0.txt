@@ -1,0 +1,97 @@
+@0
+LOOP:
+MOV UP, ACC
+
+#Check if greater than 0, if not pass 0 down
+ZERO:
+JGZ ONE
+MOV 0, DOWN
+JMP LOOP
+
+#If >0 then must be a 1. Pass one down
+ONE:
+MOV 1, DOWN
+
+#Check next value. If 0, goto zero. Keeps checking until 0 is found.
+MOV UP, ACC
+JEZ ZERO
+MOV 0, DOWN
+JRO -3
+
+@1
+LOOP:
+MOV UP, ACC
+
+
+ZERO:
+JGZ ONE
+MOV 0, DOWN
+JMP LOOP
+
+ONE:
+MOV 2, DOWN
+MOV UP, ACC
+JEZ ZERO
+MOV 0, DOWN
+JRO -3
+
+@2
+LOOP:
+MOV UP, ACC
+
+
+ZERO:
+JGZ ONE
+MOV 0, DOWN
+JMP LOOP
+
+ONE:
+MOV 3, DOWN
+MOV UP, ACC
+JEZ ZERO
+MOV 0, DOWN
+JRO -3
+
+@3
+LOOP:
+MOV UP, ACC
+
+
+ZERO:
+JGZ ONE
+MOV 0, DOWN
+JMP LOOP
+
+ONE:
+MOV 4, DOWN
+MOV UP, ACC
+JEZ ZERO
+MOV 0, DOWN
+JRO -3
+
+@4
+MOV UP, RIGHT
+
+@5
+MOV UP, ACC
+ADD LEFT
+MOV ACC, RIGHT
+
+@6
+#Accepts values from all directions
+MOV UP, ACC
+#Overwrites 0's
+ADD RIGHT
+ADD LEFT
+MOV ACC, DOWN
+
+@7
+MOV UP, LEFT
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

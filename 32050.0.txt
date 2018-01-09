@@ -1,0 +1,63 @@
+@0
+#Used to store second value
+MOV RIGHT, ACC
+MOV ACC, RIGHT
+
+@1
+LOOP:
+MOV UP, ACC
+MOV ACC, LEFT
+#Once second value has been stored, restore first value
+SWP
+#get difference between values
+SUB LEFT
+
+#Get absolute value if result < 0
+JLZ ABS
+
+#Otherwise send value on
+MOV ACC, DOWN
+JMP LOOP
+
+#Get absolute (positive) by negating and send on
+ABS:
+NEG
+MOV ACC, DOWN
+
+@2
+
+
+@3
+
+
+@4
+
+
+@5
+LOOP:
+#Subtract 10 from difference and check if < 0.
+MOV UP, ACC
+SUB 10
+JLZ FALSE
+
+#If <0 then difference is greater than or equal to 10
+MOV 1, DOWN
+JMP LOOP
+
+#else, difference is smaller than 10
+FALSE:
+MOV 0, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, RIGHT
+
+@9
+MOV LEFT, DOWN
+
+@10
