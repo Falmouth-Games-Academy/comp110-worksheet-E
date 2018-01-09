@@ -1,31 +1,31 @@
 @0
 
 @1
-MOV UP, ACC  // reads a value from the input and saves it to the accumulator
-SUB RIGHT  // subtracts accumulator with the left
-MOV ACC, DOWN  //  moves accumulator down
-NEG  //  negates accumulator (makes it either positive or negative)
-MOV ACC, DOWN  //  again moves the accumulator down
+MOV UP, ACC  # reads a value from the input and saves it to the accumulator
+SUB RIGHT  # subtracts accumulator with the left
+MOV ACC, DOWN  #  moves accumulator down
+NEG  #  negates accumulator (makes it either positive or negative)
+MOV ACC, DOWN  #  again moves the accumulator down
 
 @2
-MOV UP, LEFT  //  moves input to the left for subtraction
+MOV UP, LEFT  #  moves input to the left for subtraction
 
 @3
 
 @4
 
 @5
-MOV UP, DOWN  // moves a value down
+MOV UP, DOWN  # moves a value down
 
 @6
 
 @7
 
 @8
-MOV UP, DOWN  // moves a value down
-MOV UP, RIGHT  // moves a value to the right
+MOV UP, DOWN  # moves a value down
+MOV UP, RIGHT  # moves a value to the right
 
 @9
-MOV LEFT, DOWN  // sends the value to output
+MOV LEFT, DOWN  # sends the value to output
 
 @10

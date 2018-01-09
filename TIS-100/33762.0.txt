@@ -1,20 +1,20 @@
 @0
-S:MOV UP, ACC  // starts a loop with moving the input value to the accumulator
-ZERO:JGZ ONE  // starts "ZERO" loop with checking if the accumulator is greater than 0 (if yes, jumps to "ONE" loop)
-MOV 0, DOWN  // if not greater than 0, moves 0 down
-JMP S  // starts "S" loop again
-ONE:MOV 1, DOWN  // moves 1 down
-MOV UP, ACC  // moves the input value to the accumulator
-JEZ ZERO  // checks if the accumulator is 0 (if yes, jumps to "ZERO" loop)
-MOV 0, DOWN  // moves 0 down 
-JRO -3  // jumps back 3 lines (to moving the input value to the accumulator)
+S:MOV UP, ACC  # starts a loop with moving the input value to the accumulator
+ZERO:JGZ ONE  # starts "ZERO" loop with checking if the accumulator is greater than 0 (if yes, jumps to "ONE" loop)
+MOV 0, DOWN  # if not greater than 0, moves 0 down
+JMP S  # starts "S" loop again
+ONE:MOV 1, DOWN  # moves 1 down
+MOV UP, ACC  # moves the input value to the accumulator
+JEZ ZERO  # checks if the accumulator is 0 (if yes, jumps to "ZERO" loop)
+MOV 0, DOWN  # moves 0 down 
+JRO -3  # jumps back 3 lines (to moving the input value to the accumulator)
 
 @1
 S:MOV UP, ACC
 ZERO:JGZ ONE
 MOV 0, DOWN
 JMP S
-ONE:MOV 2, DOWN  // This block is the same as the previous one, but instead sends 2 down (instead of 1)
+ONE:MOV 2, DOWN  # This block is the same as the previous one, but instead sends 2 down (instead of 1)
 MOV UP, ACC
 JEZ ZERO
 MOV 0, DOWN
@@ -25,7 +25,7 @@ S:MOV UP, ACC
 ZERO:JGZ ONE
 MOV 0, DOWN
 JMP S
-ONE:MOV 3, DOWN  // This block is the same as the previous one, but instead sends 3 down
+ONE:MOV 3, DOWN  # This block is the same as the previous one, but instead sends 3 down
 MOV UP, ACC
 JEZ ZERO
 MOV 0, DOWN
@@ -36,32 +36,32 @@ S:MOV UP, ACC
 ZERO:JGZ ONE
 MOV 0, DOWN
 JMP S
-ONE:MOV 4, DOWN  // This block is the same as the previous one, but instead sends 4 down
+ONE:MOV 4, DOWN  # This block is the same as the previous one, but instead sends 4 down
 MOV UP, ACC
 JEZ ZERO
 MOV 0, DOWN
 JRO -3
 
 @4
-MOV UP, RIGHT  // moves the upper value to the right
+MOV UP, RIGHT  # moves the upper value to the right
 
 @5
-MOV UP, ACC  // moves the upper value to the accumulator
-ADD LEFT  // adds the left value to the accumulator
-MOV ACC, RIGHT  // moves the accumulator to the right
+MOV UP, ACC  # moves the upper value to the accumulator
+ADD LEFT  # adds the left value to the accumulator
+MOV ACC, RIGHT  # moves the accumulator to the right
 
 @6
-MOV UP, ACC  // moves the upper value to the accumulator
-ADD LEFT  // add the left value to the accumulator
-ADD RIGHT  // add the right value to the accumulator
-MOV ACC, DOWN  // moves the accumulator down
+MOV UP, ACC  # moves the upper value to the accumulator
+ADD LEFT  # add the left value to the accumulator
+ADD RIGHT  # add the right value to the accumulator
+MOV ACC, DOWN  # moves the accumulator down
 
 @7
-MOV UP, LEFT  // moves the upper value to the left
+MOV UP, LEFT  # moves the upper value to the left
 
 @8
 
 @9
-MOV UP, DOWN  // sends the value to input
+MOV UP, DOWN  # sends the value to input
 
 @10

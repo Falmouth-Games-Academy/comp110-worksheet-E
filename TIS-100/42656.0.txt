@@ -2,16 +2,16 @@
 
 
 @1
-MOV 0, RIGHT
-S: MOV UP, ACC
-JEZ Z
-MOV ACC, RIGHT
-JMP S
-Z:MOV RIGHT, ACC
-JEZ Y
-MOV ACC, DOWN
-JMP Z
-Y:MOV ACC, DOWN
+MOV 0, RIGHT  # starts with moving 0 to the stack memory node, that the sequences are zero-terminated
+S: MOV UP, ACC  # starts the loop with moving the next value to t he accumulator
+JEZ Z  # checks if the value is 0 (end of a sequence)
+MOV ACC, RIGHT  # if not, moves the accumulator to the memory node
+JMP S  # starts "S" loop again
+Z:MOV RIGHT, ACC  # if the value is 0, moves a value from the memory node to the accumulator
+JEZ Y  # checks if this value is 0 (end of sequence again)
+MOV ACC, DOWN  # if not, moves the accumulator down
+JMP Z  # starts "Z" loop again
+Y:MOV ACC, DOWN  # if the value from the memory node is 0, moves it down (this is to determine the end of a sequence)
 
 @2
 

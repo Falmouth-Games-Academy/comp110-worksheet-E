@@ -2,26 +2,26 @@
 
 
 @1
-S:MOV UP, ACC
-A:SWP
-MOV RIGHT, ACC
-JEZ S
-SWP
-MOV ACC, RIGHT
-JMP A
+S:MOV UP, ACC  # starts a loop with moving the input value to the accumulator
+A:SWP  # swaps the accumulator with the backup value
+MOV RIGHT, ACC  # moves the right value to the accumulator
+JEZ S  # checks if the accumulator is 0
+SWP  # if not, swaps it with the backup value
+MOV ACC, RIGHT  # moves the accumulator to the right
+JMP A  # starts the "A" loop again
 
 @2
-S:MOV UP, ACC
-A:JEZ Y
-SWP
-MOV 1, LEFT
-ADD LEFT
-SWP
-SUB 1
-JMP A
-Y:MOV 0, LEFT
-SWP
-MOV ACC, DOWN
+S:MOV UP, ACC  # starts a loop with moving the input value to the accumulator
+A:JEZ Y  # starts a loop by checking if it equals to 0
+SWP  # if not, swaps accumulator with the backup value
+MOV 1, LEFT  # moves 1 to the left
+ADD LEFT  # add left value to the accumulator (this adds the same value N times, which is being kept track of in the same block)
+SWP  # swaps the values
+SUB 1  # subtracts 1 with the accumulator (to keep track of how many times we still have to add)
+JMP A  # starts "A" loop again
+Y:MOV 0, LEFT  # if accumulator is 0, moves 0 to the left
+SWP  # swaps the accumulator with the backup value
+MOV ACC, DOWN  # moves the accumulator down
 
 @3
 
