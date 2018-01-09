@@ -1,0 +1,88 @@
+TIS-100
+ONE----
+Objective: 
+/* Manipulate the values between the nodes to output the values*/
+
+Simple data manipulation, once I understood the naming practice and the basic commands 
+mov, up, down, left, right. It was relatively simple (it also helped that the left hand section was already completed)
+
+TWO----------
+objective: Data manipulation /* double input values*/
+
+Just needed to use the acc to add the same value to itself. Checked the manual regarding the add function,
+ forntunately does exactly what is says on the tin. 
+ 
+THREE----------
+Objective /*Data manipulation, This was was a bit more of a problem, finally figured out the value read out on the left 
+hand side*/
+
+Used the sub and neg function this time, to change a negative value to a positive ( take one input from another
+to mirror expected outputs). Use the NIL function to delay the right hand side values, to I could move down the correct 
+input.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FOUR------------
+Objective: /*allocate a set value to a particular output, also need to manipulation the values*/
+Much more brain scratching.
+
+Needed to stall certain values from entering the command node, so needed to have two sets of conditional commands and 
+filter the values. I realised I could stall a value from entering the node by using NIL. And then use the conditional 
+commands with jmp/JLZ,JEZ,JGZ (I had a problem with the logic and order of instructions. So decided to concentrate all 
+the commands in one node.
+
+FIVE ------------
+Objective:  
+

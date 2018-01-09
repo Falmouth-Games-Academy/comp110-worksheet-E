@@ -1,0 +1,43 @@
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+GO:MOV LEFT, ACC
+MOV ACC, RIGHT
+JGZ Y
+MOV 0, DOWN
+JMP GO
+Y: MOV 1, DOWN
+
+@7
+GO: MOV LEFT, ACC
+MOV ACC RIGHT
+JEZ Y
+MOV 0,, DOWN
+JMP GO
+Y: MOV 1, DOWN
+
+@8
+GO: MOV LEFT, ACC
+JLZ Y
+MOV 0, DOWN
+JMP GO
+Y: MOV 1, DOWN
+
+/* used a go: start point for my commands, I placed the main code in one central node and used the jmp, jgz, jez,jlz commands to manipulate the values entering and leaving the nodes*/
+
