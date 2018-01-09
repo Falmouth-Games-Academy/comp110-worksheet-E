@@ -1,0 +1,66 @@
+@0
+
+
+@1
+MOV UP, DOWN
+#MOVE INPUT.A DOWN
+
+@2
+MOV UP, DOWN
+#MOVE INPUT.B DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, ACC
+#STORE INPUT.A ACC
+SAV
+#SAVE ACC
+MOV ACC, RIGHT
+#MOVE ACC RIGHT
+SWP
+#BAK -> ACC
+MOV ACC, RIGHT
+#MOVE ACC RIGHT
+
+@6
+S:MOV UP, ACC
+#store input.b in acc
+ SAV
+#save acc
+ SUB LEFT
+#input.b - input.a
+ JGZ AB
+#if b>a 
+ JLZ BA
+#if b<a 
+AB:SWP # BAK -> ACC
+ MOV LEFT, DOWN# move input.a down
+ MOV ACC, DOWN# move input.b down
+ MOV 0, DOWN# move terminator down
+ JMP S
+ #return to start
+BA: SWP # BAK -> ACC
+ MOV ACC, DOWN # move input.b down
+ MOV LEFT, DOWN # move input.a down
+ MOV 0, DOWN # move terminator down
+ JMP S
+ #return to start
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+MOV UP, DOWN
+MOV UP, DOWN
+#output
+
+@10
