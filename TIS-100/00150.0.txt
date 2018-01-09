@@ -1,0 +1,23 @@
+@0
+MOV UP, DOWN  // reads a value from input and moves a value down
+
+@1
+MOV RIGHT, DOWN  // moves the value down
+
+@2
+MOV UP, LEFT  // reads a value from input and moves it to the left
+
+@3
+MOV UP, DOWN  // moves the value 
+
+@4
+MOV UP, DOWN  // moves the value down
+
+@5
+MOV UP, DOWN  // moves the value to output
+
+@6
+MOV UP, RIGHT  // moves the value to the right
+
+@7
+MOV LEFT, DOWN  // moves the value to the output

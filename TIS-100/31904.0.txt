@@ -1,0 +1,50 @@
+@0
+
+@1
+S:MOV UP, ACC  // start a loop with moving the input value to the accumulator
+JEZ Y  // checks if the accumulator equals to 0 (if yes, jumps to "Y" loop)
+MOV 1, RIGHT  // if the accumulator is not 0, moves 1 to the right
+MOV ACC, DOWN  // moves the accumulator down
+JMP S  // starts "S" loop again
+Y:MOV 0, RIGHT  // moves 0 to the right
+MOV 0, DOWN  // moves 0 down
+
+@2
+S:MOV LEFT, ACC  // start a loop with moving left value to the accumulator
+JEZ Y  // checks if accumulator is 0 (if yes, jumps to "Y" loop)
+SWP  // swaps accumulator with the backup
+ADD 1  // adds 1 to the accumulator
+SWP  // swaps accumulator with the backup again
+JMP S  // jumps to "S" loop
+Y:SWP  // swaps accumulator value with the backup
+MOV ACC, DOWN  // moves the accumulator down
+
+@3
+MOV RIGHT, ACC  // moves the value from the right to the accumulator
+MOV ACC, RIGHT  // moves the accumulator to the right for addin
+
+@4
+S:MOV UP, ACC  // start the loop with moving the upper value to the accumulator
+JEZ Y  // checks if accumulator is 0 (if yes, jump to "Y" loop)
+MOV ACC, LEFT  // if accumulator is not 0, moves the accumulator to the left
+SWP  // swaps the accumulator with the backup value
+ADD LEFT  // adds the value from the left to the accumulator
+SWP  // swaps the accumulator with the backup again
+JMP S  // jumps to the "S" loop
+Y:SWP  // swaps the accumulator with the backup
+MOV ACC, DOWN  // moves the accumulator down
+
+@5
+MOV UP, DOWN  // moves the value down
+
+@6
+
+@7
+
+@8
+MOV UP, DOWN  // sends the value to output
+
+@9
+MOV UP, DOWN  // sends the value to output
+
+@10

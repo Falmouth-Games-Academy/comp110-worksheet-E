@@ -1,0 +1,63 @@
+@0
+
+@1
+MOV UP, ACC  // moves the input value to the accumulator
+MOV ACC, DOWN  // moves the accumulator down
+MOV ACC, RIGHT  // moves the accumulator to the right
+
+@2
+S:MOV LEFT, ACC  // starts a loop with moving the left value to the accumulator
+SAV  // saves it to the backup
+A:MOV LEFT, ACC  // starts a loop with moving left value to the accumulator
+JEZ ZERO  // checks if accumulator equals to 0 (if yes, jumps to "ZERO" loop)
+MOV ACC, RIGHT  // if the accumulator is not 0, moves the accumulator to the right
+SWP  // swaps the accumulator value with the backup
+SUB RIGHT  // subtracts the accumulator with the right value
+JLZ B  // checks if the accumulator is less than 0 (if yes, jumps to "B" loop)
+ADD RIGHT  // if accumulator is not less than 0, add right value to the accumulator
+SAV  // saves this value to the backup
+JMP A  // starts "A" loop again
+B:MOV RIGHT, ACC  // moves the right value to the accumulator
+JMP A  // starts "a" loop again
+ZERO:SWP  // swaps the accumulator with the backup
+MOV ACC, DOWN  // moves the accumulator down
+
+@3
+MOV LEFT, ACC  // saves the left value to the accumulator
+MOV ACC, LEFT  // moves the accumulator to the left
+MOV ACC, LEFT  // moves the accumulator to the left
+
+@4
+MOV RIGHT, ACC  // saves the left value to the accumulator
+MOV ACC, RIGHT  // moves the accumulator to the right
+MOV ACC, RIGHT  // moves the accumulator to the right
+
+@5
+S:MOV UP, ACC  // starts a loop with moving upper value to the accumulator
+SAV  // saves the accumulator to the backup
+A:MOV UP, ACC  // starts a loop with moving upper value to the accumulator
+JEZ ZERO  // checks if accumulator is 0 (if yes, jumps to "ZERO" loop)
+MOV ACC, LEFT  // if accumulator is not 0, moves the accumulator to the left
+SWP  // swaps the accumulator with the backup value
+SUB LEFT  // subtracts the accumulator with the left value
+JGZ B  // checks if the accumulator if greater than 0 (if yes, jumps to "B" loop)
+ADD LEFT  // add left value to the accumulator, making it as it was before
+SAV  // saves this value to the backup
+JMP A  // starts "A" loop again
+B:MOV LEFT, ACC  // moves the left value to the accumulator
+JMP A  // starts "A" loop again;
+ZERO:SWP  // swaps the accumulator with the backup value
+MOV ACC, DOWN  // moves the accumulator down
+
+@6
+MOV UP, DOWN  // sends the accumulator to output
+
+@7
+
+@8
+MOV UP, DOWN
+
+@9
+MOV UP, DOWN
+
+@10
