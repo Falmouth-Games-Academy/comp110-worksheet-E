@@ -1,0 +1,51 @@
+@0
+MOV UP,DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP,DOWN
+
+@5
+MOV UP,RIGHT
+
+@6
+START:
+MOV LEFT,ACC  # Keep a copy of left input
+MOV ACC,RIGHT # Send it to the right
+JGZ GOTO      # If the value is > 0, jump to GOTO
+MOV 0,DOWN    # Otherwise write 0 to out.g
+JMP START     # Restart
+
+GOTO:      # if acc > 0
+MOV 1,DOWN # Write 1 to out.g
+
+@7
+START:
+MOV LEFT,ACC   # Keep a copy of left input
+MOV ACC,RIGHT  # Send it to the right
+JEZ CONSIDERED # If the value is 0, jump to CONSIDERED
+MOV 0,DOWN     # Otherwise write 0 to out.e
+JMP START      # Restart
+
+CONSIDERED: # if value == 0
+MOV 1,DOWN  # Write 1 to out.e
+
+@8
+START:
+MOV LEFT,ACC # Grab left input, store in acc
+
+JLZ HARMFUL # If input is < 0, jump to HARMFUL
+MOV 0,DOWN  # Otherwise write 0 to out.l
+JMP START   # Restart
+
+HARMFUL:   # if value < 0
+MOV 1,DOWN # Write 1 to out.l
+# We're done, what a ride! This number's spatial identity crisis has finally been resolved

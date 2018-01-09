@@ -1,0 +1,57 @@
+@0
+# COURIER
+MOV RIGHT,DOWN
+
+@1
+# ENTRYPOINT - Send a copy of the input to left and down (self-explanatory)
+MOV UP,ACC
+MOV ACC,LEFT
+MOV ACC,DOWN
+
+@2
+
+
+@3
+
+
+@4
+# INPUT PROVIDER (sends previous Input to Right)
+MOV UP,ACC    # Take the current value
+SWP           # Swap with the previous value
+MOV ACC,RIGHT # Send acc (which is currently the previous value) to the right
+
+@5
+# GET DIFFERENCE
+MOV UP,ACC
+SUB LEFT
+
+# GET POSITIVE DIFFERENCE ONLY
+JGZ NONEGATE # Skip to Nonegate if it's already positive
+NEG          # Else, negate it so it becomes positive
+NONEGATE:
+
+SUB 10        # Subtract 10
+MOV ACC,RIGHT # Send to the confirmer
+
+@6
+# CONFIRMER
+START:
+MOV LEFT,ACC # Retrieve the processed value which is effectively abs(input - lastInput) - 10
+
+JLZ SENDZERO # If abs(input-lastInput) - 10 is still <0, that means the difference is less than 10 (if (abs(diff) - 10 < 0) equivalent to if (abs(diff) < 0 + 10))
+MOV 1,DOWN   # Send 1 if the above is not the case and the difference is >= 10
+JMP START
+SENDZERO:
+MOV 0,DOWN   # Otherwise send 0
+
+@7
+
+
+@8
+
+
+@9
+# FINAL COURIER
+MOV UP,DOWN
+
+@10

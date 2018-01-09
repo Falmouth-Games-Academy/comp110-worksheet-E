@@ -1,0 +1,65 @@
+@0
+MOV RIGHT,DOWN
+
+@1
+MOV 1,LEFT  # These instructions send two copies of dummy data for each node.
+MOV 1,RIGHT # This kick-starts the right and lower nodes
+MOV 1,DOWN  # The nodes with a longer delayed start hold more recent data
+MOV 1,LEFT  # The nodes which transfer the input immediately hold older data, which hangs around in the pipes as the final node waits for a value from everyone I guess???
+MOV 1,RIGHT # I don't even know how I worked this out
+MOV 1,DOWN  # How the %$&$ is this working
+
+MAINCYCLE:     # Main loop
+MOV UP,ACC     # Take the input
+MOV ACC,LEFT   # Copy the input
+MOV ACC,RIGHT  # To each adjoining
+MOV ACC,DOWN   # Node
+JMP MAINCYCLE
+
+@2
+MOV LEFT,NIL # Discard the first input so that the final node receives one that is one step ahead of the first
+
+CYCLE:
+MOV LEFT,DOWN # Grab the next one from hereon
+JMP CYCLE     # Infinite loop!
+
+@3
+MOV UP,DOWN
+
+@4
+MOV UP,NIL # Accept but discard the first input
+MOV UP,NIL # Accept but discard the second input, the final node now receives an input two steps ahead of the first
+
+START:
+MOV UP,RIGHT # Transfer the next one from hereon
+JMP START    # Infinite loop!
+
+@5
+MOV UP,RIGHT  # Courier up->right
+MOV LEFT,DOWN # Courier left->down
+
+@6
+MOV LEFT,DOWN
+
+@7
+MOV UP,RIGHT
+
+@8
+MOV LEFT,RIGHT
+
+@9
+START: # Final node which receives all the sequence values
+MOV 0,ACC  # Start with zero
+SUB UP     # Then subtract the first, next and third item at this point in the sequence. If the result is 0, we can say they're all 0.
+SUB LEFT   # This trick wouldn'tt be possible if any data in the sequence were negative. Buuuut it worked here, so we're all good, time to ship the product!
+SUB RIGHT
+
+JLZ SENDZERO # If result is less than 0, no good: one of the values was nonzero
+MOV 1,DOWN   # Otherwise, we found a triple-0-sequence
+JMP START    # Restart!
+
+SENDZERO:  # No sequence found
+MOV 0,DOWN # 0
+
+@10
+MOV UP,LEFT

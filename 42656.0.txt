@@ -1,0 +1,50 @@
+@0
+
+
+@1
+START:
+MOV UP,ACC      # Grab input
+JEZ ENDSEQUENCE # If the input is zero, jump to code which sends the 
+MOV ACC,RIGHT   # Otherwise, send the input to the stack
+SWP             # Increment the stack counter by swapping bak/acc
+ADD 1           # and adding 1 to acc
+SWP             # then swapping it back
+JMP START       # Continue
+ENDSEQUENCE:    # At the end of a sequence:
+SWP             # Swap the stack counter into acc
+MOV ACC,DOWN    # Send its value down
+MOV 0,ACC       # and then reset the stack counter
+SAV             # (to reset it, acc=0 must be saved or swapped into bak)
+MOV DOWN,NIL    # Wait for a signal from the below node before resuming
+
+@2
+
+
+@3
+
+
+@4
+MOV UP,ACC   # Obtain a stack counter value from above
+
+JEZ RESTART  # If it's zero, don't bother
+
+LOOP:
+MOV 0,RIGHT # Send a signal to the right, telling it to obtain a value from the stack
+SUB 1       # Subtract one from the stack counter
+JNZ LOOP    # Continue until stack counter is 0
+
+RESTART:
+MOV 0,DOWN  # When done, send a sequence terminator to the below stack memory--cheesing the 0-terminator issue
+MOV 0,UP    # Send a signal up to the previous node
+
+@5
+MOV LEFT,NIL # Wait for a signal from the left
+MOV UP,DOWN  # Transfer a stack value to output
+
+@6
+
+
+@7
+MOV ANY,DOWN # Sends the above stack data, and then also the 0-terminators thrown into the stack on the left by the upper-left neighbour node
+
+@8
