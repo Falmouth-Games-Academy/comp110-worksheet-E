@@ -14,10 +14,12 @@ MOV ACC, RIGHT
 START:MOV UP, ACC
 
 SAV
+#saves the value into the backup in order for us to be able to subtract and use it
 
 SUB LEFT
 
 JLZ A
+#if value is less than 0 jump to A
 
 MOV LEFT, DOWN
 
@@ -28,6 +30,7 @@ MOV ACC, DOWN
 JMP START
 
 A:SWP
+#swap the two values 
 
 MOV ACC, DOWN
 
