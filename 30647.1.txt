@@ -1,0 +1,56 @@
+@0
+
+
+@1
+MOV UP, ACC
+
+MOV ACC, DOWN
+MOV ACC, DOWN
+
+@2
+MOV UP, ACC
+
+MOV ACC, DOWN
+MOV ACC, DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, RIGHT
+MOV UP, RIGHT
+
+@6
+TOP:
+MOV LEFT, ACC
+# See if IN.A - IN.B > 0 
+SUB UP
+# If IN.A - IN.B > 0 then IN.A is greater
+JLZ LOW
+
+# HIGH
+# IN.B is greater so moves down first
+MOV UP, DOWN
+MOV LEFT, DOWN
+JMP TOP
+
+LOW:
+# IN.A is greater so moves down first
+MOV LEFT, DOWN
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+MOV UP, DOWN
+MOV NIL, DOWN
+
+@10

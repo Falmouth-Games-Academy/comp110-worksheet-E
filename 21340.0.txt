@@ -1,0 +1,51 @@
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+MOV LEFT, ACC
+# Write 1 to OUT.G if In > 0
+JGZ WR1
+# Else write 0 to OUT.G
+MOV 0, DOWN
+JMP NT
+
+WR1: MOV 1, DOWN
+# Move the value along regardless
+NT: MOV ACC, RIGHT
+
+@7
+MOV LEFT, ACC
+#Write 1 to OUT.E if IN = 0
+JEZ WR1
+# Else write 0 to OUT.E
+MOV 0, DOWN
+JMP NT
+
+WR1: MOV 1, DOWN
+# Move the value along regardless
+NT: MOV ACC, RIGHT
+
+@8
+MOV LEFT, ACC
+#Write 1 to OUT.L if IN < 0
+JLZ WR1
+# Else write 0 to OUT.E
+MOV 0, DOWN
+JRO -4
+
+WR1: MOV 1, DOWN
