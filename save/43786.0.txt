@@ -1,0 +1,64 @@
+@0
+
+
+
+@1
+START:MOV UP, ACC
+
+A:SWP
+
+MOV RIGHT, ACC
+
+JEZ START
+
+SWP
+
+MOV ACC, RIGHT
+
+JMP A
+
+#this 
+
+@2
+START:MOV UP, ACC
+
+A:JEZ 
+YES
+
+SWP
+
+MOV 1, LEFT
+
+ADD LEFT
+
+SWP
+
+SUB 1
+
+JMP A
+
+YES:MOV 0, LEFT
+
+SWP
+
+MOV ACC, DOWN
+
+#this moves 1 to the right 
+@3
+
+
+
+@4
+@5
+MOV UP, DOWN
+
+
+@6
+
+
+
+@7
+MOV UP, DOWN
+
+
+@8
