@@ -1,0 +1,88 @@
+@0
+START:
+SAV # saves to keep a record of what was last there
+SUB UP # sub next input
+JLZ CHANGE # if negative has changed from 0 to 1
+MOV 0 DOWN # if not changed from 0 - 1 move 0 down
+JGZ SET0 # if positive means it has changed from 1 to 0
+SWP # if no change at all swap back to stored value
+JMP START
+SET0: # if changed to 0 store 0 in acc
+MOV 0 ACC
+JMP START
+CHANGE: # if changed to 1 output for counting and set acc to 1
+MOV 1 DOWN
+MOV 1 ACC
+
+@1
+START:
+SAV
+SUB UP
+JLZ CHANGE
+MOV 0 DOWN
+JGZ SET0
+SWP
+JMP START
+SET0:
+MOV 0 ACC
+JMP START
+CHANGE:
+MOV 2 DOWN
+MOV 1 ACC
+
+@2
+START:
+SAV
+SUB UP
+JLZ CHANGE
+MOV 0 DOWN
+JGZ SET0
+SWP
+JMP START
+SET0:
+MOV 0 ACC
+JMP START
+CHANGE:
+MOV 3 DOWN
+MOV 1 ACC
+
+@3
+START:
+SAV
+SUB UP
+JLZ CHANGE
+MOV 0 DOWN
+JGZ SET0
+SWP
+JMP START
+SET0:
+MOV 0 ACC
+JMP START
+CHANGE:
+MOV 4 DOWN
+MOV 1 ACC
+
+@4
+MOV UP RIGHT
+
+@5
+MOV LEFT ACC
+ADD UP
+MOV ACC RIGHT
+
+@6
+MOV LEFT, ACC
+ADD UP
+ADD RIGHT
+MOV ACC DOWN
+
+@7
+MOV UP LEFT
+
+@8
+
+
+@9
+MOV UP DOWN
+
+@10

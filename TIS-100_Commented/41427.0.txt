@@ -1,0 +1,65 @@
+@0
+
+
+@1 # moves the input down and right for testing
+MOV UP ACC 
+MOV ACC DOWN
+MOV ACC RIGHT
+
+@2 
+MOV LEFT ACC
+SAV # save input to be used as output
+IN: MOV LEFT ACC # brings in the next input
+JEZ YES # when end of sequence (0) swp to stored high value and output
+MOV ACC RIGHT # move latest input to the right for subtraction and storage
+SWP # swap to current highest value
+SUB RIGHT
+JLZ NEG # if negative clear right input
+ADD RIGHT # if not negative add the right input back to the acc to return to original number
+SAV
+JMP IN
+NEG:MOV RIGHT ACC # clears right input
+JMP IN
+YES:SWP # swaps to current highest stored value and moves to output
+MOV ACC DOWN
+
+@3
+MOV LEFT ACC
+MOV ACC LEFT
+MOV ACC LEFT
+
+@4
+MOV RIGHT ACC
+MOV ACC RIGHT
+MOV ACC RIGHT
+
+@5
+MOV UP ACC
+SAV
+IN: MOV UP ACC
+JEZ YES
+MOV ACC LEFT
+SWP
+SUB LEFT
+JGZ POS
+ADD LEFT
+SAV
+JMP IN
+POS:MOV LEFT ACC
+JMP IN
+YES:SWP
+MOV ACC DOWN
+
+@6
+MOV UP DOWN
+
+@7
+
+
+@8
+MOV UP DOWN
+
+@9
+MOV UP DOWN
+
+@10

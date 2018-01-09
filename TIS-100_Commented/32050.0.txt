@@ -1,0 +1,51 @@
+@0
+
+
+@1
+MOV UP, NIL # skip first input
+START: MOV UP, ACC 
+SWP # swap to use the bak number (works for the first run as first input is zero)
+MOV ACC, RIGHT # move output as base number
+SWP
+MOV ACC, RIGHT # move output for subtracting
+SWP
+JMP START
+
+@2
+START:MOV LEFT ACC # bring in base
+SUB LEFT
+JLZ NEG # if negative jmp and swap to pos
+MOV ACC DOWN # if pos move down
+JMP START
+NEG: NEG
+MOV ACC DOWN
+
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+START: MOV UP ACC 
+SUB 10
+JLZ OVER # if still positive after subbing 10 move 0 down
+MOV 1 DOWN # otherwise move 1
+JMP START
+OVER: MOV 0 DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV 0 DOWN # this allows us to skip the first input as we know its always 0
+MOV UP DOWN
+JRO -1 # loop the above command
+
+@10

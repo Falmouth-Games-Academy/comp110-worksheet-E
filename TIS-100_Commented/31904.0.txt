@@ -1,0 +1,52 @@
+@0
+MOV RIGHT, RIGHT # used to move the acc for addition on the bak of another node
+
+@1
+START:
+MOV UP, ACC
+JEZ NON # if acc is zero jmp to non
+MOV 1, RIGHT # if not zero move 1 right for a counter
+MOV ACC, LEFT # move acc left to come back and add to bak once swapped
+SWP
+ADD LEFT
+SAV
+JMP START
+NON:
+MOV 0, RIGHT # move 0 right to end counter
+SWP # switch to the sum
+MOV ACC, DOWN
+
+@2
+START:
+MOV LEFT ACC # get instruction
+JEZ NON 
+SWP # if not zero swap to counter and increment
+ADD 1
+SAV
+JMP START
+NON: # if zero swap to counter and output
+SWP
+MOV ACC, DOWN
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9
+MOV UP, DOWN
+
+@10

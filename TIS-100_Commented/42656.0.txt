@@ -1,0 +1,37 @@
+@0
+
+
+@1
+START: MOV 0 RIGHT # used to mark the "end" of the sequence when outputting
+IN: MOV UP ACC # grab next input
+JEZ END # if zero jmp to end
+MOV ACC RIGHT # move acc over to the stack
+JNZ IN # if not zero jmp to in to bring in the next number in sequence
+END: MOV ACC DOWN # if it was zero move zero down, this is used to switch the other processing node on
+MOV DOWN NIL # will wait here until an input from below, used to wait until other node is done processing
+
+@2
+
+
+@3
+
+
+@4 # this node just passes the turn on input between the 2 nodes
+MOV UP RIGHT 
+MOV RIGHT UP
+
+@5
+ST: MOV LEFT NIL # will wait here until input from the left
+NEXT:MOV UP ACC 
+MOV ACC DOWN
+JNZ NEXT # keeps outputting the next number until hitting zero
+MOV 1 LEFT # send the turn on signal for other node
+JMP ST
+
+@6
+
+
+@7
+MOV UP DOWN
+
+@8

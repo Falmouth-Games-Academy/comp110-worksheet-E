@@ -1,0 +1,43 @@
+@0
+
+
+@1
+JRO 2 # skip not command
+NOT: MOV 0 DOWN # if its not 3 in a row move 0 down
+START: MOV UP ACC # store first input
+JNZ NOT # if not zero goto not
+MOV 0 DOWN # if zero move zero down (these cover the fact that although its a zero its not 3 in a row yet)
+MOV UP ACC 
+JNZ NOT
+MOV 0 DOWN
+CONT: # used once we hit 2 zeros, if 3 in a row outputs 1 and checks the next input if not zero breaks the loop to not
+MOV UP ACC
+JNZ NOT
+MOV 1 DOWN
+JMP CONT
+
+@2
+
+
+@3
+
+
+@4
+MOV UP DOWN
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8
+MOV UP RIGHT
+
+@9
+MOV LEFT DOWN
+
+@10
