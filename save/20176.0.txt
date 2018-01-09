@@ -1,0 +1,47 @@
+@0
+
+
+@
+#this code puts the value into the "acc" function and subtracts it from the value coming from the right and moves that value down to the "out" and then it does the opposite
+by adding the value from the right into the "acc" function and subtracting it from the top value
+1
+MOV UP, ACC
+ SUB RIGHT 
+MOV ACC, DOWN 
+NEG
+ MOV ACC, DOWN
+
+@
+2
+MOV UP, LEFT
+
+@
+3
+
+
+@4
+
+
+@
+5
+MOV UP, DOWN
+
+@
+6
+MOV UP, RIGHT
+
+@
+7
+
+
+@
+8
+MOV UP, DOWN
+MOV UP, RIGHT
+
+@
+9
+MOV LEFT, DOWN
+
+
+@10

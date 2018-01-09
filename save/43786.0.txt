@@ -1,0 +1,73 @@
+@0
+
+
+
+#starts the loop
+@1
+START: MOV UP, ACC
+
+#swaps the "A" value
+A:SWP
+
+MOV RIGHT, ACC
+
+#if the value is equal to 0, loop restarts
+JEZ START
+
+#swaps the value
+SWP
+
+MOV ACC, RIGHT
+
+JMP A
+
+
+@2
+STRT: MOV UP ACC
+
+#if the "A" value is "y" move 0 left
+A:JEZ Y
+
+#swaps the value
+SWP
+
+MOV 1, LEFT
+
+ADD LEFT
+
+SWP
+
+SUB 1
+
+JMP A
+
+Y: MOV 0,LEFT
+
+SWP
+
+#moves "1" to the right side
+MOV ACC, DOWN
+
+
+@3
+
+
+
+@4
+
+
+
+@5
+MOV UP, DOWN
+
+
+@6
+
+
+
+@7
+
+MOV UP, DOWN
+
+
+@8
