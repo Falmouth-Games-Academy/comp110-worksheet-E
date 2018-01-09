@@ -1,0 +1,42 @@
+@0
+
+
+@1
+MOV UP, ACC
+SUB RIGHT
+MOV ACC, DOWN
+NEG
+MOV ACC, DOWN
+
+@2
+MOV UP, LEFT
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+MOV UP, RIGHT
+
+@9
+MOV LEFT, DOWN
+
+@10
+
+/* used the neg command to stall the movement of new values*/
+
+Used the sub and neg function this time, to change a negative value to a positive ( take one input from another
+to mirror expected outputs). Use this function to delay the right hand side values, to I could move down the correct 
+input.  
