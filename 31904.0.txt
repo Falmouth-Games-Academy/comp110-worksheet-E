@@ -1,0 +1,66 @@
+@0
+
+
+@1
+MOV UP, ACC
+
+MOV ACC, DOWN
+MOV ACC, RIGHT
+MOV ACC, DOWN
+
+@2
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+MOV UP, DOWN
+MOV UP, DOWN
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+TOP:
+# Add IN to past values of IN to create a total
+ADD UP
+
+SWP
+
+MOV UP, ACC
+# If IN = 0 then send the total to OUT.S
+JEZ SEND
+SWP
+JMP TOP
+
+SEND:
+SWP
+MOV ACC, DOWN
+SWP
+
+@9
+TOP:
+# Start from one
+ADD 1
+
+SWP
+MOV UP, ACC
+# If In = 0 then send the length to OUT.L
+JEZ SEND
+SWP
+JMP TOP
+
+SEND:
+SWP
+SUB 1
+MOV ACC, DOWN
+SUB ACC
+
+@10

@@ -1,0 +1,59 @@
+@0
+
+
+@1
+# Put IN.A into memory
+MOV UP, ACC
+SAV
+# Subtract IN.B from IN.A
+SUB RIGHT
+SWP
+# Send IN.A to be subtracted from IN.B
+MOV ACC, RIGHT
+SWP
+# Send down IN.A - IN.B
+MOV ACC, DOWN
+
+@2
+#Put IN.B into memory
+MOV UP, ACC
+SAV
+# Send IN.B to be subtracted from IN.A
+MOV ACC, LEFT
+# Subtract IN.A from IN.B
+SUB LEFT
+# Send down IN.B - IN.A
+MOV ACC, DOWN
+
+@3
+
+
+@4
+
+
+@5
+
+
+
+
+
+MOV UP, DOWN
+
+@6
+
+
+
+
+
+MOV UP, DOWN
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9
+MOV UP, DOWN
+
+@10
