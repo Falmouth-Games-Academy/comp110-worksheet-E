@@ -10,22 +10,27 @@ MOV UP, RIGHT
 START:MOV UP, ACC
 
 JLZ N
+#checks to see if the value is negative and then jumps to N
 
 JGZ P
+#checks to see fi the value is positive and then jumps to P
 
 MOV LEFT, ACC
 
 ADD RIGHT
+#adds the number from the right 
 
 MOV ACC, DOWN
 
 JMP START
+#restarts the loop
 
 N: MOV LEFT, DOWN
 
 MOV RIGHT, NIL
 
 JMP START
+#restarts the loop
 
 P: MOV RIGHT, DOWN
 
