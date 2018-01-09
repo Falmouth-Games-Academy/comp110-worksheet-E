@@ -1,0 +1,57 @@
+@0
+
+
+@1
+START:
+MOV UP,ACC     # Store input
+MOV ACC,RIGHT  # Send input to right node
+SWP            # Total count now acc; seq value now bak
+ADD RIGHT      # Add the seq value to counter (relayed from right node)
+SWP            # Total count now bak; seq value now acc
+JEZ TERMINATED # Jump to TERMINATED if last value was 0-terminator
+JMP START      # Restart
+
+TERMINATED:  # Upon 0 terminator
+SWP          # Swap (last value now bak; total count now acc)
+MOV ACC,DOWN # Send total count down
+MOV 0,ACC    # Reset total count to 0
+SAV          # Store reset in bak
+
+@2
+START:
+MOV LEFT,ACC   # Retrieve sequence value from left node
+MOV ACC,LEFT   # Relay sequence value back to left node for its addition
+JEZ TERMINATED # Jump to TERMINATED if last value was 0-terminator
+SWP            # Counter now acc, value now bak
+ADD 1          # Increment the character count
+SWP            # Counter now bak, value now acc
+JMP START      # Restart
+
+TERMINATED:
+SWP          # Counter now acc, value now bak
+MOV ACC,DOWN # Send counter value down
+MOV 0,ACC    # Reset the counter
+SWP          # Counter now bak, value now acc
+
+@3
+
+
+@4
+MOV UP,DOWN
+
+@5
+MOV UP,DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP,DOWN 
+
+@9
+MOV UP,DOWN
+
+@10

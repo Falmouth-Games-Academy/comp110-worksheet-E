@@ -1,0 +1,44 @@
+@0
+
+
+@1
+MOV UP,RIGHT # Send to main node
+
+@2
+START:
+MOV UP,ACC         # Get control value
+JGZ POS            # Jump to POS if value > 0
+JLZ NEG            # Jump to NEG if value < 0
+MOV LEFT,ACC       # If no jumps occured value must be 0
+ADD RIGHT          # Add left (acc) and right ports together
+MOV ACC,DOWN       # Send down
+JMP START          # Restart
+POS:MOV RIGHT,DOWN # If value > 0, send right data downward
+MOV LEFT,NIL
+JMP START          # Restart
+NEG: MOV LEFT,DOWN # If value < 0, send left data downward
+MOV RIGHT,NIL
+# (Implicit restart)
+
+@3
+MOV UP,LEFT # Send to main node
+
+@4
+
+
+@5
+
+
+@6
+MOV UP,DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP,DOWN
+
+@10

@@ -1,0 +1,34 @@
+@0
+
+
+@1
+# Move data both right and down (parallelism for parallelism's sake)
+MOV UP,DOWN
+MOV UP,RIGHT
+
+@2
+MOV LEFT,ACC # Retrieve acc from left port
+ADD ACC      # Double by adding acc to itself
+MOV ACC,DOWN # Pass through the lower port
+
+@3
+
+
+@4
+MOV UP,ACC   # Retrieve acc from upper port
+ADD ACC      # Double by adding acc to itself
+MOV ACC,DOWN # Pass through the lower port
+
+@5
+MOV UP,DOWN # Pass doubled value down
+
+@6
+
+
+@7
+MOV UP,RIGHT # Transfer data from upper port to right
+
+@8
+MOV ANY,DOWN # Accept values from any port and send to out.a
+
+@9

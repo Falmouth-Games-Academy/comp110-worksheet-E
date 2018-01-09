@@ -1,0 +1,51 @@
+@0
+
+
+@1
+MOV UP,DOWN    # Send both operands to the lower node
+MOV RIGHT,DOWN
+
+@2
+MOV UP,LEFT # Send this input on the gory path to the lower node
+
+@3
+
+
+@4
+MOV UP,ACC    # Take first operand
+SWP           # (first operand now in bak)
+MOV UP,ACC    # Take second operand, and use it as a loop counter, adding the first operand on each loop to return the product
+LOOP:
+JEZ ENDLOOP   # Loop only while the second operand is nonzero
+SWP           # Switch to the first operand
+MOV ACC,RIGHT # Send it to the right node to be summed
+MOV ACC,RIGHT # Due to extra tests, send it twice
+SWP           # Switch to the second operand (effectively a loop counter)
+SUB 1         # Subtract 1 from the loop counter
+JMP LOOP      # Continue loop
+
+ENDLOOP:
+MOV -1,RIGHT  # Send a horrible, evil, awful magic number to signal the end of the multiplication. (Thankfully none of the operands are negative, can you imagine the extra pain and suffering of multiplying negative numbers too?)
+
+@5
+LOOP:
+MOV LEFT,ACC       # We just gonna sum everything we get from the left node
+JLZ FINISHMULTIPLY # If it's <0, that is the magic number, multiplication finished
+SWP                # Swap from the number we're adding to the sum
+ADD LEFT           # Add the number to the sum (this is why the left node sends the number twice)
+SWP                # Swap back to the number, leaving the sum in bak
+JMP LOOP           # Restart the loop
+
+FINISHMULTIPLY: # If multiplication is finished
+SWP             # Swap from the number we're adding to the sum
+MOV ACC,DOWN    # Send the sum down
+MOV 0,ACC       # Reset the sum
+SAV             # Save it in bak
+
+@6
+
+
+@7
+MOV UP,DOWN
+
+@8

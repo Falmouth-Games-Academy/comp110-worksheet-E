@@ -1,0 +1,37 @@
+@0
+
+
+@1
+MOV UP,ACC    # Retrieve in.a, copy to acc
+SUB RIGHT     # Subtract in.b from acc
+MOV ACC,RIGHT # Send the result back to the right node for later negation
+MOV ACC,DOWN  # Also send the result down 
+
+@2
+MOV UP,LEFT  # Send in.b to left node
+MOV LEFT,ACC # Wait to receive the resultant in.a - in.b
+NEG          # Negate (in.a - in.b), resulting in (in.b - in.a)
+MOV ACC,DOWN # Send the result down
+
+@3
+
+
+@4
+
+
+@5
+MOV UP,DOWN
+
+@6
+MOV UP,DOWN
+
+@7
+
+
+@8
+MOV UP,DOWN
+
+@9
+MOV UP,DOWN
+
+@10

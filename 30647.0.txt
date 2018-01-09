@@ -1,0 +1,52 @@
+@0
+
+
+@1
+
+
+MOV UP,ACC    # Take in.a
+MOV ACC,RIGHT # Send it to the right port
+NOP           # Wait two cycles!
+NOP
+MOV ACC,DOWN  # Okay, now send in.a to OUT
+
+@2
+START:
+MOV UP,ACC   # Take in.b
+SAV          # Keep it for later
+SUB LEFT     # To test if in.b > in.a, check (in.b - in.a) > 0
+JGZ GREATER  # Jump to GREATER if in.b > in.a
+LESSER:      # else if in.b < in.a
+SWP          # Retrieve in.b again
+MOV ACC,DOWN # Send in.b down immediately
+JMP START    # Restart
+GREATER:     # if in.b > in.a
+SWP          # Retrieve in.b again
+NOP          # Wait for in.a (in the other node) to send
+MOV ACC,DOWN # Now send in.b to OUT
+
+@3
+
+
+@4
+
+
+@5
+MOV UP,RIGHT
+
+@6
+# Output node
+MOV ANY,DOWN # Send the two values in whichever order they arrive
+MOV ANY,DOWN
+MOV 0,DOWN   # 0-terminate as requested
+
+@7
+
+
+@8
+
+
+@9
+MOV ANY,DOWN
+
+@10

@@ -1,0 +1,101 @@
+@0
+# SEND FIRST-PREV
+START:
+MOV UP,ACC
+MOV ACC,DOWN # Send current input down
+SWP			 # Swap with previous input
+MOV ACC,DOWN # Send the previous input down (bak is now this input, which will be the previous input in the next cycle)
+
+@1
+# SEE TOPLEFT NODE
+START:
+MOV UP,ACC
+MOV ACC,DOWN
+SWP
+MOV ACC,DOWN
+
+@2
+# SEE TOPLEFT NODE
+START:
+MOV UP,ACC
+MOV ACC,DOWN
+SWP
+MOV ACC,DOWN
+
+@3
+# SEE TOPLEFT NODE
+START:
+MOV UP,ACC
+MOV ACC,DOWN
+SWP
+MOV ACC,DOWN
+
+@4
+# DIFF CHECKER
+START:
+MOV UP,ACC # Grab the current input value
+SUB UP     # Subtract the next (in fact previous) input value.
+
+JGZ ZEROTOONE # If the current value minus the previous value is > 0, that means it has increased, in this case changed from 0 to 1
+MOV 0,RIGHT   # Otherwise, send 0 to the node to the next node to indicate no change
+JMP START     # Restart
+
+ZEROTOONE:  # If changed from 0 to 1
+MOV 1,RIGHT # Send this input number to the next node to indicate its change
+
+@5
+# DIFF CHECKER 2 (SEE DIFF CHECKER 1)
+START:
+MOV UP,ACC
+SUB UP
+
+JGZ ZEROTOONE
+MOV LEFT,DOWN # Relay the left value down as well to be combined later
+MOV 0,DOWN
+JMP START
+
+ZEROTOONE:
+MOV LEFT,DOWN # Relay
+MOV 2,DOWN
+
+@6
+# DIFF CHECKER 3  (SEE DIFF CHECKER 1)
+START:
+MOV UP,ACC
+SUB UP
+
+JGZ ZEROTOONE
+MOV 0,DOWN
+JMP START
+
+ZEROTOONE:
+MOV 3,DOWN
+
+@7
+# DIFF CHECKER 4  (SEE DIFF CHECKER 1)
+START:
+MOV UP,ACC
+SUB UP
+
+JGZ ZEROTOONE
+MOV 0,DOWN
+JMP START
+
+ZEROTOONE:
+MOV 4,DOWN
+
+@8
+# Node 1+2 combiner
+MOV UP,ACC     # Grab first input; the relayed second input follows
+ADD UP         # Combine both nodes' returned values (this trick is allowed because the rules state that only a single input will change from 0 to 1 at a time)
+MOV ACC,RIGHT  # Send to final combiner
+
+@9
+MOV UP,ACC    # Start with 3rd input
+ADD RIGHT     # Combine with 4th
+ADD LEFT      # Combine with 1st+2nd
+MOV ACC,DOWN  # Send the sum down (allowed as noted in node 8)
+
+@10
+# Courier
+MOV UP,LEFT
