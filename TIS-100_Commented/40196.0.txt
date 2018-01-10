@@ -1,5 +1,5 @@
 @0
-
+# Solution reference: https://www.youtube.com/watch?v=Gfijc80zwcE
 
 @1
 JRO 2 # skip not command
