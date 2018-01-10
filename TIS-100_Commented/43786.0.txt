@@ -10,8 +10,8 @@ MOV UP DOWN
 @3
 
 
-@4 # this loops to count how many times to multiply the number
-MOV UP ACC
+@4
+MOV UP ACC # this loops to count how many times to multiply the number
 START: JEZ END # if loop counter hits zero jmp and output 0
 SUB 1 # if not 0 sub 1 from counter
 MOV 1 RIGHT # move 1 right to tell node to add the number again
