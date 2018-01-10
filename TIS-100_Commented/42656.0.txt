@@ -1,5 +1,5 @@
 @0
-
+# Solution reference: https://www.youtube.com/watch?v=t0TAa846Vhs
 
 @1
 START: MOV 0 RIGHT # used to mark the "end" of the sequence when outputting
