@@ -1,5 +1,5 @@
-@0 # stores in.b
-MOV RIGHT, ACC
+@0 
+MOV RIGHT, ACC # stores in.b
 MOV ACC, RIGHT
 MOV ACC, RIGHT
 
@@ -18,8 +18,8 @@ MOV LEFT, DOWN
 SWP
 MOV ACC, DOWN
 
-@2 # move in.a and in.b for storage and subtracts in.a from in.b, if positive outputs in correct order if negative just clears storage
-START:
+@2 
+START: # move in.a and in.b for storage and subtracts in.a from in.b, if positive outputs in correct order if negative just clears storage
 MOV UP, ACC
 SAV
 MOV ACC, LEFT
@@ -33,8 +33,8 @@ JMP START
 NEG:
 MOV RIGHT, NIL
 
-@3 # stores in.a
-MOV LEFT, ACC
+@3 
+MOV LEFT, ACC # stores in.a
 MOV ACC, LEFT
 MOV ACC, LEFT
 
