@@ -16,8 +16,8 @@ MOV DOWN NIL # will wait here until an input from below, used to wait until othe
 @3
 
 
-@4 # this node just passes the turn on input between the 2 nodes
-MOV UP RIGHT 
+@4
+MOV UP RIGHT  # this node just passes the turn on input between the 2 nodes
 MOV RIGHT UP
 
 @5
