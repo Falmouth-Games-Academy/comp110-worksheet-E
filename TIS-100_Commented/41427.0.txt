@@ -1,8 +1,8 @@
 @0
 # Solution reference: https://www.youtube.com/watch?v=iXfpduxA6as
 
-@1 # moves the input down and right for testing
-MOV UP ACC 
+@1 
+MOV UP ACC # moves the input down and right for testing
 MOV ACC DOWN
 MOV ACC RIGHT
 
