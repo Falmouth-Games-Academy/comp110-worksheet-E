@@ -1,0 +1,56 @@
+@0
+
+
+#Checking  the number and then sending it down
+@1
+S: MOV UP, ACC
+JEZ Y
+MOV 1, RIGHT
+MOV ACC, DOWN
+JMP S
+Y: MOV 0, RIGHT
+MOV 0, DOWN
+
+#Add up the number of inputs we have as well as adding the +1 onto the number that is passing through
+@2
+S: MOV LEFT, ACC
+JEZ Y
+SWP
+ADD 1
+SWP
+JMP S
+Y:SWP
+MOV ACC, DOWN
+
+@3
+MOV RIGHT, ACC
+MOV ACC, RIGHT
+
+@4
+S: MOV UP, ACC
+JEZ Y
+MOV ACC, LEFT
+SWP
+ADD LEFT
+SWP
+JMP S
+Y:SWP
+MOV ACC, DOWN
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9
+MOV UP, DOWN
+
+@10
+

@@ -1,0 +1,47 @@
+@0
+
+
+@1
+MOV UP, ACC
+MOV ACC RIGHT
+MOV ACC, RIGHT
+
+If A is lower than the B input and then send down the acc and the input A values.
+@2
+S: MOV UP, ACC
+SAV
+SUB LEFT
+JLZ A
+MOV LEFT, DOWN
+SWP
+MOV ACC, DOWN
+JMP S
+A:SWP
+MOV ACC, DOWN
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+MOV UP, DOWN
+MOV 0, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10
+
