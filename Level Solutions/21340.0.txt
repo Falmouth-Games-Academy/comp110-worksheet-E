@@ -1,0 +1,42 @@
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+Moving the ACC right/left and if not 1, it will move 0 down and move on to the next node
+@6
+ST:MOV LEFT, ACC
+MOV ACC, RIGHT
+JGZ Y
+MOV 0, DOWN
+JMP ST
+Y: MOV 1, DOWN
+
+Moving the acc to the right above the output and doing the same thing
+@7
+ST:MOV LEFT, ACC
+MOV ACC, RIGHT
+JEZ Y
+MOV 0, DOWN
+JMP ST
+Y: MOV 1, DOWN
+
+@8
+ST: MOV LEFT, ACC
+JLZ Y
+MOV 0, DOWN
+JMP ST
+Y: MOV 1, DOWN
