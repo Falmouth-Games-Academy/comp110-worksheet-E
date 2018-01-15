@@ -1,0 +1,47 @@
+@0
+MOV RIGHT, ACC
+MOV ACC, RIGHT
+
+@1
+START: MOV UP, ACC
+MOV ACC, LEFT
+SWP
+#moves the accumlator left and swaps the new one to be in the backup see we can subtract it 
+SUB LEFT
+JLZ LOW
+MOV ACC, DOWN
+JMP START
+LOW:NEG
+MOV ACC, DOWN
+
+@2
+
+
+@3
+
+
+@4
+
+
+@5
+START: MOV UP, ACC
+SUB 10
+#here we check if the value has changed by 10 as if it does it would be a negative
+JLZ NO
+MOV 1, DOWN
+JMP START
+NO:MOV 0, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, RIGHT
+
+@9
+MOV LEFT, DOWN
+
+@10

@@ -1,0 +1,43 @@
+@0
+
+
+
+@1
+MOV UP, ACC
+
+#moves the value to the accoumlator for us to be able to add them together
+ADD ACC
+
+MOV ACC, RIGHT
+
+#moves the accoumlator afer adding it together
+
+@2
+MOV LEFT, DOWN
+
+
+@3
+
+
+
+@4
+
+
+
+@5
+MOV UP, DOWN
+
+
+@6
+
+
+
+@7
+
+
+
+@8
+MOV UP, DOWN
+
+
+@9

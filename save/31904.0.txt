@@ -1,0 +1,87 @@
+@0
+
+
+
+@1
+START:MOV UP, ACC
+
+JEZ Y
+#if the value is equal to zero then jump to Y
+
+MOV 1, RIGHT
+
+
+MOV ACC, DOWN
+
+JMP START
+
+Y: MOV 0, RIGHT
+#moves 0 right 
+
+MOV 0, DOWN
+
+
+@2
+START:MOV LEFT,ACC
+
+JEZ Y
+
+SWP
+
+ADD 1
+
+SWP
+
+JMP START
+
+Y:SWP
+
+MOV ACC, DOWN
+
+
+@3
+MOV RIGHT, ACC
+
+MOV ACC, RIGHT
+
+
+@4START:MOV UP, ACC
+
+JEZ Y
+
+MOV ACC, LEFT
+
+SWP
+
+ADD LEFT
+
+SWP
+
+JMP START
+
+Y:SWP
+
+MOV ACC, DOWN
+
+
+@5
+MOV UP, DOWN
+
+
+@6
+
+
+
+@7
+
+
+
+@8
+MOV UP, DOWN
+
+
+@9
+MOV UP, DOWN
+
+
+@10

@@ -1,0 +1,68 @@
+@0
+
+
+
+@1
+MOV UP, RIGHT
+
+
+@2
+START:MOV UP, ACC
+
+JLZ N
+#checks to see if the value is negative and then jumps to N
+
+JGZ P
+#checks to see fi the value is positive and then jumps to P
+
+MOV LEFT, ACC
+
+ADD RIGHT
+#adds the number from the right 
+
+MOV ACC, DOWN
+
+JMP START
+#restarts the loop
+
+N: MOV LEFT, DOWN
+
+MOV RIGHT, NIL
+
+JMP START
+#restarts the loop
+
+P: MOV RIGHT, DOWN
+
+MOV LEFT, NIL
+
+
+@3
+MOV UP, LEFT
+
+
+@4
+
+
+
+@5
+
+
+
+@6
+MOV UP, DOWN
+
+
+@7
+
+
+
+@8
+
+
+
+@9
+MOV UP, DOWN
+
+
+@10

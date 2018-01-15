@@ -1,0 +1,72 @@
+@0
+
+
+
+@1
+MOV UP, ACC
+
+MOV ACC, RIGHT
+
+MOV ACC, RIGHT
+
+
+#here we are writing a basic for loop to check a@2
+START:MOV UP, ACC
+
+SAV
+#saves the value into the backup in order for us to be able to subtract and use it
+
+SUB LEFT
+
+JLZ A
+#if value is less than 0 jump to A
+
+MOV LEFT, DOWN
+
+SWP
+
+MOV ACC, DOWN
+
+JMP START
+
+A:SWP
+#swap the two values 
+
+MOV ACC, DOWN
+
+MOV LEFT, DOWN
+
+
+@3
+
+
+
+@4
+
+
+
+@5
+
+
+
+@6
+MOV UP, DOWN
+
+MOV UP, DOWN
+
+MOV 0, DOWN
+
+
+@7
+
+
+
+@8
+
+
+
+@9
+MOV UP, DOWN
+
+
+@10
