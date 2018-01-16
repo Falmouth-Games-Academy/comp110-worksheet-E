@@ -1,0 +1,84 @@
+@0
+
+
+@1
+MOV UP, DOWN
+#MOVE INPUT DOWN
+
+@2
+
+
+@3
+MOV RIGHT, DOWN
+#move down
+
+@4
+S: MOV UP, ACC
+ JNZ Q
+ #if not 0
+ MOV 0, RIGHT
+ MOV 0, DOWN
+ MOV 0, LEFT
+ #if 0 ^ pass 0
+ JMP S
+ #return to start
+Q: MOV 1, RIGHT
+ MOV ACC, DOWN
+ #move acc down
+ MOV 1, LEFT
+ #move 1 left
+ JMP S
+ #jump to start
+ #return to start
+@5
+S:SWP
+ MOV LEFT, ACC
+ JNZ Q
+ SWP
+ MOV ACC, DOWN
+ MOV 0 ACC
+ SWP
+ MOV 0 ACC
+ JMP S
+ #return to start
+Q: SWP
+ ADD 1
+ # add 1 to acc
+ JMP S
+ #return to start
+
+@6
+
+
+@7
+MOV UP, RIGHT
+#move right
+
+@8
+S:ADD UP
+ SWP
+ #BAK -> acc
+ MOV LEFT, ACC
+ #move left to acc
+ JNZ Q
+ # jump to Q
+ SWP
+ #BAK -> acc
+ MOV ACC, DOWN
+ #move down
+ #output.s
+ SWP
+ #swap BAK -> acc
+ MOV 0, ACC
+ #clear acc
+ JMP S
+Q: SWP
+ JMP S
+ #return to start
+
+@9
+MOV UP, DOWN
+#move down
+#output.L
+
+@10

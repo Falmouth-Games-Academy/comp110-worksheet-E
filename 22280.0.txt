@@ -1,0 +1,63 @@
+@0
+
+
+@1
+MOV UP, RIGHT
+# move input.a right
+
+@2
+S: MOV UP, ACC
+#store input.s
+ JLZ A
+# if input.s < 0 
+ JGZ B
+# if input.s >0
+# else
+ MOV LEFT, ACC
+# store input.a in acc
+ ADD RIGHT
+# input.a + input.b
+ MOV ACC, DOWN
+# move sum down
+ JMP S
+# return to start
+A: MOV LEFT, DOWN
+# move input.a down
+ MOV RIGHT, NIL
+# clear input.b
+ JMP S
+# return to start
+B: MOV RIGHT, DOWN
+# move input.b down
+ MOV LEFT, NIL
+# clear input.a
+ JMP S
+# return to start
+
+@3
+
+MOV UP,  LEFT
+# move input.b left
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+#move down
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+# move down
+# output
+
+@10
