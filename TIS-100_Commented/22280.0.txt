@@ -1,0 +1,45 @@
+@0
+
+
+@1
+MOV UP, RIGHT 
+
+@2
+START:
+MOV UP, ACC 
+JGZ POS 
+JLZ NEG
+MOV LEFT, ACC # if not positive or negative move in.a to acc
+ADD RIGHT # add in.b to acc
+MOV ACC, DOWN # move added acc for output
+JMP START
+POS: # if input is positive
+MOV RIGHT, DOWN # move in.a down for output
+MOV LEFT, NIL # clear in.b
+JMP START
+NEG: # if negative
+MOV LEFT, DOWN # move in.b for output
+MOV RIGHT, NIL # clear in.a
+
+@3
+MOV UP, LEFT
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

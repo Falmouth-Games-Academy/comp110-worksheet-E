@@ -1,0 +1,61 @@
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+START:
+MOV LEFT, ACC 
+MOV ACC, RIGHT # move number right to be computed
+JGZ POS # if positive jump to pos
+JLZ NEG # if negative jump to neg
+MOV 0, DOWN # if neither output 0
+JMP START # goto start
+POS:
+MOV 1, DOWN # if positive output 1
+JMP START
+NEG:
+MOV 0, DOWN # if negative output 0
+JMP START
+
+@7
+START:
+MOV LEFT, ACC
+MOV ACC RIGHT
+JLZ NEG
+JGZ POS
+MOV 1, DOWN
+JMP START
+NEG:
+MOV 0, DOWN
+JMP START
+POS:
+MOV 0, DOWN
+JMP START
+
+@8
+START:
+MOV LEFT, ACC
+JLZ NEG
+JGZ POS
+MOV 0, DOWN
+JMP START
+NEG:
+MOV 1, DOWN
+JMP START
+POS:
+MOV 0, DOWN
+JMP START

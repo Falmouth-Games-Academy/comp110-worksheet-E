@@ -1,0 +1,42 @@
+@0
+# Solution reference: https://www.youtube.com/watch?v=OxrqVSLfrC8
+
+@1
+MOV UP DOWN
+
+@2
+MOV UP DOWN
+
+@3
+
+
+@4
+MOV UP ACC # this loops to count how many times to multiply the number
+START: JEZ END # if loop counter hits zero jmp and output 0
+SUB 1 # if not 0 sub 1 from counter
+MOV 1 RIGHT # move 1 right to tell node to add the number again
+JMP START
+END: MOV 0 RIGHT
+
+@5
+MOV UP ACC # bring in bas number
+SAV # store it in bak so we can overwtire acc to check if we should add or not
+MOV 0 RIGHT # move 0 right important so that we can add the base to something on first addition, or if no additions are made
+ST: MOV LEFT ACC # grab input from loop counter
+JEZ END # if 0 (no more loops) jump tot end
+SWP # if not 0 swap to base number
+MOV ACC RIGHT # move base number right
+SWP # swap so the base is stored in bak again
+MOV RIGHT ACC # grab base number from the stack
+ADD RIGHT # add our stored multiplied number
+MOV ACC RIGHT # move the new multiplied number back onto the stack
+JMP ST # jmp to start to grab the next input from loop counter
+END:MOV RIGHT DOWN  # move stored mulitplied value from stack to output
+
+@6
+
+
+@7
+MOV UP DOWN
+
+@8
