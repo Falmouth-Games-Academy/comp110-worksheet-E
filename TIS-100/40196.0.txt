@@ -1,0 +1,57 @@
+@0
+
+@1
+MOV UP, DOWN  # moves the input value down to spread different blocks for finding the right number for the solution
+MOV UP, DOWN  # moves the input value down to spread different blocks for finding the right number for the solution
+A:MOV UP, ACC  # starts a loop with moving the input value to the accumulator
+JNZ NO  # checks if the accumulator is not 0 (if yes, jumps to "NO" loop)
+MOV 1, RIGHT  # if the accumulator is 0, moves 1 to the right
+JMP B  # jumps to the "B" loop
+NO:MOV 0, RIGHT  # moves 0 to the right (saying that its not the number we are looking for)
+B:MOV ACC, DOWN  # moves the accumulator down
+JMP A  # jumps to "A" loop
+
+@2
+MOV LEFT, DOWN  # moves the left value down
+
+@3
+
+@4
+MOV UP, DOWN  # moves the input value down to spread different blocks for finding the right number for the solution
+A:MOV UP, ACC  # starts a loop with moving the input value to the accumulator
+JNZ NO  # checks if the accumulator is not 0 (if yes, jumps to "NO" loop)
+MOV 1, RIGHT  # if the accumulator is 0, moves 1 to the right
+JMP B  # jumps to the "B" loop
+NO:MOV 0, RIGHT  # moves 0 to the right (saying that its not the number we are looking for)
+B:MOV ACC, DOWN  # moves the accumulator down
+JMP A  # jumps to "A" loop
+
+@5
+MOV LEFT, ACC  # moves the left value to the accumulator
+ADD UP  # adds upper value to the accumulator
+MOV ACC, DOWN  # moves the accumulator down
+
+@6
+
+@7
+
+@8
+A:MOV UP, ACC  # moves the upper value to the accumulator
+JNZ NO  # checks if the accumulator is not 0 (if yes, jumps to "NO" loop)
+MOV 1, RIGHT  # if the accumulator is 0, moves 1 to the right
+JMP A  # jumps to "A" loop
+NO:MOV 0, RIGHT  # moves 0 to the right (saying that its not the number we are looking for)
+
+@9
+MOV 0, DOWN  # moves 0 down, as we are looking for three zeros in a row
+MOV 0, DOWN  # moves 0 down, as we are looking for three zeros in a row
+A:MOV UP, ACC  # starts a loop with moving upper value to the accumulator
+ADD LEFT  # adds left value to the accumulator
+SUB 3  # subtracts the accumulator with 3 (to checks if we have 3 right numbers in a row)
+JNZ NO  # checks if the accumulator is not 0 (if yes, jumps to "NO" loop)
+MOV 1, DOWN  # if the accumulator is 0, which means we have 3 right numbers in a row, sends 1 to output
+JMP A  # starts "A" loop again
+NO:MOV 0, DOWN  # sends 0 to output, meaning that we didn't get 3 right numbers in a row
+JMP A  # starts "A" loop again
+
+@10

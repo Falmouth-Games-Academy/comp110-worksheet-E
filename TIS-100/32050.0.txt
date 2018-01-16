@@ -1,0 +1,39 @@
+@0
+MOV RIGHT, RIGHT  # moves the right value back to the right (for subtraction)
+
+@1
+S:MOV UP, ACC  # start a loop with moving the input value to the accumulator
+MOV ACC, LEFT  # moves the accumulator to the left (for later subtraction)
+SWP  # swaps the accumulator value with the backup
+SUB LEFT  # subtract the accumulator with the left value
+JLZ LOW  # checks if the accumulator is less than 0 (if yes, jumps to "LOW" loop)
+MOV ACC, DOWN  # if not less than 0, moves the accumulator down
+JMP S  # and starts "S" loop again
+LOW:NEG  # negates the accumulator (makes it either positive or negative, depending on current value)
+MOV ACC, DOWN  # moves the accumulator down
+
+@2
+
+@3
+
+@4
+
+@5
+S:MOV UP, ACC  # start a loop with moving upper value to the accumulator
+SUB 10  # subtracts the accumulator with 10
+JLZ NO  # checks if the accumulator is less than 0 (if yes, jumps to "NO" loop)
+MOV 1, DOWN  # if not less than 0, moves 1 down
+JMP S  # starts "S" loop again
+NO: MOV 0, DOWN  # moves 0 down
+
+@6
+
+@7
+
+@8
+MOV UP, RIGHT  # moves the value to the right
+
+@9
+MOV LEFT, DOWN  # sends the value to output
+
+@10
