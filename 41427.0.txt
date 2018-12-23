@@ -1,0 +1,72 @@
+@0
+
+
+@1
+MOV UP ACC # Moves the IN value to ACC
+MOV ACC RIGHT 
+MOV ACC DOWN
+MOV ACC RIGHT
+MOV ACC DOWN # Distrubutes to 2 adjacent cells twice each, where RIGHT calculates MAX (OUT.A) and DOWN calculates MIN (OUT.I)
+
+@2
+S-: MOV RIGHT ACC# Take the MAX value from right...
+SAV # ... move it into ACC and save it to BAK
+MOV LEFT ACC # Move the next value of the sequence to ACC
+JEZ END- # If value is zero, jump to END (sequence finished)
+SUB RIGHT # Else, Subtract from right (MAX value) 
+JGZ C- # If new ACC value is >0, jump to CHANGE (C-)
+SWP # Else, Swap values of ACC and BAK, Move ACC to right 
+MOV ACC RIGHT # (Value that was in BAK is the max value)
+MOV LEFT NIL # Discard the value from left (no change to MAX)
+JMP S- # Jump back to START (S-)
+C-: MOV LEFT RIGHT # Move value from Left (sequence value) to Right (where MAX value is held) to store the new MAX value
+JMP S- # Jump back to START
+END-: # If sequence is terminated/Ended
+MOV RIGHT DOWN # Move the value from Right (Max Value) Down
+MOV LEFT RIGHT # Move new sequence value (will be 0 here) to the Right (to reset the max value to 0 for next sequence)
+
+@3
+MOV ACC LEFT # Move current MAX value left (to be stored)
+MOV ACC LEFT # Move current MAX value left (for calculation)
+MOV LEFT ACC # Set Value from Left as new MAX value (could be same as before; no change)
+
+@4
+JGZ NAH- # When the sequence resets ACC will be 0
+ADD 99 # this needs to change so MIN isnt alsways 0, so add 99
+
+
+NAH-: # jumps to here if current MIN value isnt 0
+MOV ACC RIGHT # Move current MIN value Right (to be stored)
+MOV ACC RIGHT # Move current MIN to Right (for calculation)
+MOV RIGHT ACC # Update ACC (current MIN) to new MIN value
+
+@5
+S-: MOV LEFT ACC # This whole node is identical to node 2...
+SAV # ...except that the directions are changed accordingly...
+MOV UP ACC # ... and the compare becomes <0 instead of >0 ...
+JEZ END- # ... so it calculates MIN instead of MAX :)
+SUB LEFT
+JLZ C-
+SWP
+MOV ACC LEFT
+MOV UP NIL
+JMP S-
+C-: MOV UP LEFT
+JMP S-
+END-:
+MOV LEFT DOWN
+MOV UP LEFT
+
+@6
+MOV UP DOWN # Moves MAX value Downwards, towards OUT.A
+
+@7
+
+
+@8
+MOV UP DOWN # Moves MIN value to OUT.I
+
+@9
+MOV UP DOWN # Moves MAX value to OUT.A
+
+@10

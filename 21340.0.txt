@@ -1,0 +1,46 @@
+@0
+MOV UP DOWN # Moves the value from IN Downwards
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP DOWN # Moves the value from Up Downwards
+
+@5
+MOV UP RIGHT # Moves the value from Up to the Right
+
+@6
+START:
+MOV LEFT ACC # Move the value from Left to ACC
+MOV ACC RIGHT # Move the value of ACC to the right
+JGZ YES # If ACC > 0, jump to YES
+MOV 0 DOWN # ( If ACC not > 0 ) Move 0 Downwards (shows false) 
+JMP START # Jump back to START
+YES:
+MOV 1 DOWN # Move 1 Downwards (shows True)
+
+@7
+START:
+MOV LEFT ACC # Move the value from Left to ACC
+MOV ACC RIGHT # Move the value of ACC to the right
+JEZ YES # If ACC == 0, jump to YES
+MOV 0 DOWN #( If ACC not == 0 ) Move 0 Downwards (shows false)
+JMP START # Jump back to START
+YES:
+MOV 1 DOWN # Move 1 Downwards (shows True)
+
+@8
+START:
+MOV LEFT ACC # Move the value from Left to ACC
+JLZ YES # If ACC < 0, jump to YES
+MOV 0 DOWN #( If ACC not < 0 ) Move 0 Downwards (shows false)
+JMP START # Jump back to START
+YES:
+MOV 1 DOWN # Move 1 Downwards (shows True)

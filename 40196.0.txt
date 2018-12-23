@@ -1,0 +1,45 @@
+@0
+
+
+@1
+MOV UP ACC # Moves the value from IN to ACC
+JNZ NAH # If ACC != 0, jump to nah (not correct pattern)
+MOV 0 DOWN # Else: (first value is correct for pattern) move 0 down (because the pattern still isnt complete yet)
+MOV UP ACC # Moves value from IN to ACC
+JNZ NAH # Checking for the second value of a possible pattern
+MOV 0 DOWN # If second value correct for pattern, move 0 down as still not complete pattern yet
+LOOP:
+MOV UP ACC # CHecking for the 3rd value for the pattern
+JEZ YES # If this value matches 3rd pattern value, jump to YES
+JMP NAH # If not, jump to NAH
+YES:
+MOV 1 DOWN # Moves 1 Down (pattern has been found)
+JMP LOOP # Jumps back to LOOP, check if pattern present again
+NAH:
+MOV 0 DOWN # Move 0 Down (pattern is incorrect)
+
+@2
+
+
+@3
+
+
+@4
+MOV UP DOWN # Moves the output value to OUT
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8
+MOV UP RIGHT # Moves the output value to OUT
+
+@9
+MOV LEFT DOWN # Moves the output value to OUT
+
+@10

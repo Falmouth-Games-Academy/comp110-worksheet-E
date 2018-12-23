@@ -1,0 +1,47 @@
+@0
+# This solution is very Node and Instruction Efficient, But takes many many cycles
+
+@1
+NEXT-: MOV UP ACC # Takes Value from IN.A and stores
+
+LOOP-:
+MOV ACC RIGHT # Moves ACC to Right (to be summed)
+SWP # Swap ACC and BAK (BAK used to check if loop is done)
+MOV RIGHT ACC # Get from Right (LoopDone value) store in ACC
+JEZ NEXT- # If LoopDone is 0 (loop is done), jump to NEXT-
+SWP # Else, Swap values back and ...
+JMP LOOP- # Jump back to Loop-
+
+@2
+MOV UP ACC # Take value from IN.B (Second Multiplcation Value, used as "repetitions")
+
+LOOP-: JEZ END- # If repetitions equal to 0, jump to END-
+SWP # Swap ACC and BAK (BAK being used to store total)
+ADD LEFT # Add value from left to "BAK"
+MOV 1 LEFT # Move 1 left (more repetitions to go)
+SWP # Swap ACC and BAK again
+SUB 1 # Subtract 1 from repetitions
+JMP LOOP- # Jump back to LOOP-
+END-: MOV LEFT NIL # Discard value from Left (dont add more)
+MOV 0 LEFT # Move 0 left (No more repetitions
+SWP # Swap ACC and BAK
+MOV ACC DOWN # Move "BAK" (Total value of calculation) Down
+MOV 0 ACC # Move 0 to "BAK" (to reset total)
+SWP # Swap ACC and BAK again
+
+@3
+
+
+@4
+
+
+@5
+MOV UP DOWN # Moves total value towards OUT
+
+@6
+
+
+@7
+MOV UP DOWN # Moves total value to OUT
+
+@8

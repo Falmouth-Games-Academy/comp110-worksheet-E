@@ -1,0 +1,31 @@
+@0
+
+
+@1
+MOV UP DOWN # Moves input value Downwards
+
+@2
+
+
+@3
+
+
+@4
+MOV UP ACC # Moves value from Up into ACC
+ADD ACC # Adds the value of ACC to ACC, effectively doubling
+MOV ACC DOWN # Moves new value of ACC Downwards
+
+@5
+
+
+@6
+
+
+@7
+MOV UP RIGHT # Moves value from Up to the Right
+
+@8
+MOV LEFT DOWN # Moves value from Left Downwards
+
+@9
+

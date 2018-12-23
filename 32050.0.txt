@@ -1,0 +1,52 @@
+@0
+
+
+@1
+MOV UP ACC # Move value from Up to ACC
+SAV # Save value of ACC to BAK (store previous value)
+SUB RIGHT # Subtract value from Right (to get difference)
+MOV ACC DOWN # Move ACC (difference) Downwards
+SWP # Swap values of ACC and BAK
+MOV ACC RIGHT # Moves ACC (previous value) to the Right
+
+@2
+MOV 0 LEFT # Move 0 to the Left (once)
+MOV LEFT LEFT # Move the value from Left back to the Left
+JRO -1 # Go back to the previous instrucion
+# After first command always pushes value from Left back to Left
+
+@3
+
+
+@4
+
+
+@5
+START:
+MOV UP ACC # Moves value from Up (Difference) into ACC
+JGZ GZ # If ACC (dif) > 0, Jump to GZ (greater zero)
+JLZ LZ # If ACC (dif) < 0, Jump to LZ (greater zero)
+JMP ZERO # Else: (dif == 0), Jump to Zero
+GZ: SUB 10 # Sub 10 from ACC
+JLZ ZERO # If ACC is now < 0, Jump to Zero (dif was < 10)
+JMP ONE # Else (ACC still >= 0): jump to ONE (dif was >= 10)
+LZ: ADD 10 # Add 10 to ACC
+JGZ ZERO # If ACC is now > 0, Jump to Zero (dif was < 10)
+JMP ONE # Else (ACC still <= 0): jump to ONE (dif was >= 10)
+ZERO: MOV 0 DOWN # Move 0 (FALSE) Downwards 
+JMP START # Jump back to START
+ONE: MOV 1 DOWN # Move 1 (TRUE) Downwards
+
+@6
+
+
+@7
+
+
+@8
+MOV UP RIGHT # Move value from Up to the Right
+
+@9
+MOV LEFT DOWN # Move value from Left to OUT
+
+@10

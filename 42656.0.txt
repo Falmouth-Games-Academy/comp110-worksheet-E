@@ -1,0 +1,48 @@
+@0
+
+
+@1
+S-: MOV UP ACC # Move sequence value from IN to ACC
+JEZ HALT- # If ACC is 0 (sequence ended) jump to halt
+MOV ACC RIGHT # Else: Move ACC into stack memory node
+SWP # Swap values of ACC and BAK 
+ADD 1 # Add 1 to "BAK" (BAK being used to store length)
+SWP # Swap values back
+JMP S- # Jump back to start to grab next sequence value
+
+HALT-:
+SWP # Swap ACC and BAK 
+MOV ACC DOWN # Move "BAK" Down
+MOV 0 ACC # Move 0 into "BAK" (reset sequence length)
+SWP # Swap ACC and BAK again
+MOV DOWN NIL # Discard value from Down (Used as waiting for confirmation to continue, while STACK node is being emptied)
+
+@2
+
+
+@3
+
+
+@4
+MOV UP RIGHT # Move Value from up to the Right (Length Value)
+MOV RIGHT UP # Move value from Right Upwards (confirmation)
+
+@5
+MOV LEFT ACC # Move Value from Left (Length) to ACC
+LOOP-: JEZ DONE- # If Remaining Length == 0, Jump to DONE-
+MOV UP DOWN # Move a value from STACK node Downwards (to OUT)
+SUB 1 # Subtract 1 from Remaining Length
+JMP LOOP- # Jump back to LOOP-
+
+
+DONE-:
+MOV 0 DOWN # When DONE, Move 0 Down (to end sequence) ...
+MOV 0 LEFT # ... and move 0 left (for node 1 confirmation)
+
+@6
+
+
+@7
+MOV UP DOWN # Move Value from Up (sequence value) Down to OUT
+
+@8

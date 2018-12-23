@@ -1,0 +1,45 @@
+@0
+
+
+@1
+MOV UP RIGHT # Moves the value from IN.A to the Right
+
+@2
+START:
+MOV UP ACC # Moves the value from IN.S to ACC
+JLZ LEFT # If ACC < 0, jump to LEFT
+JGZ RIGHT # If ACC > 0, jump to RIGHT
+MOV LEFT ACC # (If ACC == 0) Moves value from Left to ACC
+ADD RIGHT # Adds the value from Right to ACC
+MOV ACC DOWN # Moves the value of ACC Downwards
+JMP START # Jump back to START
+LEFT:
+MOV LEFT DOWN # Moves the value from Left Downwards
+MOV RIGHT NIL # Discards the value from Right
+JMP START # Jump back to START
+RIGHT:
+MOV RIGHT DOWN # Moves the value from Right Downwards
+MOV LEFT NIL # Discards the value from Left
+
+@3
+MOV UP LEFT # Moves the value from IN.B to the left
+
+@4
+
+
+@5
+
+
+@6
+MOV UP DOWN # Moves the value from Up Downwards
+
+@7
+
+
+@8
+
+
+@9
+MOV UP DOWN # Moves the value from Up Downwards
+
+@10

@@ -1,0 +1,36 @@
+@0
+
+
+@1
+MOV UP ACC # Moves IN.A into ACC, overwrites any previous value
+SUB RIGHT # Subtracts the value from Right
+MOV ACC DOWN # Moves value of ACC Downwards
+
+@2
+MOV UP LEFT # Moves value from IN.B to the Left
+
+@3
+
+
+@4
+
+
+@5
+MOV UP DOWN # Moves the value from Up Downwards
+
+@6
+
+
+@7
+
+
+@8
+MOV UP ACC # Moves the value from Up into ACC
+MOV ACC DOWN # Moves the value from ACC into OUT.P
+NEG # Turns the value of ACC negative
+MOV ACC RIGHT # Moves the value of ACC to the Right
+
+@9
+MOV LEFT DOWN # Moves the value from Left Downwards
+
+@10

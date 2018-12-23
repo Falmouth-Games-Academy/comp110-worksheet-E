@@ -1,0 +1,108 @@
+@0
+#1
+MOV UP DOWN # Move the value from IN.1 Downwards(valued at 1x)
+# This one is super complex and confusing
+# All the subtracted in the last 3 nodes, 
+#   is devalueing all the values created in the first 4 nodes
+#   and detemining what node has changed
+#   i struggled to comment this one because it confused me
+#   best of luck marking it
+
+
+@1
+#2
+MOV UP ACC # Move the value from IN.2 to ACC
+ADD ACC # Adds ACC to itself, to create value at 2x
+MOV ACC DOWN # Move value of ACC Downwards
+
+@2
+#4
+MOV UP ACC # Move value from IN.3 to ACC
+ADD ACC
+ADD ACC # Double value of ACC twice to create 4x value
+MOV ACC DOWN # Move the vakue of ACC Downwards
+
+@3
+#8
+MOV UP ACC # Moves the value of IN.4 to ACC
+ADD ACC
+ADD ACC
+ADD ACC # Double to value of ACC thrice to create a 8x value
+MOV ACC DOWN # Move the value of ACC down
+
+@4
+MOV UP RIGHT # Move the value from Up to the Right
+
+@5
+MOV LEFT ACC # Moves value from Left into ACC
+ADD UP # Adds the value from UP
+MOV ACC RIGHT # Moves the value of ACC to the Right
+
+@6
+MOV UP ACC # Move value of Up to ACC
+ADD LEFT # Add the value from Left
+MOV ACC RIGHT # Move the value of ACC to the Right
+
+MOV RIGHT ACC # Move value from Right to ACC
+SUB RIGHT # Subtract value from RIght
+MOV ACC RIGHT # Move value of ACC to the Right
+# ^ this chunk (not alone) cancels outputs when 1 turns to 0
+
+@7
+MOV UP ACC # Move value from up to ACC
+ADD LEFT # Add the value from Left
+
+MOV ACC LEFT # Moves value of ACC to the Left
+SWP # Swaps value of ACC and BAK
+MOV ACC LEFT # Moves value of ACC(was BAK) to Left
+SWP # Swap values of ACC and BAK again
+SAV # Saves value of ACC to BAK (storing previous value)
+MOV LEFT DOWN # Move value from Left Downwards
+# ^ this chunk (not alone) cancels outputs when 1 turns to 0
+
+@8
+S-: MOV RIGHT ACC # Move value from Right to ACC
+SUB 1 # subract 1 from ACC
+JEZ 3- # If ACC == 0, jump to 3- (IN.3 changed)
+JMP 4- # Else: jump to 4- (IN.4 changed)
+
+3-:
+MOV 3 RIGHT # Move 3 to the Right
+JMP S- # Jump to START
+
+4-:
+MOV 4 RIGHT # Move 4 to the Right
+
+@9
+S-: MOV RIGHT ACC # Move value from Right to ACC
+JLZ N- # If ACC < 0 (No change) jump to N- (No change)
+JEZ 1- # If ACC == 0 (IN.1 changed) jump to 1-
+SUB 1 # Subtract 1 from ACC
+JEZ 2- # If ACC == 0 (In.2 changed) jump to 2-
+MOV ACC LEFT # Else move ACC to the Left (keep checking)
+MOV LEFT DOWN # Then Move value from Left to OUT 
+# ^ will be either (3) or (4) for (IN.3) or (IN.4) changed
+JMP S- # Jump back to START (S-)
+
+N-: MOV 0 DOWN # Move 0 down (no change)
+JMP S- # Jump back to START
+1-: MOV 1 DOWN # Move 1 down (IN.1 changed)
+JMP S- # Jump back to START
+2-: MOV 2 DOWN # Move 2 down (IN.2 changed)
+
+@10
+S-: MOV UP ACC # Moves value from Up to ACC
+JLZ N- 
+JEZ N- # If ACC <= 0, jump to N- (no change)
+SUB 1 # Sub 1 from ACC
+JEZ A- # If ACC == 0, jump to A- (IN.1 changed)
+SUB 1 # Sub 1 from ACC
+JEZ B- # If ACC == 0, jump to B- (IN.2 changed)
+JMP E- # Else: jump to E- (Keep checking)
+N-: MOV -1 LEFT # Move -1 Left (no change)
+JMP S- # Jump back to S- (START)
+A-: MOV 0 LEFT # Move 0 Left (IN.1 changed)
+JMP S- # Jump back to START
+B-: MOV 1 LEFT # Move 1 Left (IN.2 changed)
+JMP S- # Jump back to START
+E-: MOV ACC LEFT # Move value of ACC Left (Keep checking)

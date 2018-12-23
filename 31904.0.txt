@@ -1,0 +1,53 @@
+@0
+
+
+@1
+MOV UP DOWN # Moves the value from IN Downwards
+
+@2
+
+
+@3
+
+
+@4
+MOV UP DOWN # Moves the value from Up Downwards
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8
+START:
+MOV UP ACC # Moves the value from UP to ACC
+MOV ACC RIGHT # Moves the value from ACC to the Right
+SWP # Swaps values of ACC and BAK (BAK used to store sum)
+ADD RIGHT # Adds the value from Right to ACC
+SWP # Swaps values of ACC and BAK again 
+JEZ PASS # If ACC == 0 (If terminated), jump to PASS
+JMP START # Jump back to START
+PASS:
+SWP # Swaps values of ACC and BAK
+MOV ACC DOWN # Moves the value of ACC (Sum of seque) Downwards
+MOV 0 ACC # Moves 0 into ACC (to reset sum)
+
+@9
+START:
+MOV LEFT ACC # Moves value from Left into ACC
+MOV ACC LEFT # Sends value back (so it can be summed)
+JEZ PASS # If ACC == 0 (if terminated), jump to PASS
+SWP # Swaps values of ACC and BAK ( BAK used to store length )
+ADD 1 # Add 1 to ACC (length of sequence)
+SWP # Swaps values of ACC and BAK again
+JMP START # Jump back to START
+PASS:
+SWP # Swaps values of ACC and BAK
+MOV ACC DOWN # Move the value of ACC (length) Downwards 
+MOV 0 ACC # Move 0 into ACC (to reset length)
+
+@10

@@ -1,0 +1,47 @@
+@0
+
+
+@1
+MOV UP ACC # Moves the value from IN.A to ACC
+MOV ACC RIGHT
+MOV ACC RIGHT # Moves the value from ACC to the Right twice
+
+@2
+START:
+MOV UP ACC # Moves the value from IN.B to ACC
+SAV # Saves the value of ACC to BAK
+SUB LEFT # Subtracts the value of Left from ACC
+JGZ ASMOL # If ACC > 0 (IN.B > IN.A), jump to ASMOL
+SWP # (If Acc < 0 (IN.A > IN.B)) Swap values of ACC and BAK
+MOV ACC DOWN # Moves value of ACC (IN.B) Downwards 
+MOV LEFT DOWN # Moves value from Left (IN.A) Downwards
+JMP START # Jump back to START
+ASMOL:
+MOV LEFT DOWN # Moves value from Left (IN.A) Downwards
+SWP # Swap values of ACC and BAK
+MOV ACC DOWN # Moves value of ACC Downwards
+
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+MOV UP DOWN # Moves value from Up Downwards
+
+@7
+
+
+@8
+
+
+@9
+MOV UP DOWN
+MOV UP DOWN # Moves value from Up Downwards twice
+MOV 0 DOWN # Moves 0 Downwards to end the sequence
+
+@10
