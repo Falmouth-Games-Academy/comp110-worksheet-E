@@ -1,108 +1,97 @@
 @0
-#1
-MOV UP DOWN # Move the value from IN.1 Downwards(valued at 1x)
-# This one is super complex and confusing
-# All the subtracted in the last 3 nodes, 
-#   is devalueing all the values created in the first 4 nodes
-#   and detemining what node has changed
-#   i struggled to comment this one because it confused me
-#   best of luck marking it
+MOV UP ACC # Moves the first value into ACC
 
+0S-: JGZ CS- # ZERO STATE
+MOV 0 RIGHT # Keeps outputting 0 and getting next IN.1 value..
+MOV UP ACC # .. until the IN.1 value changes to a 1,..
+JMP 0S- # .. when it changes to 1 jump to CHANGE STATE
+
+CS-: MOV 1 RIGHT # CHANGE STATE, simply outputs a 1..
+MOV UP ACC # .. then gets next IN.1 value
+
+1S-: JEZ 0S- # ONE STATE
+MOV 0 RIGHT # Keeps outputting 0 and getting next IN.1 value..
+MOV UP ACC # .. until the value changes back to 0,..
+JMP 1S- # .. on change, jumps back to ZERO STATE
 
 @1
-#2
-MOV UP ACC # Move the value from IN.2 to ACC
-ADD ACC # Adds ACC to itself, to create value at 2x
-MOV ACC DOWN # Move value of ACC Downwards
+MOV UP ACC # Moves the first IN.2 value into ACC
+
+0S-: JGZ CS- # ZERO STATE
+MOV LEFT RIGHT # While IN.2 value isn't changing, outputs..
+MOV UP ACC # .. what was recieved from NODE 0 (left)..
+JMP 0S- # ..On IN.2 value changing to 1, jumps to CHANGE STATE
+# (^ when IN.2 doesn't change, output results from IN.1)
+CS-: MOV 2 RIGHT # CHANGE STATE
+MOV LEFT NIL # When IN.2 changes to 1, moves 2 right and..
+MOV UP ACC # .. and discards from left, then gets next IN.2
+# (^ when IN.2 DOES change, discard from left as IN.1 WON'T)
+1S-: JEZ 0S- # ONE STATE
+MOV LEFT RIGHT # Takes value from left and outputs it, until.. 
+MOV UP ACC # .. IN.2 changes back to 0, then jumps back to..
+JMP 1S- # .. ZERO STATE where everything continues
 
 @2
-#4
-MOV UP ACC # Move value from IN.3 to ACC
-ADD ACC
-ADD ACC # Double value of ACC twice to create 4x value
-MOV ACC DOWN # Move the vakue of ACC Downwards
+MOV UP ACC # Moves the first IN.3 value into ACC
+0S-: JGZ CS- # ZERO STATE
+MOV LEFT DOWN # While IN.3 remains a 0, move the values from..
+MOV RIGHT DOWN # .. Left and Right and move them both down..
+MOV UP ACC # .. and then get next IN.3 value and repeat
+JMP 0S-
+CS-: MOV LEFT NIL # CHANGE STATE, When IN.3 changes, discard..
+MOV RIGHT DOWN # .. from left (guarenteed 0), move right..
+MOV 3 DOWN # .. down(guarenteed 0), and move 3 down and then..
+MOV UP ACC # .. move next value of IN.3 into ACC
+1S-:  JEZ 0S- # ONE STATE
+MOV LEFT DOWN # while IN.3 remains a 1, move left and right..
+MOV RIGHT DOWN # .. downwards and get next value of IN.3..
+MOV UP ACC # .. and move that into the ACC
+JMP 1S-
 
 @3
-#8
-MOV UP ACC # Moves the value of IN.4 to ACC
-ADD ACC
-ADD ACC
-ADD ACC # Double to value of ACC thrice to create a 8x value
-MOV ACC DOWN # Move the value of ACC down
+MOV UP ACC # This whole node is the same as node 0..
+# .. except it outputs to the left, takes in from IN.4..
+0S-: JGZ CS- # and outputs a 4 when changing instead of a 1
+MOV 0 LEFT
+MOV UP ACC
+JMP 0S-
+
+CS-: MOV 4 LEFT
+MOV UP ACC
+
+1S-: JEZ 0S-
+MOV 0 LEFT
+MOV UP ACC
+JMP 1S-
 
 @4
-MOV UP RIGHT # Move the value from Up to the Right
+
 
 @5
-MOV LEFT ACC # Moves value from Left into ACC
-ADD UP # Adds the value from UP
-MOV ACC RIGHT # Moves the value of ACC to the Right
+
 
 @6
-MOV UP ACC # Move value of Up to ACC
-ADD LEFT # Add the value from Left
-MOV ACC RIGHT # Move the value of ACC to the Right
-
-MOV RIGHT ACC # Move value from Right to ACC
-SUB RIGHT # Subtract value from RIght
-MOV ACC RIGHT # Move value of ACC to the Right
-# ^ this chunk (not alone) cancels outputs when 1 turns to 0
-
+MOV UP ACC
+ADD UP # Takes 2 value from Up and adds them..
+MOV ACC DOWN # .. then moves the result downwards
+# This node requires 2 numbers to add to proceed, and that's..
+# .. why NODE 2 always moves 2 values down. when IN.3 isn't..
+# .. changing to a 1, it doesn't check itself which of the..
+# .. others have changed, and pushes all to this node.
+# In NODE 3's CHANGE STATE, both the inputs from left and..
+# .. right and going to be 0, but still 2 items need to be..
+# .. sent downwards for this program, so one of the inputs..
+# .. is discarded (as it's 0) and the other is sent down..
+# .. to prevent errors.
+# Addition is the quickest way to determine which IN value..
+# .. changed in each cycle
 @7
-MOV UP ACC # Move value from up to ACC
-ADD LEFT # Add the value from Left
 
-MOV ACC LEFT # Moves value of ACC to the Left
-SWP # Swaps value of ACC and BAK
-MOV ACC LEFT # Moves value of ACC(was BAK) to Left
-SWP # Swap values of ACC and BAK again
-SAV # Saves value of ACC to BAK (storing previous value)
-MOV LEFT DOWN # Move value from Left Downwards
-# ^ this chunk (not alone) cancels outputs when 1 turns to 0
 
 @8
-S-: MOV RIGHT ACC # Move value from Right to ACC
-SUB 1 # subract 1 from ACC
-JEZ 3- # If ACC == 0, jump to 3- (IN.3 changed)
-JMP 4- # Else: jump to 4- (IN.4 changed)
 
-3-:
-MOV 3 RIGHT # Move 3 to the Right
-JMP S- # Jump to START
-
-4-:
-MOV 4 RIGHT # Move 4 to the Right
 
 @9
-S-: MOV RIGHT ACC # Move value from Right to ACC
-JLZ N- # If ACC < 0 (No change) jump to N- (No change)
-JEZ 1- # If ACC == 0 (IN.1 changed) jump to 1-
-SUB 1 # Subtract 1 from ACC
-JEZ 2- # If ACC == 0 (In.2 changed) jump to 2-
-MOV ACC LEFT # Else move ACC to the Left (keep checking)
-MOV LEFT DOWN # Then Move value from Left to OUT 
-# ^ will be either (3) or (4) for (IN.3) or (IN.4) changed
-JMP S- # Jump back to START (S-)
-
-N-: MOV 0 DOWN # Move 0 down (no change)
-JMP S- # Jump back to START
-1-: MOV 1 DOWN # Move 1 down (IN.1 changed)
-JMP S- # Jump back to START
-2-: MOV 2 DOWN # Move 2 down (IN.2 changed)
+MOV UP DOWN # Moves the value calculated in NODE 6 to OUT
 
 @10
-S-: MOV UP ACC # Moves value from Up to ACC
-JLZ N- 
-JEZ N- # If ACC <= 0, jump to N- (no change)
-SUB 1 # Sub 1 from ACC
-JEZ A- # If ACC == 0, jump to A- (IN.1 changed)
-SUB 1 # Sub 1 from ACC
-JEZ B- # If ACC == 0, jump to B- (IN.2 changed)
-JMP E- # Else: jump to E- (Keep checking)
-N-: MOV -1 LEFT # Move -1 Left (no change)
-JMP S- # Jump back to S- (START)
-A-: MOV 0 LEFT # Move 0 Left (IN.1 changed)
-JMP S- # Jump back to START
-B-: MOV 1 LEFT # Move 1 Left (IN.2 changed)
-JMP S- # Jump back to START
-E-: MOV ACC LEFT # Move value of ACC Left (Keep checking)
