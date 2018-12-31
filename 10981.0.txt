@@ -1,0 +1,31 @@
+@0
+
+
+@1
+ADD UP
+ADD ACC #Here we add ACC to ACC, effectively doubling the value of ACC
+MOV ACC, DOWN
+SUB ACC #Subtracting ACC from ACC sets the value of ACC to zero, ready to double the next input
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, RIGHT
+
+@5
+MOV LEFT, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9

@@ -1,0 +1,45 @@
+@0
+# In A will be the number that we add together
+# In B will determine how many times we add that number together
+@1
+ST: MOV RIGHT ACC	# In A first moves the count (In B) to the BAK
+SWP
+MOV UP ACC			
+RP: SWP				# For the Repeat loop, first we switch the ACC to the count
+SUB 1				# Subtract 1 from the count
+JEZ ST				# If it's 0, we go back to the start
+SWP					# Otherwise, we swap back to the number to add
+MOV ACC RIGHT		# And we move it to the right to be added once more
+JMP RP
+
+@2
+ST: MOV UP ACC		# In B is the count, it is how many times we add In A to itself
+ADD 1				# We add a 1 to the count because we subtract 1 and check for a 0 before attempting to add anything together
+MOV ACC LEFT		# We send the count left, the count is used both by the left and right to determine when to send/receive a number
+SAV
+SUB ACC				# Here we set the ACC to 0, ready to add a number (or simply send a 0 if the count reaches 0)
+RP: SWP				# RP Loop: Put the count back into ACC and the number into BAK
+SUB 1				# We subtract 1 from the count
+JEZ ZR				
+SWP					# If the count is not zero, we put swap the count with the number
+ADD LEFT			# We simply add an instance of In A to the number and jump back to RP
+JMP RP
+ZR: SWP				# If count reaches 0, we pull the total number from BAK
+MOV ACC DOWN		# And that is our final answer
+
+@3
+
+
+@4
+
+
+@5
+MOV UP DOWN
+
+@6
+
+
+@7
+MOV UP DOWN
+
+@8

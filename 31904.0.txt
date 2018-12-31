@@ -1,0 +1,53 @@
+@0
+
+
+@1
+MOV UP, DOWN
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, ACC		# we move UP to ACC so we can move ACC down twice
+MOV ACC, DOWN	# we move ACC down twice because the first move checks for a zero,
+MOV ACC, DOWN	# then the second move is added to the current sum
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8
+START: MOV UP, ACC 		# first we check for a zero
+JNZ SUM					# if it's not a zero, jump to the addition code
+SWP
+MOV ACC, DOWN
+MOV UP, NIL
+MOV NIL, RIGHT
+JMP START
+SUM: SWP				# first we swap the current input with the saved BAK (which is the current sum)
+ADD UP					# then we add the second input to the current sum
+MOV ACC, RIGHT			# we let the node on the right know another non-zero number has been added
+SWP						
+
+@9
+START:MOV LEFT,ACC		
+JEZ ISZERO
+SWP						# we are storing the length counter in BAK until we get a zero
+ADD 1
+SWP
+JMP START
+ISZERO:					
+SWP
+MOV ACC, DOWN			# we send the length counter down when we get a zero
+MOV NIL, ACC			
+SAV
+
+@10

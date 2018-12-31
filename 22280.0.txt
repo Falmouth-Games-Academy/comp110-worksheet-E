@@ -1,0 +1,47 @@
+@0
+
+
+@1
+MOV UP, RIGHT
+
+@2
+START:
+MOV UP, ACC		
+JLZ LESSZERO	#if S is -1, we ignore the right and send left down
+JGZ GREATERZERO #if S is 1, we ignore the left and send right down
+MOV LEFT, DOWN	# otherwise S is 0, so we send both left and right
+MOV RIGHT, DOWN
+JMP START
+LESSZERO:
+MOV LEFT, DOWN
+MOV RIGHT, NIL #If we 'ignore' one side, we still need to 'send' it somewhere
+JRO 3
+GREATERZERO:
+MOV RIGHT, DOWN
+MOV LEFT, NIL
+MOV NIL, DOWN #If we 'ignore' one side, we still need to provide blank input to the section below
+
+@3
+MOV UP, LEFT
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, ACC
+ADD UP
+MOV ACC, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

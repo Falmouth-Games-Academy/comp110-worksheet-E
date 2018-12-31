@@ -1,0 +1,48 @@
+@0
+
+
+@1
+START: MOV UP ACC
+JEZ ZEROFOUND
+MOV NIL ACC			# if a non-zero is found, clear the ACC
+SAV					# then clear the counter (stored in BAK)
+MOV NIL DOWN
+JMP START
+
+ZEROFOUND: SWP		# if a zero is found, switch to the counter
+ADD 1
+MOV ACC DOWN		# move the counter down
+SWP					
+
+@2
+
+
+@3
+
+
+@4
+START: MOV UP ACC	# receive the counter (or a 0 if a 0 was not found above)
+SUB 2				# if counter - 2 is a positive number, there has been at least 3 zeros in a row
+JGZ PATTERNFOUND
+MOV NIL DOWN
+JMP START
+
+PATTERNFOUND:
+MOV 1 DOWN
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, RIGHT
+
+@9
+MOV LEFT, DOWN
+
+@10

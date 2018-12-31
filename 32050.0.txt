@@ -1,0 +1,42 @@
+@0
+MOV ACC, RIGHT		#we use sector 0 to store the current number, while sector 1 checks the difference
+SUB RIGHT
+
+@1
+ST:MOV LEFT, ACC	# here we grab the current number from sector 0
+SUB UP				# here we subtract the current number by the next number to get the difference
+MOV ACC, LEFT		# we move the difference to sector 0 so it can create the new number
+JLZ LESS			# get the absolute value of the difference
+JRO 2
+LESS: NEG
+SUB 10		# if we subtract 10 from the absolute difference and it's negative, the difference was less than ten
+JLZ N10
+MOV 1, RIGHT
+JMP ST
+N10:MOV NIL, RIGHT
+
+@2
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

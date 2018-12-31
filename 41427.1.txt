@@ -1,0 +1,96 @@
+@0
+MOV RIGHT DOWN
+
+@1
+ST: MOV UP ACC
+MOV ACC LEFT	# We send the first number of each new sequence to the left, in order to compare it against the next number that @8 receives
+JRO 2			# We only send the first number left, not all of them, skip to next command
+RP: MOV UP ACC
+MOV ACC RIGHT	# We send every number to the right, as calculating the largest number and the smallest number happen in separate areas
+MOV ACC DOWN	# We send each number down once. First send is for the below sector to store it
+MOV ACC DOWN	# Second send is for the below sector to compare the current number against the previous number
+MOV ACC DOWN	# Third send is for when the below sector finds the current number to be adequate in comparison to the current number, forwarding it to the bottommost sector
+JEZ ZR			# If the sequence is terminated, we move back to the start as we will begin a new sequence
+JMP RP			# Otherwise, if the sequence continues, we need to skip the top 3 lines at the start
+ZR: JMP ST
+
+@2
+MOV LEFT ACC
+MOV ACC DOWN
+MOV ACC DOWN
+MOV ACC DOWN
+
+@3
+
+
+@4
+MOV UP DOWN
+
+@5
+ST: MOV UP ACC
+JEZ ZR			# If the first number is a zero then the sequence is terminated
+SWP				# Otherwise we swap, storing the current number as the 'previous number' to compare against the next number.
+SUB UP			# Subtracting the current number from the previous number
+JGZ SM			# If previous - current = positive number, the current number is smaller and should be sent down
+MOV UP NIL		# otherwise we send the final instance of the current number nowhere and repeat the process
+JMP ST
+SM: MOV UP DOWN	# The current number is smaller than the previous, move it down
+JMP ST
+ZR: MOV UP DOWN # If the sequence is terminated, we send the second zero down
+SAV				# then we clear the BAK
+MOV UP NIL		# and send the final zero nowhere
+JMP ST
+
+@6
+ST: MOV UP ACC
+JEZ ZR1
+SWP
+JEZ ZR2
+SUB UP
+JLZ GR
+MOV UP NIL
+JMP ST
+GR: MOV UP DOWN
+JMP ST
+ZR2: MOV UP NIL
+JRO 3
+ZR1: MOV UP DOWN
+SAV
+MOV UP NIL
+
+@7
+MOV UP ACC
+MOV ACC RIGHT	# First send is for @8 to compare the first number to the current number
+MOV ACC RIGHT	# Second send is for when the first number is actually the smaller number
+
+@8
+ST: MOV UP ACC 	# We store the first number sent from above
+JEZ ZR			# If it's zero, the sequence has been terminated
+SAV				# Otherwise, store the current number in the BAK
+SUB LEFT		# Compare the current number against the very first number in the sequence
+JGZ FNIS		# If current number - first number = positive, then the first number is smaller
+SWP				# Otherwise we get the current number back
+SAV				# Overwrite BAK with the current number because when we receive a zero we need to send this number
+MOV LEFT NIL	# If first number is not smaller, we send the second instance of the first number nowhere
+JMP ST
+FNIS:MOV LEFT ACC # If the first number is smaller, we move it into acc
+SAV
+JMP ST
+ZR: SWP			# If sequence terminated, retrieve the current most appropriate number (which is the one stored in BAK) and send it down
+MOV ACC DOWN
+
+@9
+ST: MOV UP ACC
+JEZ ZR
+SAV
+JMP ST
+ZR: SWP
+MOV ACC DOWN
+
+@10
+
+# program bugs:
+# We cannot send the first number of the out.I column downwards
+# If we receive a number in the out.I column that is smaller than the previous but not smaller than a number received even further previously, we still overwrite
+# A similar problem can be seen in the out.A column, receiving a 'larger' number for the second time overwrites the first larger number, even if it is larger
+# If the bottom sector of the out.I column receives a second number from above, it tries to subtract from the left when there is no input from the left

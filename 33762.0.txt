@@ -1,0 +1,67 @@
+@0
+ST: MOV UP, ACC
+JNZ IS1				# If not a zero, we found our first 1
+R: MOV NIL, RIGHT	# Return: If there is a zero, we move a zero to the right and jump back to start
+JMP ST
+IS1: MOV 1, RIGHT	# IS 1 LOOP: Jumped to when we first see a 1. Here we send 1 right to signal 'In.1 interrupted'
+ST1: MOV UP, ACC	# STILL 1 LOOP: Jumped to when a 0 is not found after a 1
+JEZ R				# If we found a zero, we jump back to R for Return:
+MOV NIL, RIGHT		# Otherwise, we found a subsequent 1, so we send a 0 right and
+JMP ST1				# Keep checking for subsequent 1s by jumping to 'Still 1' loop
+
+@1
+ST: MOV UP, ACC
+JNZ IS1
+R: MOV LEFT, RIGHT	# If In.2 is 0, we simply pass the value handed over from the left
+JMP ST
+IS1: MOV 2, RIGHT	# Otherwise if In.2 finds its first 1, we pass down the value of 2 to signal 'In.2 interrupted'
+MOV LEFT, NIL		# Then we discard any input sent from the left
+ST1: MOV UP, ACC
+JEZ R
+MOV LEFT, RIGHT
+JMP ST1
+
+@2
+ST: MOV UP, ACC
+JNZ IS1
+R: MOV LEFT, RIGHT	# If In.3 is 0, we simply pass the value handed over from the left
+JMP ST
+IS1: MOV 3, RIGHT	# Otherwise if In.3 finds its first 1, we pass over the value of 3 to signal 'In.3 interrupted'
+MOV LEFT, NIL		# Then we discard any input sent from the left
+ST1: MOV UP, ACC
+JEZ R
+MOV LEFT, RIGHT
+JMP ST1
+
+@3
+ST: MOV UP, ACC
+JNZ IS1
+R: MOV LEFT, DOWN	# If In.4 is 0, we simply submit the value handed over from the left
+JMP ST
+IS1: MOV 4, DOWN	# Otherwise if In.4 finds its first 1, we submit the value of 4 to signal 'In.4 interrupted'
+MOV LEFT, NIL		# Then we discard any input sent from the left
+ST1: MOV UP, ACC
+JEZ R
+MOV LEFT, DOWN
+JMP ST1
+
+@4
+
+
+@5
+
+
+@6
+
+
+@7
+MOV UP, DOWN
+
+@8
+
+
+@9
+MOV RIGHT, DOWN
+
+@10
+MOV UP, LEFT

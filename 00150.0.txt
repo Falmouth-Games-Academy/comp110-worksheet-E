@@ -1,0 +1,23 @@
+@0
+MOV UP, DOWN
+
+@1 #In order to get our data from IN.A to OUT.A, we have to go around the corrupted sector.
+MOV RIGHT, DOWN
+
+@2
+MOV UP, LEFT
+
+@3
+MOV UP, DOWN
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, DOWN
+
+@6
+MOV UP, RIGHT
+
+@7
+MOV LEFT, DOWN

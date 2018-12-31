@@ -1,0 +1,60 @@
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+START:
+MOV LEFT, ACC
+MOV ACC, RIGHT #Moving ACC to the right lets us keep ACC, so all three sectors can interrogate the value of IN
+JGZ MOREZERO
+JMP NOTMOREZERO
+MOREZERO:
+SUB ACC
+ADD 1
+MOV ACC, DOWN
+JMP START #We need to jump to the start to prevent 'NOTMOREZERO' from also running.
+NOTMOREZERO: #Each of the last three sectors checks if it is more than, equal to or less than zero respectively. If false, we do ACC - ACC and send that down, writing a 0.
+SUB ACC
+MOV ACC, DOWN
+
+@7
+START:
+MOV LEFT, ACC
+MOV ACC, RIGHT
+JEZ EQUALZERO
+JMP NOTEQUALZERO
+EQUALZERO:
+ADD 1
+MOV ACC, DOWN
+JMP START
+NOTEQUALZERO:
+SUB ACC
+MOV ACC, DOWN
+
+@8
+START:
+MOV LEFT, ACC
+JLZ LESSZERO
+JMP NOTLESSZERO
+LESSZERO:
+SUB ACC
+ADD 1
+MOV ACC, DOWN
+JMP START
+NOTLESSZERO:
+SUB ACC
+MOV ACC, DOWN

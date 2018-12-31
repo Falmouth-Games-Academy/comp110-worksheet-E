@@ -1,0 +1,51 @@
+@0
+
+
+@1
+ST: MOV UP ACC
+JEZ ZR			
+MOV -1 DOWN		# If we get a number higher than zero we send a -1 down as a signal,
+MOV ACC DOWN	# Then we send the number itself to be added to the stack
+JMP ST
+ZR: MOV NIL DOWN	# If we get a zero, we send a zero down as a signal
+
+@2
+
+
+@3
+
+
+@4
+ST: MOV UP ACC
+JLZ ATS			# When this receives a -1, it moves the next number down
+MOV NIL RIGHT	# Otherwise we received a 0, so we send a 0 right as a signal
+MOV RIGHT NIL	# Then we wait for the stack to be fully sent
+JMP ST
+ATS: MOV UP DOWN
+MOV 1 RIGHT		# After adding a number to the stack, we send a 1 right as a signal
+
+@5
+ST: MOV LEFT ACC
+JEZ ZR	
+SWP				# If we receive a one, we swap the 1 with the count
+ADD 1			# Add 1 to the count to say "another number added to stack"
+SWP
+JMP ST
+ZR: SWP			# If we receive a zero, we pull the count
+MOV ACC DOWN	# We send the count down, representing how many times to pull from stack
+MOV DOWN LEFT	# Then we wait for the stack to be fully sent
+
+@6
+
+
+@7
+ST: MOV UP ACC	# We wait to receive the count from above
+LP: JGZ MOVE	
+MOV 0 DOWN		# Once the cunt reaches 0, we send a 0 down to end the sequence,
+MOV 1 UP		# And we send a 1 up to say the stack is fully sent
+JMP ST
+MOVE: SUB 1		# If the count is still greater than 0, subtract 1 from count
+MOV LEFT DOWN	# Output another number from the stack
+JMP LP			
+
+@8
