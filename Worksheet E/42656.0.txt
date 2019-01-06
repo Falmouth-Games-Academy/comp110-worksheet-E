@@ -1,0 +1,54 @@
+# Algorithm breakdown
+# @4 stacks sequence in stack memory node
+# then sends the length of said sequence forward
+# and waits for a signal to start a new one
+# @7 receives the length and uses it to read the sequence
+# then, when finished, sends a signal to @4 to resume
+
+@0
+
+
+@1
+MOV UP, DOWN
+
+@2
+
+
+@3
+
+
+@4
+BEGIN:
+ MOV UP, ACC # save value
+ JEZ END # zero marks the end of sequence
+ MOV ACC, DOWN # save value in stack memory
+ SWP
+ ADD 1 # increase length counter
+ SWP
+ JMP BEGIN # resume loop
+END:
+ SWP
+ MOV ACC, RIGHT # pass length
+ MOV NIL, ACC # reset length
+ SWP
+ MOV RIGHT, NIL # wait for signal to start over
+
+@5
+MOV LEFT, DOWN
+MOV DOWN, LEFT
+
+@6
+
+
+@7
+MOV UP, ACC # receives length
+BEGIN:
+ JEZ END # if length is 0 then end the loop
+ MOV LEFT, DOWN # pass saved values from stack memory
+ SUB 1 # subtract f rom length
+ JMP BEGIN # resume loop
+END:
+ MOV 0, UP # send signal to @4 to resume work
+ MOV 0, DOWN # mark the end of a sequence
+
+@8

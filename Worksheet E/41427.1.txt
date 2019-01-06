@@ -1,0 +1,84 @@
+# Algorithm Breakdown
+# @0 calculates the MAX value of the sequence
+# @2 calculates the MIN value of the sequence
+# @1 is the main node which passes values
+
+@0
+BEG:MOV RIGHT,ACC 
+ JLZ END # use a negative value to trigger the end of sequence
+ SWP
+ MOV ACC, DOWN # pass previous value in DOWN node
+ SWP
+ SUB DOWN # subtract said value
+ JGZ CHG # if greater than 0, the new value is greater
+ MOV RIGHT, NIL # otherwise, the new value is discarded
+ JMP BEG # jump to beginning of loop
+CHG: MOV RIGHT,ACC # save the new value in ACC
+ SWP
+ JMP BEG # start over
+END: MOV NIL, ACC # reset to-be-saved value
+ SWP
+ MOV ACC, RIGHT # pass MAX value
+
+@1
+BEGIN:
+ MOV UP, ACC
+ JEZ END # 0 marks the end of a sequence
+ MOV ACC, LEFT 
+ MOV ACC, RIGHT
+ MOV ACC, LEFT
+ MOV ACC, RIGHT # Alternative passes for efficiency
+ JMP BEGIN # start over
+END:
+ MOV -1, LEFT # trigger end of sequence
+ MOV LEFT, DOWN
+ MOV -1, RIGHT # same as above
+ MOV RIGHT, DOWN
+
+@2
+BEG:MOV LEFT,ACC
+ JLZ END # use greater than 0 values to trigger end of sequence
+ SWP
+ MOV ACC, DOWN # pass previous value to DOWN node
+ SWP
+ SUB DOWN # subtract previous value
+ JLZ CHG # if less than 0, current value is smaller than the previous one
+ MOV LEFT, NIL # otherwise, discard new value
+ JMP BEG # start over
+CHG: MOV LEFT,ACC # save new value
+ SWP
+ JMP BEG
+END: MOV NIL, ACC # reset to-be-saved value
+ SWP
+ MOV ACC, LEFT # send MIN value
+
+@3
+
+
+@4
+MOV UP, UP
+
+@5
+MOV UP, DOWN
+MOV UP, DOWN
+
+@6
+MOV UP, ACC # pass stored value
+JNZ PASSUP # if stored value is not zero, use UP node values
+MOV 99, UP # otherwise (when first running) use 99
+JMP END
+PASSUP:
+MOV ACC, UP
+END:
+
+@7
+
+
+@8
+MOV UP, RIGHT
+MOV UP, DOWN
+
+@9
+MOV LEFT, DOWN
+
+@10

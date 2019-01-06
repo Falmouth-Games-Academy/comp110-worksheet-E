@@ -1,0 +1,100 @@
+# Algorithm breakdown
+# The first row of nodes will pass the previous value and save (and pass) the current one
+# The second row of nodes checks if the first value one is zero (skips if true)
+# and checks if the second one is 1 (sum would be 1)
+# Lastly, @6 passes all the outputs in order, from left to right
+
+
+@0
+MOV UP, ACC
+SWP
+MOV ACC, DOWN
+SWP
+MOV ACC, DOWN
+SWP
+
+@1
+MOV UP, ACC
+SWP
+MOV ACC, DOWN
+SWP
+MOV ACC, DOWN
+SWP
+
+@2
+MOV UP, ACC
+SWP
+MOV ACC, DOWN
+SWP
+MOV ACC, DOWN
+SWP
+
+@3
+MOV UP, ACC
+SWP
+MOV ACC, DOWN
+SWP
+MOV ACC, DOWN
+SWP
+
+@4
+ADD UP
+JGZ PASS
+ADD UP
+JGZ 1
+JMP 0
+PASS:MOV UP, NIL
+0: MOV 0, RIGHT
+JMP END
+1: MOV 1, RIGHT
+END: MOV NIL, ACC
+
+@5
+ADD UP
+JGZ PASS
+ADD UP
+JGZ 1
+JMP 0
+PASS:MOV UP, NIL
+0: MOV 0, RIGHT
+JMP END
+1: MOV 2, RIGHT
+END: MOV NIL, ACC
+MOV LEFT, RIGHT
+
+@6
+ADD UP
+JGZ PASS
+ADD UP
+JGZ 1
+JMP 0
+PASS:MOV UP, NIL
+0: MOV 0, ACC
+JMP END
+1: MOV 3, ACC
+END:
+ADD LEFT
+ADD LEFT
+ADD RIGHT
+MOV ACC, DOWN
+MOV NIL, ACC
+
+@7
+ADD UP
+JGZ PASS
+ADD UP
+JGZ 1
+JMP 0
+PASS:MOV UP, NIL
+0: MOV 0, LEFT
+JMP END
+1: MOV 4, LEFT
+END: MOV NIL, ACC
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

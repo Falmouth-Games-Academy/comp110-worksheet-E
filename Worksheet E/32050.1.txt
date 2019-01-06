@@ -1,0 +1,63 @@
+# Algorithm breakdown
+# Based on the difference between 2 consecutive values
+# we decide in which order to pass them (to avoid having to do 2 checks (a - b and b - a)
+# and then compare the difference with 0 (+ 10)
+# if the value is negative or 0, we return 1
+
+@0
+MOV RIGHT, DOWN
+
+@1 # passes each value twice: for subtraction and comparison
+SWP 
+MOV ACC, LEFT
+MOV ACC, DOWN
+MOV UP, ACC
+MOV ACC, RIGHT
+MOV ACC, DOWN
+SWP
+
+@2
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+MOV UP, RIGHT
+
+@5
+MOV NIL, ACC # reset value
+ADD UP
+SUB UP
+JGZ RL # The value on the right is smaller so it will be used first 
+MOV NIL, ACC # otherwise, the LEFT value comes first
+ADD LEFT
+SUB RIGHT
+ADD 10 # addition required to check if the difference is of 10 or more
+JMP END
+RL:MOV NIL, ACC
+ADD RIGHT
+SUB LEFT
+ADD 10 # addition required to check if the difference is of 10 or more
+END:
+MOV ACC, DOWN
+
+@6
+MOV UP, LEFT
+
+@7
+
+
+@8
+MOV UP, ACC
+JGZ 0
+MOV 1, RIGHT
+JMP END
+0:
+MOV 0, RIGHT
+END:
+
+@9
+MOV LEFT, DOWN
+
+@10

@@ -1,0 +1,33 @@
+# Algorithm breakdown
+# @1 takes the input and re-adds its current value to get the doubled value
+
+@0
+
+
+@1
+MOV UP, ACC # move value to node
+ADD ACC # re-add the value of ACC
+MOV ACC, RIGHT # move the value to the output
+
+@2
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9

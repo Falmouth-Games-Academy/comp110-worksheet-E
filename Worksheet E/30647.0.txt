@@ -1,0 +1,50 @@
+# Algorithm breakdown
+# Based on the value of IN.A - IN.B determine the order
+# in which the values should be passed
+
+@0
+
+
+@1
+MOV UP, ACC
+MOV ACC, RIGHT # pass the value twice: for subtraction
+MOV ACC, RIGHT # and once for output 
+
+@2
+MOV UP, ACC
+MOV ACC, RIGHT
+SUB LEFT
+JLZ BA # if B - A < 0 than B < A, therefore B is passed before A
+AB:
+MOV LEFT, DOWN
+MOV RIGHT, DOWN
+JMP END
+BA:
+MOV RIGHT, DOWN
+MOV LEFT, DOWN
+END:
+MOV 0, DOWN
+
+@3
+MOV LEFT, ACC
+MOV ACC, LEFT
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

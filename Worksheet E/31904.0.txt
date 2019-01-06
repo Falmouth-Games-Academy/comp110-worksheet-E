@@ -1,0 +1,61 @@
+# Algorithm Breakdown
+# In node @4, perform the additions using the BAK memory
+# In node @5, count the number of elements passed until a zero is passed
+
+
+@0
+
+
+@1
+MOV UP, DOWN
+
+@2
+
+
+@3
+MOV RIGHT, RIGHT # save the value
+
+@4
+MOV UP, ACC
+JEZ EOSEQ # 0 marks the End Of SEQuence
+MOV 1, RIGHT # add 1 to the length calculator
+MOV ACC, LEFT
+SWP
+ADD LEFT # perform the addition
+SWP
+JMP END
+EOSEQ:
+MOV 0, RIGHT # tell the length node to output the length
+SWP
+MOV ACC, DOWN
+MOV NIL, ACC
+SWP
+END:
+
+@5
+MOV LEFT, ACC
+JEZ EOSEQ # End of Sequence marker
+SWP
+ADD 1 # increase length
+SWP
+JMP END
+EOSEQ:
+SWP
+MOV ACC, DOWN
+MOV NIL, ACC
+SWP
+END:
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9
+MOV UP, DOWN
+
+@10

@@ -1,0 +1,54 @@
+# Algorithm breakdown:
+# The value is passed through each output node
+# Each node performs a check against 0 to determine the
+# output, 0 or 1, and passes it
+
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+MOV LEFT, ACC
+MOV ACC, RIGHT
+JGZ PASS # if > 0 set ACC to 1, else 0 and pass on the value
+MOV 0, ACC 
+JMP END
+PASS:
+MOV 1, ACC
+END:
+MOV ACC, DOWN 
+
+@7
+MOV LEFT, ACC
+MOV ACC, RIGHT
+JEZ PASS # if = 0 set ACC to 1, else 0 and pass on the value
+MOV 0, ACC
+JMP END
+PASS:
+MOV 1, ACC
+END:
+MOV ACC, DOWN
+
+@8
+MOV LEFT, ACC
+JLZ PASS # if < 0 set ACC to 1, else 0 and pass on the value
+MOV 0, ACC
+JMP END
+PASS:
+MOV 1, ACC
+END:
+MOV ACC, DOWN

@@ -1,0 +1,53 @@
+# Algorithm breakdown
+# @1 will pass either zero when finding non-zero numbers or the current number of consecutive zeroes found
+# @4 will subtract 2 from what is passed (see above) and, if the number of consecutive zeroes passed is greater than 3, it will output 1, as a sequence of length 3 was found
+
+
+@0
+
+
+@1
+BEGIN:
+SWP
+MOV UP, ACC
+JNZ RESET # Non zero numbers reset the counter
+SWP
+ADD 1 # increment number of zeroes and save it in BAK
+MOV ACC, DOWN # pass the zero counter
+JMP BEGIN
+RESET:
+SWP
+MOV 0, ACC
+MOV ACC, DOWN
+
+@2
+
+
+@3
+
+
+@4
+BEGIN:
+MOV UP, ACC
+SUB 2 # subtract 2 (after the initial 2 zeroes, any sequence of zeroes will keep returning 1)
+JGZ 1
+0: MOV 0, DOWN 
+JMP BEGIN
+1: MOV 1, DOWN
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, RIGHT
+
+@9
+MOV LEFT, DOWN
+
+@10

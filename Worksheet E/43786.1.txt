@@ -1,0 +1,51 @@
+# Algorithm Breakdown
+# A value from IN.A is passed to the stack memory node a number of times equal to a value from IN.B (for repeated addition), followed by -999 to mark the end
+# @4 Proceeds to keep adding the values in the stack until reaching a negative value (multiplied value + (-999)), then adds 999 to counter it and passes it
+
+@0
+MOV RIGHT, DOWN
+
+@1
+MOV -999, LEFT # Always marks the bottom of the stack
+MOV UP, ACC
+SWP
+MOV RIGHT, ACC
+START:
+ JEZ END
+ SWP
+ MOV ACC, LEFT # pass the value from IN.A
+ SWP
+ SUB 1 # decrease the value from IN.B (the multiplier)
+ JMP START
+END:
+ MOV NIL, DOWN # triggers the stack reading
+ MOV DOWN, NIL # receives signal to move on
+
+@2
+MOV UP, LEFT
+
+@3
+
+
+@4
+MOV UP, NIL # waits for the signal to begin
+START:
+ ADD LEFT # empty the stack (-999 is the only negative number and will certainly result in a less than zero case upon adding it)
+ JLZ END
+ JMP START
+END:
+ ADD 999 # counter the -999
+ MOV ACC, DOWN # output the result
+ MOV NIL, ACC # reset the result
+ MOV NIL, UP # tell the UP node to resume
+
+@5
+
+
+@6
+MOV UP, RIGHT
+
+@7
+MOV LEFT, DOWN
+
+@8

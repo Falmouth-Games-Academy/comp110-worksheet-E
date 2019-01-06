@@ -1,0 +1,50 @@
+# Algorithm breakdown
+# Based on the value from IN.S, @2 will perform one of three
+# operations: pass from IN.a (GETA), pass from IN.b (GETB)
+# or pass the sum from IN.A and IN.B (GETAB)
+
+@0
+
+
+@1
+MOV UP, RIGHT
+
+@2
+MOV UP, ACC # Get the value from IN.S
+JGZ GETB 
+JEZ GETAB
+GETA:
+MOV LEFT, ACC # pass from IN.A and discard other value
+MOV RIGHT, NIL
+JMP END
+GETB:
+MOV LEFT, NIL # pass from IN.B and discard other value
+MOV RIGHT, ACC
+JMP END
+GETAB: # pass sum from IN.A + IN.B
+ADD LEFT
+ADD RIGHT
+END: MOV ACC, DOWN
+
+@3
+MOV UP, LEFT
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10
