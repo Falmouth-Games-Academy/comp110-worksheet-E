@@ -1,0 +1,50 @@
+@0
+
+
+@1
+STR: MOV UP ACC # Start label. Move above value into ACC
+JEZ TER # If the value is equal to zero jump to Terminate label
+MOV ACC RIGHT # Otherwise move the value into Stack Memory
+SWP # Swap the values and add one so as to have an addition iterator for later
+ADD 1
+SWP # Swap them back so the iterator doesn't get overwritten
+JMP STR # Jump to the start
+TER: MOV ACC RIGHT # If the value is 0 (terminate) then move current ACC value into stack memory
+SWP # Swap the values
+ADD 1 # Add one to the iterator and release it down
+MOV ACC DOWN
+MOV DOWN NIL # Then wait for the iterator to complete and send a signal back. This is so no more values get added to stack memory
+
+@2
+
+
+@3
+
+
+@4
+MOV UP RIGHT # Move addition iterator to the correct node
+MOV RIGHT UP # Await another input
+
+@5
+MOV LEFT ACC # Move iterator value into ACC
+SWP # Swap the iterator
+SRT: MOV UP ACC # Move the latest value in stack memory into ACC
+JEZ ZERO # Check if the latest value is 0 jump to zero label
+MOV ACC, DOWN # Otherwise move the value in ACC down
+SWAP: SWP # Swap the values and subtract one from the additon iterator
+SUB 1
+JEZ END # If the addition iterator is equal to zero jump to the end
+SWP # Otherwise swap values and jump back to the start
+JMP SRT
+ZERO: MOV ACC, NIL # If the value from stack memory is 0 move it into nil
+JMP SWAP # Swap the values so as to overwrite the iterator
+END:MOV 0 DOWN # move 0 down into OUT
+MOV 0 LEFT # move a signal left to begin the next sequence
+
+@6
+
+
+@7
+MOV UP DOWN
+
+@8

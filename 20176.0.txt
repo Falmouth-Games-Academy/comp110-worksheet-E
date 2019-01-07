@@ -1,0 +1,42 @@
+@0
+MOV RIGHT, DOWN
+
+@1
+MOV UP, ACC # Store value in acc
+SAV # Create copy of acc in bak
+MOV ACC, RIGHT # move acc to right node
+SWP # swap to have the backup in acc
+SUB DOWN # subtract from the node below
+MOV ACC, LEFT # move acc to be output
+
+@2
+MOV UP, ACC # Store value in ACC
+SAV # create backup
+MOV ACC, DOWN # move acc down, to be subtracted from in.A
+SWP # swap the value to have the backup in acc
+SUB LEFT # subtract the left value
+MOV ACC, DOWN # move acc to be output
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV RIGHT, UP
+
+@6
+MOV UP, LEFT
+MOV UP, DOWN
+
+@7
+MOV UP, RIGHT
+
+@8
+MOV LEFT, DOWN
+
+@9
+MOV UP, DOWN
+
+@10

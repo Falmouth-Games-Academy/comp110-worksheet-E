@@ -1,0 +1,64 @@
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+START:
+MOV LEFT, ACC # move value into ACC
+JGZ POS # greater than zero jump to positive lable
+JLZ EQU # Less than zero jump to equal lable
+JEZ EQU # equal to zero jump to equal label
+POS:
+MOV 1, ACC # store 1 in acc
+MOV ACC, DOWN # move acc to out.G
+MOV 1, ACC # store 1 in acc
+MOV ACC, RIGHT # move acc right
+JMP START # jump back to the start
+EQU: # equal or less than zero
+MOV ACC, RIGHT # move acc right
+MOV 0, ACC # move zero into acc 
+MOV ACC, DOWN # move acc to out.G
+
+@7
+START:
+MOV LEFT, ACC # Move left into acc
+JNZ NEG # if it's not zero jump to negative label
+JEZ ZER # if it is equal to zero jump to zero label
+NEG: # negative
+MOV ACC, RIGHT # move acc right
+MOV 0, ACC # move 0 into acc
+MOV ACC, DOWN # move acc into out.E
+JMP START # Jump back to the start
+ZER: # Zero
+MOV 1, ACC # move one into acc
+MOV ACC, DOWN # move acc into out.E
+MOV 1, ACC # move one into acc
+MOV ACC, RIGHT # move acc right
+JMP START # jump back to the start
+
+@8
+START:
+MOV LEFT, ACC # move left value into acc
+JGZ POS # if positive jump to positive label
+JLZ NEG # if negative jump to negative label
+POS:
+MOV 0, ACC # move zero into acc
+MOV ACC, DOWN # move acc to out.L
+JMP START # Jump back to the start
+NEG:
+MOV 1, ACC # move one into acc
+MOV ACC, DOWN # move acc into out.L

@@ -1,0 +1,56 @@
+@0
+MOV RIGHT, ACC # Move right into acc
+SAV # Store a copy
+MOV ACC, RIGHT
+SWP
+MOV ACC, RIGHT # move both back into right node
+
+@1
+MOV UP, ACC # move up into ACC register
+SWP # Swap with previous value
+MOV ACC, LEFT # move previous value into left register
+SWP 
+SAV # Store new value
+SUB LEFT # Subtract old value
+MOV ACC, RIGHT # move value to the right node
+MOV LEFT, ACC # move a copy of the old value into ACC
+
+@2
+SRT: MOV LEFT, ACC # Move left value into ACC register
+SWP # Swap
+MOV 10, ACC # Move 10 into ACC (So as to check if the values have been changed by 10 or greater)
+COMP: SWP # Swap values
+JGZ GRT # If the value is greater than 0 move to the above 0 checker
+JLZ LES # If the value is lower than 0 move to the lower than 0 checker
+MOV 0, DOWN # if it is equal to 0 value has not changed by more than 10
+JMP SRT # Jump back to the start
+GRT: SUB 1 # Subtract one from the value if the value is greater than 0
+JMP ITR # Jump to the iterator
+LES: ADD 1 # Add one to the value if the value is lower than 0
+ITR: SWP # swap the valus
+SUB 1 # Subtract 1 from the 10 iterator
+JNZ COMP # If the value is not zero jump back to the COMP label
+MOV 1, DOWN # move one down if the iterator = zero (This means the value has changed by a margine of 10 or more)
+
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

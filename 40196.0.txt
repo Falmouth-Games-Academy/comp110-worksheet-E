@@ -1,0 +1,45 @@
+@0
+
+
+@1
+INT: MOV 1 ACC # Initialisation Lable. Move a checker to see if the value has been 0 3 times into ACC register (pattern iterator)
+SWP # SWAP the value
+STR:MOV UP ACC # Move above value into ACC
+FMD: MOV 0, RIGHT # Move 0 to the right
+JNZ INT # If the value is not zero move back to the intialisation Label
+ITR: SWP #If the value is zero swap ACC and BAK
+SUB 1 # Subtract 1 from the pattern iterator
+JLZ MOD # If the value is less than zero jump to MOD label
+SWP # Swap the values
+JMP STR Jump to the STR label
+MOD:MOV UP ACC # If the value is < 0 move up into ACC so as to check if it's zero again
+JNZ END # Check if it's not zero and skip to end if true
+MOV 1 RIGHT # Move one to the right
+JMP MOD # Jump back to mod label
+END: MOV 0, RIGHT # Move zero to the right, ending the pattern
+
+@2
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP DOWN
+
+@6
+
+
+@7
+
+
+@8
+
+
+@9
+MOV UP DOWN
+
+@10

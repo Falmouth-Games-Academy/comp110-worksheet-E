@@ -1,0 +1,30 @@
+@0
+
+
+@1
+MOV UP, DOWN # Move to node below
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, ACC # store in acc
+ADD ACC # Add acc to itself
+MOV ACC, RIGHT # move to output
+
+@5
+MOV LEFT, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9

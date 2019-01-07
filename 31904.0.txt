@@ -1,0 +1,60 @@
+@0
+MOV RIGHT, RIGHT
+
+@1
+START: MOV UP, ACC # Move value into ACC
+JEZ ITR # If the value is equal to zero jump to iterator label
+JGZ SUM # otherwise sum the value
+SUM:
+MOV ACC, LEFT # Move ACC to the left
+SWP # swap with BAK (Which contains the sum of all values)
+ADD LEFT # Add old ACC to total
+MOV 1, RIGHT # Move 1 to the length counter
+SWP # swap the values back
+JMP START # Jump to the start
+ITR: SWP #If the iterator is called
+MOV ACC, DOWN # move ACC down
+MOV -1, RIGHT Move negative one to the right to send the length to out.L
+
+@2
+START: SWP
+MOV LEFT, ACC # Move a number into ACC
+JGZ ITR # If it's greater than zero jump to itorater lable
+JLZ PASS # If it's less than zero jump to pass label
+ITR: MOV ACC, DOWN # Move ACC down
+SWP # Swap ACC and BAK
+ADD DOWN # Add previous ACC
+JMP START # Jump to the start
+PASS: SWP # Swap the values
+MOV 0, DOWN # Move zero down
+MOV ACC, DOWN # Move ACC register down
+MOV 0, ACC # Move a fresh value into ACC (Do I actually need this?)
+SAV # Save the value to overwrite the BAK register
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+START:MOV UP, ACC # Move above value into ACC
+JGZ SUM # If it's greater than zero jump to the sum label
+JEZ PAS # If it's equal to zero jump to the Pass label
+SUM: MOV ACC, UP # Sum returns the value back up to be added to the length iterator
+JMP START # Jumps back to the start
+PAS: MOV UP, DOWN # Moves the value to OUT.L
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9
+MOV UP, DOWN
+
+@10

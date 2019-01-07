@@ -1,0 +1,51 @@
+@0
+
+
+@1
+MOV UP, ACC # move up into Acc register
+SAV # store copy of value into BAK
+MOV ACC, RIGHT # Move ACC right
+SWP # swap ACC and BAK
+MOV ACC, DOWN # Move ACC down
+
+@2
+MOV UP, DOWN
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, ACC
+MOV ACC, RIGHT
+
+@6
+START:
+MOV UP, ACC # Moves value from above into ACC
+SAV # Stores copy into BAK
+SUB UP # Subtracts next value
+JGZ LESS # Greater than 0 jump to less label. I messed up the labels naming convention here.
+JLZ HIGH # Lower than 0 jump to high label
+LESS: SWP # Swap values if the higher one appears first
+MOV LEFT, DOWN # move lower value to OUT
+MOV ACC, DOWN # move hight value to OUT
+JMP START # Jump to the start
+HIGH: SWP # Swap the values if the lower values is first
+MOV ACC, DOWN # move lower value to OUT
+MOV LEFT, DOWN # move the higher value to OUT
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+MOV UP, DOWN
+MOV 0, DOWN
+
+@10
