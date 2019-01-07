@@ -1,0 +1,67 @@
+# level 4
+
+@0
+MOV UP, DOWN          #mov in.a down till we reach @5
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT       
+
+@6
+MOV LEFT, ACC		# move left @5 to acc
+MOV ACC, RIGHT      # move acc right to @7 (this is repeated in @8 and @9 so we can test all condistion '>', '==', '<')
+
+JGZ GRATER          # if the acc value is grater than 0 jump to GRATER so we avoid moving 0 down
+
+MOV 0, DOWN        # if acc was not grater than zero move zero down to out.g
+JMP END            # jump to END to avoid moving 1 down
+
+
+GRATER:            # Grater lable
+MOV 1, DOWN        # move 1 down
+
+END:               #End lable with no commands affter, its only use so if the acc was not grater than 0 it will not excute the commands affter GRATER
+
+@7
+
+/** Its the same set up as @6 except we check if acc is equals to 0 **/
+MOV LEFT, ACC
+MOV ACC, RIGHT		# move acc to @8
+
+JEZ EQUALS			# Check if acc equals to 0, if so jump to EQUALS label
+
+MOV 0, DOWN         # move 0 down to out.e
+JMP END
+
+
+EQUALS:
+MOV 1, DOWN
+
+END:
+
+@8
+/** Its the same set up as @6 and @7 except we check for acc less than 0 and we down need to move the ACC value any more**/
+MOV LEFT, ACC
+                    # absence of move statment, as this is our last out
+
+JLZ LESS            # check if acc is less than 0
+
+MOV 0, DOWN         #move 0 down to out.l
+JMP END
+
+
+LESS:
+MOV 1, DOWN        # move 1 down to out.l
+
+END:

@@ -1,0 +1,55 @@
+# level 10
+@0
+
+
+@1
+START:
+SWP				# start by swaping the acc and bak so that one is used for testing the in value and the outher used to sort the count (i do it here instead of the end)
+MOV UP ACC
+JEZ ADD			# test if the in value is == 0
+				# if != 0
+SWP				# swap the acc and back so we are not on the count storage
+MOV 0 ACC		# reset it back to 0 as its == 0
+MOV ACC RIGHT
+JMP START
+
+ADD:	
+SWP				# swap the acc and back so we are not on the count storage
+ADD 1			# add 1 to the count
+MOV ACC RIGHT	# and move it right to test if its 3 or more
+
+@2
+START:
+MOV LEFT ACC	
+SUB 3			# subtract 3 so we can test if its 3 or more
+
+JLZ LESS		# if it is less 0 we know that we have not had atleast 3 in values of 0 in a row
+				# if >= 0
+MOV 1 DOWN		# move one down as we have had atleast 3 values of 0 in a row
+JMP START
+
+LESS:
+MOV 0 DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP DOWN
+
+@6
+
+
+@7
+
+
+@8
+
+
+@9
+MOV UP DOWN
+
+@10

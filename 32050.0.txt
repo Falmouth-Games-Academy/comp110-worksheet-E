@@ -1,0 +1,46 @@
+# level 8
+@0
+
+
+@1 # Store the in value into acc so we can send it to the right @2 twice, once to subtract it and once to set to the acc.
+MOV UP ACC
+MOV ACC RIGHT
+MOV ACC RIGHT
+
+@2	# Find if the number has changed by 10 or more
+SUB LEFT	
+JLZ ABS		      # make shore that the value in acc is positive so when we take 10 if acc is still positive we know its true 
+JMP ACT
+
+ABS: NEG
+ACT: SUB 10
+JLZ FALSE
+
+MOV 1 DOWN
+JMP END
+
+FALSE: MOV 0 DOWN
+END: MOV LEFT ACC  # move left into acc ready to test the next in value
+
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+MOV UP DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP DOWN
+
+@10

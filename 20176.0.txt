@@ -1,0 +1,40 @@
+# Level 3
+@0
+
+
+@1	                  
+MOV UP, ACC           
+MOV ACC, RIGHT		  # move the ACC value right @2 so it can be subtracted from in.b
+SUB RIGHT             # subtract the value form the right @2 (which comes from In.b)
+MOV ACC, DOWN         
+
+@2
+MOV UP, ACC	         # move up (in.b) to ACC so it can be moved twice
+MOV ACC, DOWN        # move ACC down to @6 so it can be stored and wait for in.a so it can be subtacted
+MOV LEFT, DOWN       # move left @1 (which comes from in.a) down so it can be subtracted
+MOV ACC, LEFT        # move acc left @1 so it can be subtracted from in.a
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, DOWN		
+
+@6
+MOV UP, ACC        # store up value (from in.b) in acc
+SUB UP             # subtract up @2 (in.a value) from acc
+MOV ACC, DOWN      
+
+@7
+
+
+@8
+MOV UP, DOWN      
+
+@9
+MOV UP, DOWN      
+
+@10

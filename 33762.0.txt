@@ -1,0 +1,122 @@
+# level 9
+@0
+START:
+MOV UP DOWN		# move the in value down so we can use the value twice
+SUB DOWN		# Subtract the value form below so if its less than zero we know it has changed from 0 to one
+
+JLZ LESS
+				# >= 0
+MOV DOWN ACC	# move the down value to the acc ready for the next cycel (This has to be done after testing for less than 0 other wise it will test the wrong value)
+MOV 0 DOWN		# move 0 down as we have not changed from a 0 to a one
+JMP START
+
+LESS:			# < 0
+MOV DOWN ACC	# move the down value to the acc ready for the next cycel (This has to be done after testing for less than 0 other wise it will test the wrong value)
+MOV 1 DOWN		# move 1 down as the value has changed for a 0 to a one
+
+@1				# same as @0
+START:
+MOV UP DOWN
+SUB DOWN
+
+JLZ LESS
+
+MOV DOWN ACC
+MOV 0 DOWN
+JMP START
+
+LESS:
+MOV DOWN ACC
+MOV 2 DOWN
+
+@2				# same as @0
+START:
+MOV UP DOWN
+SUB DOWN
+
+JLZ LESS
+
+MOV DOWN ACC
+MOV 0 DOWN
+JMP START
+
+LESS:
+MOV DOWN ACC
+MOV 3 DOWN
+
+@3				# same as @0
+START:
+MOV UP DOWN
+SUB DOWN
+
+JLZ LESS
+
+MOV DOWN ACC
+MOV 0 DOWN
+JMP START
+
+LESS:
+MOV DOWN ACC
+MOV 4 DOWN
+
+@4
+MOV UP ACC		# move the up value to the acc so we can send it back up twice
+MOV ACC UP
+MOV ACC UP
+MOV UP RIGHT	
+
+@5
+START:
+MOV UP ACC		# move the up value into acc so we can send it back up to twice
+MOV ACC UP
+MOV ACC UP
+MOV UP ACC		# move need up value into acc so we can see if its grater than zero
+
+JGZ DONE		# if is grater than 0 jump to done 
+				# else <= 0 
+MOV LEFT DOWN	# move the left value down as it dosent matter if it has changed or not (we'll test for this later)
+JMP START		# jump back to the start
+
+DONE:
+MOV ACC DOWN	
+MOV LEFT NIL	# clear left as we know that the up value has changed
+
+@6				# same as @4
+MOV UP ACC
+MOV ACC UP
+MOV ACC UP
+MOV UP RIGHT
+
+@7				# same as @5
+START:
+MOV UP ACC
+MOV ACC UP
+MOV ACC UP
+MOV UP ACC
+
+JGZ DONE
+
+MOV LEFT DOWN
+JMP START
+
+DONE:
+MOV ACC DOWN
+MOV LEFT NIL
+
+@8
+MOV UP RIGHT
+
+@9				# by now we have narrowed it down to two inputs to test. (just like @5 and @7)
+START:
+MOV LEFT ACC	# move the left value in to the acc so we can test if it is more than 0
+JGZ DONE		# if it is we then move the acc down and clear the right as its not needed
+				# else it will move the right value down as what ever value it holds will be correct
+MOV RIGHT DOWN
+JMP START		# and then jump back to start.
+
+DONE:
+MOV ACC DOWN
+MOV RIGHT NIL
+
+@10
+MOV UP LEFT

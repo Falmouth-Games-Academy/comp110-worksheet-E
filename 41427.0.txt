@@ -1,0 +1,75 @@
+# level 11
+@0
+MOV RIGHT ACC			mov the right into the acc and save (assume that the first value is going to be the min)
+SAV
+S: MOV RIGHT DOWN		# move the seconds value down so we can send it back twice (once to subtract from the acc and agin to store it if its the new min)
+SUB DOWN
+JLZ M					# if the acc is less than 0, we know this is more then the min value
+MOV DOWN ACC			# if not, move the second value from @4 (down) to the acc so we can test if its 0 if so we need to send the stored value to out.i
+JEZ T
+SAV						# if not we know that the we stored to the acc is our new min
+JMP S					# jump back to the start to test the next in value
+M:SWP					# swp the acc and bak followed by save so they both containe the min value ready for the next input
+SAV
+MOV DOWN NIL			# discard the second value from down as we skiped over it
+JMP S					
+T: SWP					# as acc containes the test value (0) swp acc with bak and send the acc value to out.i
+MOV ACC RIGHT
+
+@1
+S: MOV UP ACC			# move the in value to the acc so we can move it both left and right (left is min, right is max)
+
+MOV ACC LEFT
+MOV ACC RIGHT
+
+JEZ T					# if the in value is zero just to T so we can send the min and max value to out
+JMP S
+
+T:
+MOV LEFT DOWN
+MOV RIGHT DOWN
+
+@2						# this is simular to min except clear the value form @6 instead after testing if its the terminate value we can just swp acc and bak and save the value as this time when it jumps to M thats we know thats the max value
+MOV LEFT ACC
+SAV
+S: MOV LEFT DOWN		# move the seconds value down so we can send it back twice (once to subtract from the acc and agin to store it if its the new min)
+SUB DOWN				# if the acc is less than 0, we know this is more then the current max value
+JLZ M
+MOV DOWN ACC			# if not, move the second value from @6 (down) to the acc so we can test if its 0 if so we need to send the stored value to out.a
+JEZ T
+SWP						# if its not equals to 0, we can swp the values as we already know that the value in bak is our max and sav it
+SAV
+JMP S					# jump back to the start to test the next in value
+M: MOV DOWN ACC			# move the value from @6 to acc as this is our new max value and sav it
+SAV
+JMP S
+T: SWP					# as acc containes the test value (0) swp acc with bak and send the acc value to out.a
+MOV ACC LEFT
+
+@3
+
+
+@4				# sotre and send the value back up twice once to subtract from the acc and agin to test for terminate value or store its not
+MOV UP ACC
+MOV ACC UP
+MOV ACC UP
+
+@5
+MOV UP DOWN
+
+@6				# sotre and send the value back up twice once to subtract from the acc and agin to test for terminate value or store its not
+MOV UP ACC
+MOV ACC UP
+MOV ACC UP
+
+@7
+
+
+@8				# the first value comes form min (@0 left) and second max (@2 right) as it gets posted in that order
+MOV UP DOWN
+MOV UP RIGHT
+
+@9
+MOV LEFT DOWN
+
+@10

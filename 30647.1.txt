@@ -1,0 +1,61 @@
+# level 6
+@0
+
+
+@1
+MOV UP ACC			# move up (in.a) to acc
+MOV ACC RIGHT		# move the value for acc right @2 twice as we need to find which of in.a or in.b is grater
+MOV ACC RIGHT
+
+@2
+MOV UP ACC			# move up (in.b) to acc
+
+# move value to find with is grater so we can send the value in the correct order to out.
+MOV ACC DOWN		# move the value of acc down to @6
+MOV LEFT DOWN		# move the left @1 down to @6 (the first of the to mov acc rights form @1)
+
+# value to send to out
+MOV ACC DOWN        # move the value of acc down to @6
+MOV LEFT DOWN       # move the left @1 down to @6 (the second of the to mov acc rights form @1)
+ 
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+MOV UP ACC		# move up @2 to acc (the first mov acc down from @2)
+SUB UP			# substract up @2 from acc (the first mov left down from @2) 
+JLZ L			# if the value of acc is less than 0 we know that in.a is grater the in.b
+JGZ G			# if the value of acc is grater than 0 we know that in.b is grater than in.a
+
+/*
+** Send the two values in the correct order followed by the terminator value
+** (the second lot of mov acc down and mov left down from @2)
+*/
+# Less than 	# send the value in the order they are posted from @2 followed by jumping to E to terminate
+L: MOV UP DOWN  
+MOV UP DOWN
+JMP E
+
+# grater than 
+G: MOV UP ACC	# store the first value so we can move the second from @2 befor the first
+MOV UP DOWN
+MOV ACC DOWN
+
+E:MOV 0 DOWN    #send the terminator value to out
+
+@7
+
+
+@8
+
+
+@9
+MOV UP DOWN		#move up @6 to out.
+
+@10

@@ -1,0 +1,49 @@
+#level 12
+@0
+
+
+@1
+S: MOV UP ACC	# move the in value to the acc so we can check to see if its a zero in which case we can start to reverse the sequence
+JEZ REV
+
+MOV ACC RIGHT	# else move the value into the stack memory
+SWP				# swp acc with the bak so we can count how meny elements need to be reversed
+ADD 1			
+SWP				# swap it back so the count does no get overwwriten
+JMP S
+
+REV:
+SWP				# swp acc with the bak so we can tell @5 how meny elements it pulling form memory
+MOV ACC DOWN
+MOV DOWN ACC	# wait to recive a value back from @5, this prevents it from adding more elements to the memory while it we are reversing the order
+
+@2
+
+
+@3
+
+
+@4
+MOV UP RIGHT
+MOV RIGHT UP
+
+@5
+MOV LEFT ACC	# move the element count to the acc 
+
+REV:
+SUB 1			# sub 1 first so if the count becomes less 1 we know that there was no elements to be reversed
+JLZ RETURN
+MOV UP DOWN			
+JGZ REV			# if count it grater the 0 loop back to rev else it can just contine as we know that we have reached the end
+
+RETURN:			
+MOV 0 DOWN		# mov 0 down as this is the terminating value, if we added this to the stack it would first to be outputed
+MOV 0 LEFT		# send 0 back to @1 so it knows to continue
+
+@6
+
+
+@7
+MOV UP DOWN
+
+@8

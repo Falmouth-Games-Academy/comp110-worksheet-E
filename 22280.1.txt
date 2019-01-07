@@ -1,0 +1,56 @@
+# Level 5
+@0
+
+
+@1
+MOV UP, RIGHT      # move up (in.a) right to @2
+
+@2
+/*
+**	so iv been a lil checky here to get my instruction count as low as pos and used short hand labels
+**	S = start, L = less then, G = grater than
+*/
+S: MOV UP ACC     #move up to up (in.s) to acc so we can test if its '>', '==' or '<'
+# Only test if its less than or grater then as if its equals to 0 we can let it run streat through and jump back to the start
+JLZ L
+JGZ G
+
+# equals to 0
+MOV LEFT ACC     # move left @1 to the acc
+ADD RIGHT		 # add right @3 to acc
+MOV ACC DOWN     # move the acc value down to @6
+JMP S            # jump back to start as we have used both left and right values
+
+# less than 0
+L: MOV LEFT DOWN  # move the left value @1 streat down to @6 as we dont need to add or sub anythink
+MOV RIGHT NIL     # discard the right value as its not used
+JMP S             # jump back to the start
+
+# grater than 0 (same as less than except using the right value @ 3 and discard the left @ 1)
+G: MOV RIGHT DOWN
+MOV LEFT NIL
+# no need to jump back to the start as we are at the end and it will happen anyway
+
+
+@3
+MOV UP, LEFT   
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN 
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN   
+
+@10

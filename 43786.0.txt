@@ -1,0 +1,57 @@
+#level 13
+@0
+
+
+@1
+MOV UP DOWN			# mov A in
+
+@2
+MOV UP DOWN			# mov B in
+
+@3
+
+
+@4
+START:
+MOV UP ACC			# Store in A in the acc so we can keep re using it
+MOV ACC RIGHT		# and move it right to be added to multiplication sum
+
+MUTI:
+SWP					# swap the acc with the back so we can see if we require to send the value to be added again
+MOV RIGHT ACC		# 1 to send the value again 0 to go onto the next
+JEZ START			
+SWP					# swp back to the in.a value so we can send it to be added to the multiplication sum
+MOV ACC RIGHT
+JMP MUTI
+
+@5
+MOV UP ACC			# mov in.b into the acc, this is the amount of times we need to add in.a to the sum
+MUT: SWP			# swp the acc with the bak so we are on the sum
+ADD LEFT			
+SWP					# swp back to back to amount of time we need to add in.a and sub tract 1
+SUB 1
+JLZ Z				# if it becomes less then zero, we know that in this case in.b was zero, we must check for that here else it will lock up
+JEZ E				# else if it zero we know that we have compleated the multiplication
+MOV 1 LEFT			# mov 1 to @4 so it knows to continue sending in.a
+JMP MUT				
+Z: SWP				# swap back to the sum a set it to zero, this prevents it from b*1 to out (and we cant check for that in @7 as its a posability but it does mean that when we contine it will be swaped back to the sum which is -1 as we can check for that in @7) 
+MOV 0 ACC
+E:MOV 0 LEFT		# send 0 to @4 to indercate for it to move onto the next value
+SWP					# swp back to the sum (unless in.b was 0)
+MOV ACC DOWN		
+# theres no need to reset the sum acc as its going to get overwriten when it starts again and we have alread reset it in in.b is zero
+
+
+@6
+
+
+@7
+S: MOV UP ACC		# set in value to acc so we can check to see if its gone to -1, when in.b is zero
+JLZ NEG
+MOV ACC DOWN
+JMP S
+
+NEG:
+MOV 0 DOWN
+
+@8

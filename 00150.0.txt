@@ -1,0 +1,26 @@
+# Level 1, 
+#Just moves all from in.x to out.x and in.a to out.a
+
+@0		
+MOV UP, DOWN
+
+@1		
+MOV RIGHT, DOWN
+
+@2		
+MOV UP, LEFT
+
+@3		
+MOV UP, DOWN
+
+@4		
+MOV UP, DOWN
+
+@5		
+MOV UP, DOWN
+
+@6		
+MOV UP, RIGHT
+
+@7		
+MOV LEFT, DOWN

@@ -1,0 +1,67 @@
+# level 7
+@0
+
+
+@1
+START:			# creat a loop so if the value is not zero it can be move down twice, once for testing and again to add
+MOV UP ACC		# set the in vaue to acc so it can be moved down twice
+MOV ACC DOWN	# move the value down to @4 (value to test)
+
+JEZ START		# if the acc value is zero go back to the start as it does not need to be added to the sum
+
+MOV ACC DOWN	# else move the acc value down to @4 to be added to the sum
+
+@2
+
+
+@3
+
+
+@4
+MOV UP DOWN		# move the value streat down to @8 (this keeps my node count down)
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8               # get the sum
+START:           # creat a loop so we can add to our sum 
+SWP              # swp the value so we have one to test and one for the sum (this puts us onto the test value)
+MOV UP ACC       # move the up value form @4 to the acc for testing for zero (the first of the mov acc down from @1)
+MOV ACC RIGHT    # and move it right to @9 so we can get the length 
+JEZ ZERO         # if the acc value is zero jump to zero so we can sumbit our sum and reset.
+                 # we must swp after zero so we test the correct value
+				 
+SWP              # swap the value so we are on the sum value
+ADD UP           # add up @4 to acc
+JMP START        # and loop back to the start (and to prevent submiting and reseting the value)
+
+ZERO:            
+SWP              # swap the value so we are on the sum value
+MOV ACC DOWN     # move the acc value down to out.s
+MOV 0 ACC        # reset the acc (sum) to 0
+
+
+@9               # Get the length (its the same as geting the sum except we add 1 insted of adding the value for IN)
+START:
+SWP
+MOV LEFT ACC
+
+
+JEZ ZERO
+SWP
+ADD 1
+JMP START
+
+ZERO:
+SWP
+MOV ACC DOWN
+MOV 0 ACC
+
+
+@10
