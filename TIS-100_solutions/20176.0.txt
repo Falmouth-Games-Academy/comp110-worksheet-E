@@ -1,0 +1,60 @@
+@0
+
+
+@1
+##DC1
+# get the value from IN.A register
+# and move it to the down register
+MOV UP, DOWN
+
+@2
+# get the value from IN.B register
+# and move it to the down register
+MOV UP, DOWN
+
+@3
+
+
+@4
+
+
+@5
+# move the value from the up register to the ACC storage
+MOV UP, ACC
+# save the value to the BAK storage
+SAV
+# move the value stored in ACC to the right register
+MOV ACC, RIGHT
+# subtract the output right register's value from the current value
+SUB, RIGHT
+# move the final value to the down register
+MOV ACC, DOWN
+
+@6
+# move the value from the up register to the ACC storage
+MOV UP, ACC
+# save the value to the BAK storage
+SAV
+# subtract the output left register's value from the current value
+SUB, LEFT
+# swap the values of ACC and BAK
+SWP
+# move the value stored in ACC to the left register
+MOV ACC, LEFT
+# swap the values again
+SWP
+# move the final value to the down register
+MOV ACC, DOWN
+
+@7
+
+
+@8
+# write the final value to OUT.P
+MOV UP, DOWN
+
+@9
+# write the final value to OUT.N
+MOV UP, DOWN
+
+@10

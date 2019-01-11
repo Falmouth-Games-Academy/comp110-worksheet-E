@@ -1,0 +1,59 @@
+@0
+
+
+@1
+MOV UP, RIGHT
+
+@2
+# get the IN.S value and write it to ACC
+START: MOV UP, ACC
+# check if the value is negative
+JLZ A
+# check if the value is positive
+JGZ B
+# if the value is equal to 0, reset the ACC storage
+EQUAL: MOV 0, ACC
+# add the IN.A value to the ACC storage
+ADD LEFT
+# add the IN.B value to the ACC storage
+ADD RIGHT
+# move the added value to the down register
+MOV ACC, DOWN
+# go back to the start of the function
+JMP START
+# if the value is negative
+# move IN.A to the down register
+A: MOV LEFT, DOWN
+# discard the IN.B value
+MOV RIGHT, NIL
+# reset the function
+JMP START
+# if the value is positive
+# move IN.B to the down register
+B: MOV RIGHT, DOWN
+# discard the IN.A value
+MOV LEFT, NIL
+
+@3
+MOV UP, LEFT
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+
+@7
+
+
+@8
+
+
+@9
+# write the final value to OUT
+MOV UP, DOWN
+
+@10

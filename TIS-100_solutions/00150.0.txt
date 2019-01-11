@@ -1,0 +1,31 @@
+@0
+# get the input from the up register IN.X
+# and transfer it to the down register
+MOV UP, DOWN
+
+@1
+# get the 
+MOV RIGHT, DOWN
+
+@2
+##STD1
+# get the input from the up register IN.A
+# and transfer it to the left register
+MOV UP, LEFT
+
+@3
+MOV UP, DOWN
+
+@4
+MOV UP, DOWN
+
+@5
+# write the value from the up register down to OUT.X
+MOV UP, DOWN
+
+@6
+MOV UP, RIGHT
+
+@7
+# write the value from the up register to OUT.A
+MOV LEFT, DOWN

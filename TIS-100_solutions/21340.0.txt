@@ -1,0 +1,62 @@
+@0
+# get the value from IN
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+# check if the value is > 0
+START:
+ MOV LEFT, ACC
+ MOV ACC, RIGHT
+ # check if the value is positive
+ JGZ POSITIVE
+ # if the value is not positive, write 0 to OUT.G
+ MOV 0, DOWN
+ JMP START
+# if the value is positive, write 1 to OUT.G
+POSITIVE:
+ MOV 1, DOWN
+
+@7
+# check if the value is = 0
+START:
+ MOV LEFT, ACC
+ MOV ACC, RIGHT
+ # check if the value is positive
+ JGZ RESET
+ # check if the value is negative
+ JLZ RESET
+ # if the value is neither, write 1 to the OUT.E register
+ MOV 1 DOWN
+ JMP START
+# if the value is not equal to 0, write 0 to the OUT.E register
+RESET:
+ MOV 0, DOWN
+ JMP START
+
+@8
+# check if the value is < 0
+START:
+ MOV LEFT, ACC
+  # check if the value is negative
+ JLZ NEGATIVE
+ # if the value is not negative, write 0 to OUT.L
+ MOV 0 DOWN
+ JMP START
+# if the value is negative, write 1 to OUT.L
+NEGATIVE:
+ MOV 1, DOWN
