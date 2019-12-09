@@ -1,4 +1,4 @@
-## opt2: 3 cycles per node
+## Level 3 with less cycles
 
 @0
 

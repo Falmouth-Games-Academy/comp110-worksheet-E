@@ -1,4 +1,4 @@
-## one detector/line, distributed agg
+## Level 9
 
 @0
 ZERO:

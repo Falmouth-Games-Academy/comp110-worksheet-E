@@ -1,4 +1,4 @@
-## straight through
+## level 1
 
 @0
 MOV UP, DOWN
