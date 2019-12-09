@@ -1,0 +1,56 @@
+@0
+
+
+@1
+S: MOV UP, ACC
+SAV
+SUB RIGHT
+SWP
+
+JLZ A_FIRST
+
+A_FIRST:
+MOV ACC, DOWN
+MOV -1, RIGHT
+JMP S
+
+B_FIRST:
+MOV 1, RIGHT
+
+@2
+MOV UP, ACC
+MOV ACC, LEFT
+SAV
+SWP
+
+MOV LEFT, ACC
+
+#1 = B FIRST
+JGZ B
+
+B:
+SWP
+MOV ACC, DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, RIGHT
+
+@6
+MOV ANY, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10
