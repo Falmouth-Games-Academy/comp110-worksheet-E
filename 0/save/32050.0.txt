@@ -5,6 +5,7 @@
 MOV UP, NIL
 MOV 0, DOWN
 MOV UP, ACC
+MOV 1, DOWN
 S: SUB UP
 JLZ N
 JMP T
@@ -27,7 +28,7 @@ JMP S
 
 
 @5
-MOV UP, DOWN
+
 
 @6
 
