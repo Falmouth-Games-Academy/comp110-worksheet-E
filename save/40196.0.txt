@@ -1,0 +1,47 @@
+@0
+
+
+@1
+MOV UP, ACC
+JNZ N
+SWP
+ADD 1
+MOV ACC, RIGHT
+SAV
+JRO -100
+N: MOV 0 DOWN
+MOV 0 ACC
+SAV
+
+@2
+MOV LEFT, ACC
+SAV
+SUB 2
+JGZ Y
+MOV 0, DOWN
+SWP
+JRO -100
+Y: MOV 1, DOWN
+
+@3
+
+
+@4
+MOV UP, RIGHT
+
+@5
+MOV ANY, DOWN
+
+@6
+
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10

@@ -1,0 +1,34 @@
+@0
+
+
+@1
+MOV UP, ACC
+JEZ E
+MOV ACC, RIGHT
+JRO -100
+E:
+MOV ACC, DOWN
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, RIGHT
+
+@5
+MOV LEFT, ACC
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, DOWN
+
+@9
