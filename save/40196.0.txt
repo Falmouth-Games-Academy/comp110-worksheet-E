@@ -1,0 +1,44 @@
+@0
+
+
+@1
+S:SAV
+MOV UP ACC
+JEZ TRUE
+MOV 0, ACC
+MOV 0, DOWN
+JMP S
+TRUE:SWP
+ADD 1
+MOV ACC, DOWN
+
+@2
+
+
+@3
+
+
+@4
+S:MOV UP, ACC
+SUB 3
+JLZ TRUE
+MOV 1, DOWN
+JMP S
+TRUE:MOV 0, DOWN
+
+@5
+
+
+@6
+
+
+@7
+
+
+@8
+MOV UP, RIGHT
+
+@9
+MOV LEFT, DOWN
+
+@10
