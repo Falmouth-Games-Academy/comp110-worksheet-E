@@ -1,0 +1,45 @@
+@0
+
+
+@1
+A: MOV UP, ACC
+   JNZ Y
+   MOV 0, RIGHT
+   MOV UP, ACC
+   JNZ Y
+   MOV 0, RIGHT
+   MOV UP, ACC
+   JNZ Y
+X:
+   MOV 1, RIGHT
+   MOV UP, ACC
+   JEZ X
+Y:
+  MOV 0, RIGHT
+  JMP A
+
+@2
+MOV LEFT, DOWN
+
+@3
+
+
+@4
+
+
+@5
+MOV UP, DOWN
+
+@6
+
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10
