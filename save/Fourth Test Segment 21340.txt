@@ -1,0 +1,62 @@
+@0
+MOV UP, DOWN
+
+@1
+
+
+@2
+
+
+@3
+
+
+@4
+MOV UP, DOWN
+
+@5
+MOV UP, RIGHT
+
+@6
+STRT:MOV LEFT, ACC
+JGZ ONE
+JEZ TWO
+JLZ THR
+ONE:MOV 1, DOWN
+MOV ACC, RIGHT
+JMP STRT
+THR:MOV NIL, DOWN
+MOV ACC, RIGHT
+JMP STRT
+TWO:MOV NIL, DOWN
+MOV ACC, RIGHT
+
+#I ran into the problem of everything being invalidated because the cycle would go through all the labels - Therefore I used JMP STRT to ensure
+that once the label that was needed had run its course and passed on the acc; it would go back to the start of the node
+
+@7
+STRT:MOV LEFT, ACC
+JGZ ONE
+JEZ TWO
+JLZ THR
+TWO:MOV 1, DOWN
+MOV ACC RIGHT
+JMP STRT
+ONE:MOV NIL, DOWN
+MOV ACC, RIGHT
+JMP STRT
+THR:MOV NIL, DOWN
+MOV ACC RIGHT
+
+@8
+STRT:MOV LEFT, ACC
+
+
+JGZ ONE
+JEZ TWO
+JLZ THR
+
+TWO:MOV NIL, DOWN
+JMP STRT
+THR:MOV 1, DOWN
+JMP STRT
+ONE:MOV NIL, DOWN
