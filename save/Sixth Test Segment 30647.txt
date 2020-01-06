@@ -1,0 +1,49 @@
+@0
+
+
+@1
+MOV UP, ACC
+MOV ACC RIGHT
+MOV ACC RIGHT
+
+@2
+STRT:MOV UP, ACC
+
+SAV
+SUB LEFT
+JLZ SEQ1
+MOV LEFT, DOWN
+SWP
+MOV ACC, DOWN
+JMP STRT
+SEQ1:SWP
+MOV ACC, DOWN
+MOV LEFT, DOWN
+
+#"Jump if less than zero to sequence 1" by subtracting the left input from the saved number, we calculate whether the left number is smaller
+or not because it becomes a minus number. Then we simply swap the acc and bak and send the number down first
+
+@3
+
+
+@4
+
+
+@5
+
+
+@6
+MOV UP, DOWN
+MOV UP, DOWN
+MOV NIL, DOWN
+
+@7
+
+
+@8
+
+
+@9
+MOV UP, DOWN
+
+@10
